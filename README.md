@@ -31,7 +31,7 @@ El nombre Chilling Dogs refleja nuestra onda: un lugar donde tus perros están c
 _Herramientas utilizadas para crear el proyecto_
 
 * Html
-* Css
+* Sass (SCSS)
 * TypeScript
 
 ### `Desarrollado por: 💻`
