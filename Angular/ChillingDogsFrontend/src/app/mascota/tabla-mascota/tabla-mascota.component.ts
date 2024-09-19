@@ -9,6 +9,7 @@ import {MascotaService} from "../../service/mascota.service";
 })
 export class TablaMascotaComponent {
   mascotas!: Mascota[];
+  vet: string = 'vet';
 
   constructor(
     private mascotaService: MascotaService) {}

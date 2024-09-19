@@ -1,4 +1,4 @@
-<app-header-cliente></app-header-cliente>
+<landing-header [tipoLogueo] = "vet"></landing-header>
 <app-search-bar-mascota (actualizarLista)="recargarMascotas($event)"></app-search-bar-mascota>
 <main>
     <div class="contenedorTabla">
@@ -16,7 +16,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let mascota of mascotas"> 
+            <tr *ngFor="let mascota of mascotas">
                 <td>
                     <input class="form-check-input" *ngIf="mascota.estado == 'Activo'"  type="checkbox" checked disabled>
                     <input class="form-check-input"*ngIf="mascota.estado == 'Inactivo'"  type="checkbox" disabled>

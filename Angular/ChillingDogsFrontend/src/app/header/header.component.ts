@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'landing-header',
@@ -7,6 +7,10 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  @Input()
   tipoLogueo: string = "guest";
 
+  cambiarLogueo(logueo: string) {
+    this.tipoLogueo = logueo
+  }
 }
