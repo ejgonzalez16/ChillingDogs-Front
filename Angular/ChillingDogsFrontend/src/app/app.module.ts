@@ -7,6 +7,8 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './landing/main/main.component';
 import { CarruselComponent } from './transversales/carrusel/carrusel.component';
+import { TablaClienteComponent } from './cliente/tabla-cliente/tabla-cliente.component';
+import { TablaMascotaComponent } from './mascota/tabla-mascota/tabla-mascota.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { CarruselComponent } from './transversales/carrusel/carrusel.component';
     FooterComponent,
     HeaderComponent,
     MainComponent,
-    CarruselComponent
+    CarruselComponent,
+    TablaClienteComponent,
+    TablaMascotaComponent
   ],
   imports: [
     BrowserModule,
