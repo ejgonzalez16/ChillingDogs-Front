@@ -1,0 +1,59 @@
+<div class="header">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+        <!--Lo hace responsive al navbar-->
+        <button class="navbar-toggler black" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-expanded="false">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand" href="/landing">
+            <img src="/assets/images/logo.png" alt="logo" width="80px">
+            <h1>Chilling Dogs</h1>
+        </a>
+        <span *ngIf="tipoLogueo == 'guest'">
+            <div class="collapse navbar-collapse centrar" id="navbar"> <!--Contiene el responsive de los elementos-->
+                <ul class="navbar-nav">
+                    <li class="nav-item enlacesSecciones"><a href="#sobreNosotros" class="nav-link">Sobre Nosotros</a></li>
+                    <li class="nav-item enlacesSecciones"><a href="#servicios" class="nav-link">Nuestros Servicios</a></li>
+                    <li class="nav-item enlacesSecciones"><a href="#casosDeExito" class="nav-link">Casos de éxito</a></li>
+                </ul>
+            </div>
+
+            <div class="collapse navbar-collapse derecha" id="navbar2">
+                <ul class="navbar-nav">
+                    <li class="nav-item" ><button class="iniciarSesion" onclick="window.location.href='/login'">Iniciar Sesión</button></li>
+                    <li class="nav-item"><button class="registrarse">Registrarse</button></li>
+                </ul>
+            </div>
+        </span>
+        <span *ngIf="tipoLogueo == 'vet'">
+            <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+                <!--Lo hace responsive al navbar-->
+                <button class="navbar-toggler black" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-expanded="false">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+    
+                <a class="navbar-brand" href="/landing">
+                    <img src="/assets/images/logo.png" alt="logo" width="80px">
+                    <h1>Chilling Dogs</h1>
+                </a>
+    
+                <div class="collapse navbar-collapse centrar-vet" id="navbar"> <!--Contiene el responsive de los elementos-->
+                    <ul class="navbar-nav navigation">
+                        <li class="nav-item enlacesSecciones">
+                            <a class="button bg-dark" href="/mascotas/buscar">
+                                <img src="/assets/images/mascotas-vet-option.png">
+                                <div class="logout">Mascotas</div>
+                            </a>
+                        </li>
+                        <li class="nav-item enlacesSecciones">
+                            <a class="button bg-dark" href="/clientes/buscar">
+                                <img src="/assets/images/clientes-vet-option.png">
+                                <div class="logout">Clientes</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </span>
+    </nav>
+</div>
