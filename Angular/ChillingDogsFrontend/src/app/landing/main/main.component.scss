@@ -323,3 +323,10 @@ section {
     background-color: white;
     color: var(--text-dark);
 }
+
+.centrar-vet {
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    margin-right: 18vw;
+}
