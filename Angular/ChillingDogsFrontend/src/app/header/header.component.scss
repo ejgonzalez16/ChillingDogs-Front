@@ -1,7 +1,64 @@
-.header{
+header{
     position: fixed; /*El header se queda estático*/
     top: 0; /*Mandarlo arriba del todo*/
     width: 100%;
     padding: 0px;
     z-index: 1;
+}
+
+.black{
+    background-color: var(--text-dark);
+}
+
+.centrar{
+    display: flex;
+    justify-content: center;
+    width: 70%;
+}
+
+.enlacesSecciones{
+    margin-right: 20px;
+}
+
+.derecha{
+    display: flex;
+    justify-content: end;
+    margin-right: 20px;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-left: 20px;
+}
+
+.navbar-brand h1{
+    font-size: 1.5em;
+    color: var(--primary-color);
+}
+
+/* Navbar Landing --------------------------------------------------------------*/
+.iniciarSesion{
+    color: var(--primary-color);
+    background-color: transparent;
+    padding: 10px;
+    min-width: 10vw;
+    border: none; /* Quita el borde si no se necesita */
+}
+
+.iniciarSesion:hover{
+    color: rgb(226, 133, 26);
+}
+
+.registrarse {
+    background-color: var(--primary-color);
+    border-radius: 30px;
+    padding: 10px;
+    color: white;
+    border: none; /* Quita el borde si no se necesita */
+}
+
+.registrarse:hover{
+    background-color: rgb(226, 133, 26);
 }
