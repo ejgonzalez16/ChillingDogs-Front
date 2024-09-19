@@ -1,9 +1,17 @@
-header{
+.header{
     position: fixed; /*El header se queda estático*/
     top: 0; /*Mandarlo arriba del todo*/
     width: 100%;
     padding: 0px;
     z-index: 1;
+    display: flex;
+    justify-content: space-between;
+}
+
+.expandir{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .black{
