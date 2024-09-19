@@ -1,0 +1,112 @@
+<app-header-cliente></app-header-cliente>
+<main>
+    <section id="seccionPeludo">
+        <h1>Estado de {{mascota.nombre}}</h1>
+        <div class = "estadoPeludo">
+            <table>
+                <tbody>
+                <tr>
+                    <td class="imagenEstado">
+                        <img src="/assets/images/estado.svg" alt="estado" height="24px">
+                    </td>
+                    <td class="celdaSinPadding">
+                        Estado
+                    </td>
+                    <td>
+                        <button *ngIf="mascota.estado == 'Activo'" class = "estadoActivo">Activo</button>
+                        <button *ngIf="mascota.estado == 'Inactivo'" class = "estadoInactivo">Inactivo</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="imagenEstado">
+                        <img class="imagenEstado" src="/assets/images/raza.svg" alt="raza" height="24px">
+                    </td>
+                    <td class="celdaSinPadding">
+                        Raza
+                    </td>
+                    <td>
+                        {{mascota.raza}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="imagenEstado">
+                        <img class="imagenEstado" src="/assets/images/edad.svg" alt="raza" height="24px">
+                    </td>
+                    <td class="celdaSinPadding">
+                        Edad
+                    </td>
+                    <td>{{mascota.edad}} añitos</td>
+                </tr>
+                <tr>
+                    <td class="imagenEstado">
+                        <img class="imagenEstado" src="/assets/images/peso.svg" alt="raza" height="24px">
+                    </td>
+                    <td class="celdaSinPadding">
+                        Peso
+                    </td>
+                    <td>{{mascota.peso}} kg</td>
+                </tr>
+                <tr>
+                    <td class="imagenEstado">
+                        <img class="imagenEstado" src="/assets/images/enfermedad.svg" alt="raza" height="24px">
+                    </td>
+                    <td class="celdaSinPadding">
+                        Malestar
+                    </td>
+                    <td>{{mascota.enfermedad}}</td>
+                </tr>
+                <tr>
+                    <td class="imagenEstado">
+                        <img class="imagenEstado userImg" [src]="mascota.cliente!.foto" alt="Imagen de {{mascota.cliente!.nombre}}" height="24px">
+                    </td>
+                    <td class="celdaSinPadding">
+                        Dueño
+                    </td>
+                    <td>{{mascota.cliente!.nombre}}</td>
+                </tr>
+                </tbody>
+            </table>
+            <img alt="Perro de {{mascota.cliente!.nombre}}" [src]="mascota.foto" class="peludo-img">
+        </div>
+    </section>
+
+    <section class="seccionDueno">
+        <h1>Dueño de {{mascota.nombre}}</h1>
+        <article class="datosDueno">
+            <section class="imagenesDueno" id="seccionImagenes">
+                <img class="imagenDueno userImg" [src]="mascota.cliente!.foto" alt="Imagen de {{mascota.cliente!.nombre}}">
+            </section>
+
+            <section class="datosNumericos" id="seccionNumericos">
+                <article>
+                    <div class="datoDueno espacioTitulo espacioEntreDatosDer">
+                        <h3>Cédula</h3>
+                        <p>{{mascota.cliente!.cedula}}</p>
+                    </div>
+
+                    <div class="datoDueno espacioEntreDatosArriba espacioEntreDatosDer">
+                        <h3>Nombre</h3>
+                        <p>{{mascota.cliente!.nombre}}</p>
+                    </div>
+
+                </article>
+
+                <article class="columnaDosDatos">
+                    <div class="datoDueno espacioTitulo">
+                        <h3>Correo</h3>
+                        <p>{{mascota.cliente!.correo}}</p>
+                    </div>
+
+                    <div class="datoDueno espacioEntreDatosArriba">
+                        <h3>Celular</h3>
+                        <p>{{mascota.cliente!.celular}}</p>
+                    </div>
+                </article>
+            </section>
+
+
+        </article>
+
+    </section>
+    <a href="http://localhost:4200/mascotas/buscar"><button id="btnVolver">Volver</button></a>
+</main>

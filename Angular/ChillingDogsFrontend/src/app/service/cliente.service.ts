@@ -11,7 +11,7 @@ export class ClienteService {
   clientes: Cliente[] = [
     {
       "id": 10000001,
-      "cedula": "Mi padre Oriol",
+      "cedula": "10000001",
       "nombre": "Oriol",
       "correo": "oriol.medina@javeriana.edu.co",
       "celular": "3001234567",
@@ -65,7 +65,7 @@ export class ClienteService {
     },
     {
       "id": 10000002,
-      "cedula": "Maria Gomez",
+      "cedula": "10000002",
       "nombre": "Maria Gomez",
       "correo": "maria.gomez@example.com",
       "celular": "3012345678",
@@ -119,7 +119,7 @@ export class ClienteService {
     },
     {
       "id": 10000003,
-      "cedula": "Luis Martinez",
+      "cedula": "10000003",
       "nombre": "Luis Martinez",
       "correo": "luis.martinez@example.com",
       "celular": "3023456789",
@@ -151,7 +151,7 @@ export class ClienteService {
     },
     {
       "id": 10000004,
-      "cedula": "Ana Rodriguez",
+      "cedula": "10000004",
       "nombre": "Ana Rodriguez",
       "correo": "ana.rodriguez@example.com",
       "celular": "3034567890",
@@ -166,5 +166,20 @@ export class ClienteService {
 
   findById(id: number): Cliente {
     return <Cliente>this.clientes.find(cliente => cliente.id === id);
+  }
+
+  add(cliente: Cliente){
+    this.clientes.push(cliente);
+  }
+
+  update(cliente: Cliente){
+    const index = this.clientes.findIndex(cliente => cliente.id === cliente.id);
+    if (index !== -1) {
+      this.clientes[index] = { ...this.clientes[index], ...cliente };
+    }
+  }
+
+  deleteById(id: number){ 
+    this.clientes = this.clientes.filter(cliente => cliente.id !== id);
   }
 }

@@ -222,4 +222,19 @@ export class MascotaService {
   findByClienteId(id: number): Mascota[] {
     return this.mascotas.filter(mascota => mascota.cliente!.id === id);
   }
+
+  add(mascota: Mascota){
+    this.mascotas.push(mascota);
+  }
+
+  update(mascota: Mascota){
+    const index = this.mascotas.findIndex(mascota => mascota.id === mascota.id);
+    if (index !== -1) {
+      this.mascotas[index] = { ...this.mascotas[index], ...mascota };
+    }
+  }
+
+  deleteById(id: number){ 
+    this.mascotas = this.mascotas.filter(cliente => cliente.id !== id);
+  }
 }

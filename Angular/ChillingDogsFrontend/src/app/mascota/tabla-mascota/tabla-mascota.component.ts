@@ -17,4 +17,12 @@ export class TablaMascotaComponent {
     this.mascotas = this.mascotaService.findAll();
   }
 
+  recargarMascotas(nombrePerro?: string) {
+    this.mascotas = this.mascotaService.findAll().filter(mascota => mascota.nombre.includes(nombrePerro || ''));
+  }
+
+  eliminarMascota(id: number) {
+    this.mascotaService.deleteById(id);
+    this.mascotas = this.mascotaService.findAll();
+  }
 }
