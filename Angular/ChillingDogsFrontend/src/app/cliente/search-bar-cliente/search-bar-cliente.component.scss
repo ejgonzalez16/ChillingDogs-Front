@@ -1,0 +1,87 @@
+#cedulaField{
+    font-family: Fredoka; 
+    font-size: 18px; 
+    line-height: 28px; 
+    font-weight: 400; 
+    background: #FCFCFCFF; /* tertiary2-350 */
+    border-radius: 4px 0px 0px 4px; /* border-tl-m border-bl-m */
+    border-width: 1px; 
+    border-color: #FBFBFBFF; /* tertiary2-300 */
+    border-style: solid; 
+    outline: none; 
+    width: 50em;
+    height: 2em;
+    padding-left: 1em;
+    margin-bottom: 50px;
+}
+
+main{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+article{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; 
+    a{
+        text-decoration: none;
+        button{ 
+            margin-top: 50px;
+        }
+    } 
+}
+
+input {
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  
+    &[type=number] {
+      -moz-appearance: textfield;
+    }
+}
+
+form{
+    margin-top: 50px;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+#btnForm{
+    padding: 0 14px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: #006c87;
+    background: #D7F7FFFF;
+    opacity: 1; 
+    border: none; 
+    border-radius: 0px 4px 4px 0px; 
+    gap: 0px;
+    height: 2.25em;
+    margin-bottom: 50px;
+}
+
+#btnCrear{
+    padding: 0 14px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: #000000;
+    background: #baffa9;
+    opacity: 1; 
+    border: none; 
+    border-radius: 0px 4px 4px 0px; 
+    gap: 0px;
+    height: 2.25em;
+    margin-bottom: 50px;
+}
