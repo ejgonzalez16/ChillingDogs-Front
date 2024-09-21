@@ -3,9 +3,7 @@
         <form onsubmit="return hacerLogin()" method="get">
             <div class="type-user-buttons">
                 <button class="type-button-selected">Cliente</button>
-                <a [routerLink]="['mascotas/buscar']">
-                  <button class="type-button">Veterinario</button>
-                </a>
+                <button class="type-button" (click)="goToMascotas()">Veterinario</button>
                 <button class="type-button">Administrador</button>
             </div>
             <div class="login-part">

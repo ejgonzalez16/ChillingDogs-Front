@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Mascota} from "../mascota";
 import {MascotaService} from "../../service/mascota.service";
+import { HeaderService } from '../../service/header.service';
 
 @Component({
   selector: 'app-tabla-mascota',
@@ -12,14 +13,16 @@ export class TablaMascotaComponent {
   vet: string = 'vet';
 
   constructor(
-    private mascotaService: MascotaService) {}
+    private mascotaService: MascotaService, private headerService: HeaderService) {}
 
   ngOnInit() {
     this.mascotas = this.mascotaService.findAll();
+    this.headerService.setTipoLogueo('vet');
   }
 
   recargarMascotas(nombrePerro?: string) {
     this.mascotas = this.mascotaService.findAll().filter(mascota => mascota.nombre.includes(nombrePerro || ''));
+    this.headerService.setTipoLogueo('vet');
   }
 
   eliminarMascota(id: number) {

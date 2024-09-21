@@ -5,7 +5,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <a class="navbar-brand" [routerLink]="['landing']" (click)="cambiarLogueo('guest')">
+        <a class="navbar-brand" [routerLink]="['landing']" (click)="cambiarLogueo('guest'); $event.preventDefault()">
             <img src="/assets/images/logo.png" alt="logo" width="80px">
             <h1>Chilling Dogs</h1>
         </a>

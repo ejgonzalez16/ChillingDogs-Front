@@ -21,6 +21,7 @@ import { DetallesMascotaComponent } from './mascota/detalles-mascota/detalles-ma
 import { FormMascotaComponent } from './mascota/form-mascota/form-mascota.component';
 import { ModificarMascotaComponent } from './mascota/modificar-mascota/modificar-mascota.component';
 import { CrearMascotaComponent } from './mascota/crear-mascota/crear-mascota.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { CrearMascotaComponent } from './mascota/crear-mascota/crear-mascota.com
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   providers: [
     provideClientHydration()

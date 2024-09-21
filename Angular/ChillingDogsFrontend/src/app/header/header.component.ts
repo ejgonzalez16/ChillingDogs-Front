@@ -1,16 +1,25 @@
-import {Component, Input} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnInit, SimpleChanges} from '@angular/core';
+import { HeaderService } from '../service/header.service';
 
 @Component({
   selector: 'landing-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
-
+export class HeaderComponent implements OnInit {
   @Input()
-  tipoLogueo: string = "guest";
+  tipoLogueo: string = 'guest';
 
-  cambiarLogueo(logueo: string) {
-    this.tipoLogueo = logueo
+  constructor(private headerService: HeaderService) {}
+
+  ngOnInit() {
+      this.headerService.tipoLogueo$.subscribe(tipo => {
+          this.tipoLogueo = tipo;
+          console.log(tipo);
+      });
+  }
+
+  cambiarLogueo(tipo: string) {
+    this.headerService.setTipoLogueo(tipo);
   }
 }
