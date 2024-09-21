@@ -69,6 +69,31 @@
         <div class="tituloCasos">
             <h1>Historias de nuestros peludos</h1>
         </div>
-        <carrusel></carrusel>
+        <div id="contenedorCasos">
+            <p-carousel
+                [value]="resenias" 
+                [numVisible]="1" 
+                [numScroll]="1" 
+                [circular]="true"
+                [autoplayInterval]="5000"
+                [responsiveOptions]="responsiveOptions">
+                    <ng-template let-resenia pTemplate="item">
+                    <div class="centrarCarrusel">
+                        <img 
+                            [src]="resenia.fotoMascota"
+                            [alt]="resenia.nombreMascota"  />
+                        <div>
+                            <div class="vertical">
+                                <div class="datos">
+                                <img [src]="resenia.fotoDuenio" [alt]="resenia.nombreDuenio">
+                                <p>{{resenia.nombreDuenio}} - {{resenia.nombreMascota}}</p>
+                                </div>
+                                <p>{{resenia.txtResenia}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    </ng-template>
+            </p-carousel>
+        </div>
     </section>
 </div>

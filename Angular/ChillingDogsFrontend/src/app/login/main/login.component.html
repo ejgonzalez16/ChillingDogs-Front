@@ -1,6 +1,6 @@
 <div class="main">
     <section class="login-black">
-        <form onsubmit="return hacerLogin()" method="get">
+        <form  (ngSubmit)="onSubmit()" method="get">
             <div class="type-user-buttons">
                 <button class="type-button-selected">Cliente</button>
                 <button class="type-button" (click)="goToMascotas()">Veterinario</button>
@@ -9,9 +9,8 @@
             <div class="login-part">
                 <h1>Iniciar Sesión</h1>
 
-                <label for="cedulaTxt">Cédula</label>
-                <input type="number" id="cedulaTxt" name="cedulaTxt" maxlength="10" required>
-
+                <label for="cedulaTxt">Cedula</label>
+                <input type="number" id="cedulaTxt" name="cedulaTxt" maxlength="10" [(ngModel)]="cedula" required>
                 <button type="submit" class="login-button">Iniciar Sesión</button>
             </div>
         </form>

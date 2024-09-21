@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,6 +7,12 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+
+  @Input()
+  cedula!: number;
+  onSubmit() {
+    this.router.navigate(['/mis-mascotas', this.cedula]);
+  }
 
   constructor(private router: Router) { }
   goToMascotas() {

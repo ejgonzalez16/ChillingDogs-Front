@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-
+import { CarouselModule } from 'primeng/carousel';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
@@ -22,6 +23,10 @@ import { FormMascotaComponent } from './mascota/form-mascota/form-mascota.compon
 import { ModificarMascotaComponent } from './mascota/modificar-mascota/modificar-mascota.component';
 import { CrearMascotaComponent } from './mascota/crear-mascota/crear-mascota.component';
 import { RouterModule } from '@angular/router';
+import { MisMascotasComponent } from './mascota/mis-mascotas/mis-mascotas.component';
+import { LoginComponent } from './login/main/login.component';
+import { ButtonModule } from 'primeng/button';
+import { TagModule } from 'primeng/tag';
 
 @NgModule({
   declarations: [
@@ -42,13 +47,19 @@ import { RouterModule } from '@angular/router';
     DetallesMascotaComponent,
     FormMascotaComponent,
     ModificarMascotaComponent,
-    CrearMascotaComponent
+    CrearMascotaComponent,
+    MisMascotasComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    CarouselModule,
+    BrowserAnimationsModule,
+    ButtonModule,
+    TagModule
   ],
   providers: [
     provideClientHydration()

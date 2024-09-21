@@ -10,6 +10,7 @@ import { DetallesMascotaComponent } from './mascota/detalles-mascota/detalles-ma
 import { ModificarMascotaComponent } from './mascota/modificar-mascota/modificar-mascota.component';
 import { CrearMascotaComponent } from './mascota/crear-mascota/crear-mascota.component';
 import { LoginComponent } from './login/main/login.component';
+import { MisMascotasComponent } from './mascota/mis-mascotas/mis-mascotas.component';
 
 const routes: Routes = [
   { path: 'clientes/buscar', component:  TablaClienteComponent},
@@ -20,10 +21,10 @@ const routes: Routes = [
   { path: 'mascotas/buscar/:id', component: DetallesMascotaComponent},
   { path: 'mascotas/registrar', component: CrearMascotaComponent},
   { path: 'mascotas/modificar/:id', component: ModificarMascotaComponent},
+  { path: 'mis-mascotas/:id', component: MisMascotasComponent},
   { path: 'landing', component: MainComponent},
   { path: 'login', component: LoginComponent},
   { path: '', component: MainComponent},
-
 ];
 
 @NgModule({
