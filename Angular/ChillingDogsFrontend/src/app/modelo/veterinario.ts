@@ -1,4 +1,4 @@
-import { Tratamiento } from '../tratamiento/tratamiento';
+import { Tratamiento } from './tratamiento';
 
 export interface Veterinario {
   id: number;

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Mascota } from '../../mascota/mascota';
-import { PrimeNGConfig } from 'primeng/api'; 
+import { Mascota } from '../../modelo/mascota';
+import { PrimeNGConfig } from 'primeng/api';
 import { Resenia } from '../../Resenia';
 import { ReseniasService } from '../../service/resenias.service';
 

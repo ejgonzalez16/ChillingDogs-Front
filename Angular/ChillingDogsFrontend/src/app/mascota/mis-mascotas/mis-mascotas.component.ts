@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MascotaService } from '../../service/mascota.service';
-import { Mascota } from '../mascota';
+import { Mascota } from '../../modelo/mascota';
 
 @Component({
   selector: 'app-mis-mascotas',

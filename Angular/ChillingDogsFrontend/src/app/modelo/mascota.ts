@@ -1,5 +1,5 @@
-import { Cliente } from '../cliente/cliente';
-import { Tratamiento } from '../tratamiento/tratamiento';
+import { Cliente } from './cliente';
+import { Tratamiento } from './tratamiento';
 
 export interface Mascota {
   id: number;

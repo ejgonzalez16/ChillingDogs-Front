@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Mascota} from "../mascota/mascota";
+import {Mascota} from "../modelo/mascota";
 
 @Injectable({
   providedIn: 'root'
@@ -234,7 +234,7 @@ export class MascotaService {
     }
   }
 
-  deleteById(id: number){ 
+  deleteById(id: number){
     this.mascotas = this.mascotas.filter(cliente => cliente.id !== id);
   }
 }

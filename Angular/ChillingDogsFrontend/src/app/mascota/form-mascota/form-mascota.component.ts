@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Mascota } from '../mascota';
-import { Cliente } from '../../cliente/cliente';
+import { Mascota } from '../../modelo/mascota';
+import { Cliente } from '../../modelo/cliente';
 import { ClienteService } from '../../service/cliente.service';
 import { Router } from '@angular/router';
 import { MascotaService } from '../../service/mascota.service';
@@ -34,7 +34,7 @@ export class FormMascotaComponent {
     }
   }
 
-  
+
 
   ngOnInit() :void {
     const fotoInput = document.getElementById('foto') as HTMLInputElement;
@@ -79,7 +79,7 @@ export class FormMascotaComponent {
 
   selectButton(event: MouseEvent, color: string) {
     // Rellenar el botón para el formulario
-    const button = event.currentTarget as HTMLElement; 
+    const button = event.currentTarget as HTMLElement;
     const input = document.getElementById('estado') as HTMLInputElement;
     if (input) {
         input.value = button.textContent || ''; // Asegúrate de que textContent no sea null

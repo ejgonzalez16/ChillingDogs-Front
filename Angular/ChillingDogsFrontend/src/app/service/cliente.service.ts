@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Cliente} from "../cliente/cliente";
+import {Cliente} from "../modelo/cliente";
 
 @Injectable({
   providedIn: 'root'
@@ -179,7 +179,7 @@ export class ClienteService {
     }
   }
 
-  deleteById(id: number){ 
+  deleteById(id: number){
     this.clientes = this.clientes.filter(cliente => cliente.id !== id);
   }
 }
