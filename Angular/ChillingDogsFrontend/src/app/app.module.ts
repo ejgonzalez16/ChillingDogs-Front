@@ -27,6 +27,9 @@ import { MisMascotasComponent } from './mascota/mis-mascotas/mis-mascotas.compon
 import { LoginComponent } from './login/main/login.component';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
+import { MascotaComponent } from './transversales/detalles/mascota/mascota.component';
+import { ClienteComponent } from './transversales/detalles/cliente/cliente.component';
+import { DetallesParaClienteComponent } from './mascota/detalles-para-cliente/detalles-para-cliente.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,10 @@ import { TagModule } from 'primeng/tag';
     ModificarMascotaComponent,
     CrearMascotaComponent,
     MisMascotasComponent,
-    LoginComponent
+    LoginComponent,
+    MascotaComponent,
+    ClienteComponent,
+    DetallesParaClienteComponent
   ],
   imports: [
     BrowserModule,

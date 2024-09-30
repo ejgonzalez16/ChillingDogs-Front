@@ -1,0 +1,35 @@
+<section class="seccionDueno">
+    <h1>Dueño de {{mascota.nombre}}</h1>
+    <article class="datosDueno">
+        <section class="imagenesDueno" id="seccionImagenes">
+            <img class="imagenDueno userImg" [src]="mascota.cliente!.foto" alt="Imagen de {{mascota.cliente!.nombre}}">
+        </section>
+
+        <section class="datosNumericos" id="seccionNumericos">
+            <article>
+                <div class="datoDueno espacioTitulo espacioEntreDatosDer">
+                    <h3>Cédula</h3>
+                    <p>{{mascota.cliente!.cedula}}</p>
+                </div>
+
+                <div class="datoDueno espacioEntreDatosArriba espacioEntreDatosDer">
+                    <h3>Nombre</h3>
+                    <p>{{mascota.cliente!.nombre}}</p>
+                </div>
+
+            </article>
+
+            <article class="columnaDosDatos">
+                <div class="datoDueno espacioTitulo">
+                    <h3>Correo</h3>
+                    <p>{{mascota.cliente!.correo}}</p>
+                </div>
+
+                <div class="datoDueno espacioEntreDatosArriba">
+                    <h3>Celular</h3>
+                    <p>{{mascota.cliente!.celular}}</p>
+                </div>
+            </article>
+        </section>
+    </article>
+</section>

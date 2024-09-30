@@ -6,7 +6,7 @@
       [circular]="false" 
       [responsiveOptions]="responsiveOptions">
       <ng-template let-mascota pTemplate="item">
-        <a [routerLink]="['/mascotas/buscar', mascota.id]">
+        <a [routerLink]="['/mascotas/detalles', mascota.id]">
           <div class="centrar">
               <img 
                   [src]="mascota.foto"

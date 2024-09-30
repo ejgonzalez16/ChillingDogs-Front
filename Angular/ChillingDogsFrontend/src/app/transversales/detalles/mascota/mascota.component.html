@@ -1,0 +1,69 @@
+<section id="seccionPeludo">
+    <h1>Estado de {{mascota.nombre}}</h1>
+    <div class = "estadoPeludo">
+        <table>
+            <tbody>
+            <tr>
+                <td class="imagenEstado">
+                    <img src="/assets/images/estado.svg" alt="estado" height="24px">
+                </td>
+                <td class="celdaSinPadding">
+                    Estado
+                </td>
+                <td>
+                    <button *ngIf="mascota.estado == 'Activo'" class = "estadoActivo">Activo</button>
+                    <button *ngIf="mascota.estado == 'Inactivo'" class = "estadoInactivo">Inactivo</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="imagenEstado">
+                    <img class="imagenEstado" src="/assets/images/raza.svg" alt="raza" height="24px">
+                </td>
+                <td class="celdaSinPadding">
+                    Raza
+                </td>
+                <td>
+                    {{mascota.raza}}
+                </td>
+            </tr>
+            <tr>
+                <td class="imagenEstado">
+                    <img class="imagenEstado" src="/assets/images/edad.svg" alt="raza" height="24px">
+                </td>
+                <td class="celdaSinPadding">
+                    Edad
+                </td>
+                <td>{{mascota.edad}} añitos</td>
+            </tr>
+            <tr>
+                <td class="imagenEstado">
+                    <img class="imagenEstado" src="/assets/images/peso.svg" alt="raza" height="24px">
+                </td>
+                <td class="celdaSinPadding">
+                    Peso
+                </td>
+                <td>{{mascota.peso}} kg</td>
+            </tr>
+            <tr>
+                <td class="imagenEstado">
+                    <img class="imagenEstado" src="/assets/images/enfermedad.svg" alt="raza" height="24px">
+                </td>
+                <td class="celdaSinPadding">
+                    Malestar
+                </td>
+                <td>{{mascota.enfermedad}}</td>
+            </tr>
+            <tr>
+                <td class="imagenEstado">
+                    <img class="imagenEstado userImg" [src]="mascota.cliente!.foto" alt="Imagen de {{mascota.cliente!.nombre}}" height="24px">
+                </td>
+                <td class="celdaSinPadding">
+                    Dueño
+                </td>
+                <td>{{mascota.cliente!.nombre}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <img alt="Perro de {{mascota.cliente!.nombre}}" [src]="mascota.foto" class="peludo-img">
+    </div>
+</section>
