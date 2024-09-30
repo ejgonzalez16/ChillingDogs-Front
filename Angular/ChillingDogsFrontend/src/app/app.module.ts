@@ -30,6 +30,7 @@ import { TagModule } from 'primeng/tag';
 import { MascotaComponent } from './transversales/detalles/mascota/mascota.component';
 import { ClienteComponent } from './transversales/detalles/cliente/cliente.component';
 import { DetallesParaClienteComponent } from './mascota/detalles-para-cliente/detalles-para-cliente.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { DetallesParaClienteComponent } from './mascota/detalles-para-cliente/de
     CarouselModule,
     BrowserAnimationsModule,
     ButtonModule,
-    TagModule
+    TagModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration()

@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 import {Cliente} from "../../modelo/cliente";
 import {ClienteService} from "../../service/cliente.service";
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { mergeMap } from 'rxjs';
 
 @Component({
   selector: 'app-form-cliente',
@@ -13,16 +14,12 @@ export class FormClienteComponent {
   @Input() cliente!: Cliente;
 
   constructor(
-    private clienteService: ClienteService, private router: Router) {
+    private clienteService: ClienteService, private router: Router, private route: ActivatedRoute) {
   }
 
-  onSubmit(){
-    if (this.modificar) {
-      this.clienteService.update(this.cliente);
-      this.router.navigate(['/clientes/buscar']);
-    } else {
-      this.clienteService.add(this.cliente);
-      this.router.navigate(['/clientes/buscar']);
-    }
+  onSubmit() {
+    this.clienteService.update(this.cliente).pipe(
+      mergeMap(() => this.router.navigate(['/clientes/buscar']))
+    ).subscribe();
   }
 }

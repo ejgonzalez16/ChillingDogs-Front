@@ -15,7 +15,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
       this.headerService.tipoLogueo$.subscribe(tipo => {
           this.tipoLogueo = tipo;
-          console.log(tipo);
       });
   }
 

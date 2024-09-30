@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Mascota } from '../../modelo/mascota';
 import { Cliente } from '../../modelo/cliente';
 import { ClienteService } from '../../service/cliente.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MascotaService } from '../../service/mascota.service';
 
 @Component({
@@ -18,7 +18,8 @@ export class FormMascotaComponent {
   constructor(
     private clienteService: ClienteService,
     private router: Router,
-    private mascotaService: MascotaService
+    private mascotaService: MascotaService,
+    private route: ActivatedRoute
   ){
 
   }
@@ -73,7 +74,11 @@ export class FormMascotaComponent {
         }
     });
     if(!this.modificar){
-        this.clientes = this.clienteService.findAll();
+        this.route.paramMap.subscribe(params => {
+            this.clienteService.findAll().subscribe(clientes => {
+                this.clientes = clientes;
+            })
+        })
     }
   }
 

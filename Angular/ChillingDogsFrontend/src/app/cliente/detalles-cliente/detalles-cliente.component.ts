@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import {Cliente} from "../../modelo/cliente";
 import {ClienteService} from "../../service/cliente.service";
 import { Router } from '@angular/router';
+import { merge, mergeMap } from 'rxjs';
+import { Console } from 'console';
+import { MascotaService } from '../../service/mascota.service';
 
 @Component({
   selector: 'app-detalles-cliente',
@@ -12,14 +15,25 @@ import { Router } from '@angular/router';
 export class DetallesClienteComponent {
   id!: number;
   cliente!: Cliente;
+  tipoLogueo: string = 'vet';
 
-  constructor(private route: ActivatedRoute, private clienteService: ClienteService, private router: Router) {}
+  constructor(private route: ActivatedRoute, private clienteService: ClienteService, private router: Router, private mascotaService: MascotaService) {}
 
   ngOnInit() {
-    this.id = +this.route.snapshot.paramMap.get('id')!;
-    // Aquí puedes usar el ID para buscar detalles del cliente
-    this.cliente = this.clienteService.findById(this.id);
-  }
+    this.route.paramMap.subscribe(params => {
+      this.id = +params.get('id')!;
+      this.clienteService.findById(this.id).pipe(
+        mergeMap(cliente => {
+          this.cliente = cliente;
+          return this.mascotaService.findByClienteId(this.id);
+        })
+      ).subscribe(
+        mascotas => {
+          //this.cliente.mascotas = mascotas;
+        }
+      );
+    })
+  } 
 
   eliminarCliente(id: number) {
     this.clienteService.deleteById(id);
