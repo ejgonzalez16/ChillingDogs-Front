@@ -11,6 +11,7 @@ import { MascotaService } from '../../service/mascota.service';
 export class DetallesParaClienteComponent {
   id!: number
   mascota!: Mascota
+  tipoLogueo = 'cliente';
   constructor(private route: ActivatedRoute, private mascotaService: MascotaService, private router: Router) {}
 
   ngOnInit() {
