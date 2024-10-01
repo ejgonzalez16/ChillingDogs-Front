@@ -13,10 +13,13 @@ import { ReseniasService } from '../../service/resenias.service';
 export class CarruselComponent {
   @Input()
   mascotas: Mascota[] = [];
-  resenias: Resenia[] = [];
+
+  // resenias: Resenia[] = [];
   indiceActivo = 0;
-  @Input()
-  showResenias: boolean = false;
+
+  /*@Input()
+  showResenias: boolean = false;*/
+
   responsiveOptions: any[] = [
     {
         breakpoint: '1199px',
@@ -38,7 +41,7 @@ export class CarruselComponent {
   constructor(private primengConfig: PrimeNGConfig, private reseniaService: ReseniasService) { }
 
   ngOnInit() {
-    this.resenias = this.reseniaService.findAll();
+    // this.resenias = this.reseniaService.findAll();
     setTimeout(() => {
       this.avanzar();
       this.retroceder();

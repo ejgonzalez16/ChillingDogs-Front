@@ -11,7 +11,7 @@
         </a>
         <ng-container *ngIf="tipoLogueo == 'guest'">
           <div class="centrar">
-              <div class="collapse navbar-collapse" id="navbar"> <!--Contiene el responsive de los elementos-->
+              <div class="collapse navbar-collapse"> <!--Contiene el responsive de los elementos-->
                   <ul class="navbar-nav mx-auto">
                       <li class="nav-item enlacesSecciones"><a href="#sobreNosotros" class="nav-link">Sobre Nosotros</a></li>
                       <li class="nav-item enlacesSecciones"><a href="#servicios" class="nav-link">Nuestros Servicios</a></li>
@@ -19,10 +19,10 @@
                   </ul>
               </div>
 
-              <div class="collapse navbar-collapse derecha" id="navbar2">
+              <div class="collapse navbar-collapse derecha">
                   <ul class="navbar-nav">
-                      <li class="nav-item" ><button class="iniciarSesion" [routerLink]="['login']" (click)="cambiarLogueo('cliente')">Iniciar Sesión</button></li>
-                      <li class="nav-item"><button class="registrarse" [routerLink]="['login']" (click)="cambiarLogueo('cliente')">Registrarse</button></li>
+                      <li class="nav-item" ><button class="iniciarSesion" [routerLink]="['login']" (click)="cambiarLogueo('none')">Iniciar Sesión</button></li>
+                      <li class="nav-item"><button class="registrarse" [routerLink]="['login']" (click)="cambiarLogueo('none')">Registrarse</button></li>
                   </ul>
               </div>
             </div>
@@ -44,6 +44,17 @@
                     </li>
                 </ul>
             </div>
+        </ng-container>
+        <ng-container *ngIf="tipoLogueo == 'cliente'">
+          <div class="collapse navbar-collapse">
+            <!-- Alinear items a la derecha utilizando ms-auto -->
+            <div class="ms-auto navigation">
+              <a class="button bg-dark" [routerLink]="['login']" (click)="cambiarLogueo('none')">
+                <img [src]="cliente.foto" [alt]="cliente.nombre">
+                <div class="logout">Cerrar Sesión</div>
+              </a>
+            </div>
+          </div>
         </ng-container>
     </nav>
 </div>

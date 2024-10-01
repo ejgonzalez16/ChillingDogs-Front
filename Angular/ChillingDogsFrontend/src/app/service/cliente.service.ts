@@ -11,22 +11,22 @@ export class ClienteService {
   constructor(private http: HttpClient) { }
 
   findAll(): Observable<Cliente[]> {
-    return this.http.get<Cliente[]>('http://localhost:8099/clientes/all');
+    return this.http.get<Cliente[]>('http://localhost:8099/clientes');
   }
 
-  findById(id: number): Observable<Cliente> {
-    return this.http.get<Cliente>(`http://localhost:8099/clientes/${id}`);
+  findByCedula(cedula: number): Observable<Cliente> {
+    return this.http.get<Cliente>(`http://localhost:8099/clientes/${cedula}`);
   }
 
   add(cliente: Cliente){
-    this.http.post<Cliente>('http://localhost:8099/clientes/add/', cliente).subscribe();
+    this.http.post<Cliente>('http://localhost:8099/clientes/', cliente).subscribe();
   }
 
   update(cliente: Cliente): Observable<Cliente> {
-    return this.http.put<Cliente>(`http://localhost:8099/clientes/update/`, cliente);
+    return this.http.put<Cliente>(`http://localhost:8099/clientes/`, cliente);
   }
 
   deleteById(id: number): Observable<string> {
-    return this.http.delete(`http://localhost:8099/clientes/delete/${id}`, { responseType: 'text' });
+    return this.http.delete(`http://localhost:8099/clientes/${id}`, { responseType: 'text' });
   }
 }

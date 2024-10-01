@@ -10,7 +10,7 @@
             <img src="../../../assets/images/perro-presentacion-no-bg.png" alt="Perro" id="perro">
         </div>
     </section>
-    
+
     <section id="sobreNosotros" class="seccionAzul">
         <div class="tituloNosotros">
             <img src="../../../assets/images/hueso-rotated.png" alt="Huesito fasha">
@@ -34,7 +34,7 @@
             </span>
         </div>
     </section>
-    
+
     <section id="servicios" class="seccionDorada">
         <div class="tituloServicios">
             <svg class="medkit w-6 h-6" fill="#686583" id="Flat" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
@@ -64,22 +64,22 @@
         </div>
         <div id="btnServicios"><button onclick="window.location.href='/login'">Ver más servicios</button></div>
     </section>
-    
+
     <section id="casosDeExito" class="seccionAzul">
         <div class="tituloCasos">
             <h1>Historias de nuestros peludos</h1>
         </div>
         <div id="contenedorCasos">
             <p-carousel
-                [value]="resenias" 
-                [numVisible]="1" 
-                [numScroll]="1" 
+                [value]="resenias"
+                [numVisible]="1"
+                [numScroll]="1"
                 [circular]="true"
                 [autoplayInterval]="5000"
                 [responsiveOptions]="responsiveOptions">
                     <ng-template let-resenia pTemplate="item">
                     <div class="centrarCarrusel">
-                        <img 
+                        <img
                             [src]="resenia.fotoMascota"
                             [alt]="resenia.nombreMascota"  />
                         <div>

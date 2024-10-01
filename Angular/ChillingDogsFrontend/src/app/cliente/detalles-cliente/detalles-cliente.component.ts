@@ -22,18 +22,18 @@ export class DetallesClienteComponent {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.id = +params.get('id')!;
-      this.clienteService.findById(this.id).pipe(
+      this.clienteService.findByCedula(this.id).pipe(
         mergeMap(cliente => {
           this.cliente = cliente;
           return this.mascotaService.findByClienteId(this.id);
         })
       ).subscribe(
         mascotas => {
-          //this.cliente.mascotas = mascotas;
+          this.cliente.mascotas = mascotas;
         }
       );
     })
-  } 
+  }
 
   eliminarCliente(id: number) {
     this.clienteService.deleteById(id);

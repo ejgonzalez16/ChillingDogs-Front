@@ -1,5 +1,6 @@
 import {ChangeDetectorRef, Component, Input, OnInit, SimpleChanges} from '@angular/core';
 import { HeaderService } from '../service/header.service';
+import {Cliente} from "../modelo/cliente";
 
 @Component({
   selector: 'landing-header',
@@ -9,6 +10,9 @@ import { HeaderService } from '../service/header.service';
 export class HeaderComponent implements OnInit {
   @Input()
   tipoLogueo: string = 'guest';
+
+  @Input()
+  cliente!: Cliente;
 
   constructor(private headerService: HeaderService) {}
 

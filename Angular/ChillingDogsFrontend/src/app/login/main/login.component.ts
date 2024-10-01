@@ -10,11 +10,13 @@ export class LoginComponent {
 
   @Input()
   cedula!: number;
+
+  constructor(private router: Router) { }
+
   onSubmit() {
     this.router.navigate(['/mis-mascotas', this.cedula]);
   }
 
-  constructor(private router: Router) { }
   goToMascotas() {
     this.router.navigate(['/mascotas/buscar']);
   }
