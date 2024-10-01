@@ -81,7 +81,7 @@ export class FormMascotaComponent {
             }
         }
     });
-    
+
   }
 
   selectButton(event: MouseEvent, color: string) {

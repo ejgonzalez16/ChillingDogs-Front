@@ -14,7 +14,7 @@ import { MascotaService } from '../../service/mascota.service';
 })
 export class DetallesClienteComponent {
   id!: number;
-  cliente!: Cliente;
+  cliente: Cliente | undefined;
   tipoLogueo: string = 'vet';
 
   constructor(private route: ActivatedRoute, private clienteService: ClienteService, private router: Router, private mascotaService: MascotaService) {}
@@ -28,8 +28,11 @@ export class DetallesClienteComponent {
           return this.mascotaService.findByClienteId(this.id);
         })
       ).subscribe(
-        mascotas => {
-          this.cliente.mascotas = mascotas;
+          mascotas => {
+            if(this.cliente != undefined) {
+
+              this.cliente.mascotas = mascotas;
+          }
         }
       );
     })

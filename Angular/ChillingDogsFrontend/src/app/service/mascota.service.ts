@@ -25,11 +25,12 @@ export class MascotaService {
   }
 
   add(mascota: Mascota){
-    this.http.post('http://localhost:8099/mascotas/', mascota).subscribe();
+    this.http.post('http://localhost:8099/mascotas', mascota).subscribe();
   }
 
   update(mascota: Mascota){
-    this.http.put('http://localhost:8099/mascotas/'+mascota.id, mascota).subscribe();
+    console.log(mascota);
+    this.http.put('http://localhost:8099/mascotas', mascota).subscribe();
   }
 
   deleteById(id: number){

@@ -18,12 +18,12 @@ export class ClienteService {
     return this.http.get<Cliente>(`http://localhost:8099/clientes/${cedula}`);
   }
 
-  add(cliente: Cliente){
-    this.http.post<Cliente>('http://localhost:8099/clientes/', cliente).subscribe();
+  add(cliente: Cliente): Observable<Cliente>{
+    return this.http.post<Cliente>('http://localhost:8099/clientes', cliente);
   }
 
   update(cliente: Cliente): Observable<Cliente> {
-    return this.http.put<Cliente>(`http://localhost:8099/clientes/`, cliente);
+    return this.http.put<Cliente>(`http://localhost:8099/clientes`, cliente);
   }
 
   deleteById(id: number): Observable<string> {

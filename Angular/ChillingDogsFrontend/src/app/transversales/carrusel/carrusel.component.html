@@ -1,14 +1,14 @@
-<div class="card">
+<div>
     <p-carousel
-      [value]="mascotas" 
-      [numVisible]="1" 
-      [numScroll]="1" 
-      [circular]="false" 
+      [value]="mascotas"
+      [numVisible]="1"
+      [numScroll]="1"
+      [circular]="false"
       [responsiveOptions]="responsiveOptions">
       <ng-template let-mascota pTemplate="item">
         <a [routerLink]="['/mascotas/detalles', mascota.id]">
           <div class="centrar">
-              <img 
+              <img
                   [src]="mascota.foto"
                   [alt]="mascota.nombre"  />
               <div>

@@ -18,8 +18,14 @@ export class FormClienteComponent {
   }
 
   onSubmit() {
-    this.clienteService.update(this.cliente).pipe(
-      mergeMap(() => this.router.navigate(['/clientes/buscar']))
-    ).subscribe();
+    if (this.modificar) {
+      this.clienteService.update(this.cliente).pipe(
+        mergeMap(() => this.router.navigate(['/clientes/buscar']))
+      ).subscribe();
+    } else {
+      this.clienteService.add(this.cliente).pipe(
+        mergeMap(() => this.router.navigate(['/clientes/buscar']))
+      ).subscribe();
+    }
   }
 }
