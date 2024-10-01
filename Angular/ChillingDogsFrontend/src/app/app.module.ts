@@ -31,6 +31,7 @@ import { MascotaComponent } from './transversales/detalles/mascota/mascota.compo
 import { ClienteComponent } from './transversales/detalles/cliente/cliente.component';
 import { DetallesParaClienteComponent } from './mascota/detalles-para-cliente/detalles-para-cliente.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ErrorComponent } from './transversales/error/error.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     MascotaComponent,
     ClienteComponent,
-    DetallesParaClienteComponent
+    DetallesParaClienteComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

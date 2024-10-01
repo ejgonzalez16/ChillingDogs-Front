@@ -86,8 +86,8 @@
                             Dueño
                         </td>
                         <td>
-                            <select [(ngModel)]="mascota.cliente!.nombre" id="cliente" name="cliente" required>
-                                <option *ngFor="let cliente of clientes" [value]="cliente.nombre">{{ cliente.nombre }}</option>
+                            <select [(ngModel)]="mascota.cliente" id="cliente" name="cliente" required>
+                                <option *ngFor="let cliente of clientes" [ngValue]="cliente">{{ cliente.nombre }}</option>
                             </select>
                         </td>
                     </tr>

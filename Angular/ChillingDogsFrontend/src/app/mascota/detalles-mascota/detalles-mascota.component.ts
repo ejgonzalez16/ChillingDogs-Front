@@ -18,7 +18,9 @@ export class DetallesMascotaComponent {
   ngOnInit() {
     this.id = +this.route.snapshot.paramMap.get('id')!;
     // Aquí puedes usar el ID para buscar detalles del cliente
-    this.mascota = this.mascotaService.findById(this.id);
+    this.mascotaService.findById(this.id).subscribe(mascota => {
+      this.mascota = mascota;
+    });
   }
 
   eliminarCliente(id: number) {

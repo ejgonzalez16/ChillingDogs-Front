@@ -16,6 +16,8 @@ export class MisMascotasComponent {
   constructor(private route: ActivatedRoute, private mascotaService: MascotaService) {}
   ngOnInit(){
     this.Clienteid = +this.route.snapshot.paramMap.get('id')!;
-    this.mascotas = this.mascotaService.findByClienteId(this.Clienteid);
+    this.mascotaService.findByClienteId(this.Clienteid).subscribe(mascota => {
+      this.mascotas = mascota;
+    });
   }
 }

@@ -42,6 +42,14 @@ export class FormMascotaComponent {
     const img = document.createElement('img');
 
     const url = fotoInput.value;
+    if(!this.modificar){
+        this.route.paramMap.subscribe(params => {
+            this.clienteService.findAll().subscribe(clientes => {
+                this.clientes = clientes;
+                console.log(clientes);
+            })
+        })
+    }
     if (url !== '') {
         img.src = url;
         img.alt = 'Foto de registro';
@@ -73,13 +81,7 @@ export class FormMascotaComponent {
             }
         }
     });
-    if(!this.modificar){
-        this.route.paramMap.subscribe(params => {
-            this.clienteService.findAll().subscribe(clientes => {
-                this.clientes = clientes;
-            })
-        })
-    }
+    
   }
 
   selectButton(event: MouseEvent, color: string) {

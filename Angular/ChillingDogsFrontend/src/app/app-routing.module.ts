@@ -12,6 +12,7 @@ import { CrearMascotaComponent } from './mascota/crear-mascota/crear-mascota.com
 import { LoginComponent } from './login/main/login.component';
 import { MisMascotasComponent } from './mascota/mis-mascotas/mis-mascotas.component';
 import { DetallesParaClienteComponent } from './mascota/detalles-para-cliente/detalles-para-cliente.component';
+import { ErrorComponent } from './transversales/error/error.component';
 
 const routes: Routes = [
   { path: 'clientes/buscar', component:  TablaClienteComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'landing', component: MainComponent},
   { path: 'login', component: LoginComponent},
   { path: '', component: MainComponent},
+  { path: '**', component: ErrorComponent}
 ];
 
 @NgModule({

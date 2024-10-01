@@ -16,17 +16,24 @@ export class TablaMascotaComponent {
     private mascotaService: MascotaService, private headerService: HeaderService) {}
 
   ngOnInit() {
-    this.mascotas = this.mascotaService.findAll();
+    this.mascotaService.findAll().subscribe(mascotas => {
+      this.mascotas = mascotas;
+      console.log(mascotas)
+    });
     this.headerService.setTipoLogueo('vet');
   }
 
   recargarMascotas(nombrePerro?: string) {
-    this.mascotas = this.mascotaService.findAll().filter(mascota => mascota.nombre.includes(nombrePerro || ''));
+    this.mascotaService.findAll().subscribe(mascotas => {
+      this.mascotas = mascotas.filter(mascota => mascota.nombre.includes(nombrePerro || ''));
+    });
     this.headerService.setTipoLogueo('vet');
   }
 
   eliminarMascota(id: number) {
     this.mascotaService.deleteById(id);
-    this.mascotas = this.mascotaService.findAll();
+    this.mascotaService.findAll().subscribe(mascotas => {
+      this.mascotas = mascotas;
+    });
   }
 }
