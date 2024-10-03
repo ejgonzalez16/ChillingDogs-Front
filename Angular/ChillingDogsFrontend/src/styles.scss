@@ -71,6 +71,10 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     align-items: center;
     justify-content: center;
+    // Hacer que al pasar el mouse por encima, el botón se agrande y el mouse cambie a pointer
+    transition: width 0.35s;
+    -webkit-transition: width 0.35s;
+    cursor: pointer;
 
     &:hover {
       width: 14vw;

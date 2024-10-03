@@ -1,15 +1,16 @@
 <div class="header">
     <nav class="navbar navbar-dark bg-dark navbar-expand-lg expandir">
-        <!--Lo hace responsive al navbar-->
+        <!-- 3 barritas del navbar responsive -->
         <button class="navbar-toggler black" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-expanded="false">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <a class="navbar-brand" [routerLink]="['landing']" (click)="cambiarLogueo('guest'); $event.preventDefault()">
+        <!--Logo de la página (se muestra siempre) -->
+        <a class="navbar-brand" (click)="goToHome()">
             <img src="/assets/images/logo.png" alt="logo" width="80px">
             <h1>Chilling Dogs</h1>
         </a>
-        <ng-container *ngIf="tipoLogueo == 'guest'">
+        <!-- Si estamos en el landing, mostrar los enlaces a las secciones de la página -->
+        <ng-container *ngIf="landing">
           <div class="centrar">
               <div class="collapse navbar-collapse"> <!--Contiene el responsive de los elementos-->
                   <ul class="navbar-nav mx-auto">
@@ -21,40 +22,45 @@
 
               <div class="collapse navbar-collapse derecha">
                   <ul class="navbar-nav">
-                      <li class="nav-item" ><button class="iniciarSesion" [routerLink]="['login']" (click)="cambiarLogueo('none')">Iniciar Sesión</button></li>
-                      <li class="nav-item"><button class="registrarse" [routerLink]="['login']" (click)="cambiarLogueo('none')">Registrarse</button></li>
+                      <li class="nav-item" ><button class="iniciarSesion" (click)="goToLogin()">Iniciar Sesión</button></li>
+                      <li class="nav-item"><button class="registrarse" (click)="goToLogin()">Registrarse</button></li>
                   </ul>
               </div>
             </div>
         </ng-container>
-        <ng-container *ngIf="tipoLogueo == 'vet'">
+        <!-- Si no estamos en el landing, mostrar las opciones de header para cada tipo de usuario -->
+        <ng-container *ngIf="!landing">
+          <!-- Si el usuario es un veterinario, mostrar las opciones de ver mascotas y clientes -->
+          <ng-container *ngIf="userInfo.rol == 'veterinario'">
             <div class="collapse navbar-collapse centrar-vet" id="navbar"> <!--Contiene el responsive de los elementos-->
-                <ul class="navbar-nav navigation">
-                    <li class="nav-item enlacesSecciones">
-                        <a class="button bg-dark" [routerLink]="['mascotas/buscar']" (click)="cambiarLogueo('vet')">
-                            <img src="/assets/images/mascotas-vet-option.png">
-                            <div class="logout">Mascotas</div>
-                        </a>
-                    </li>
-                    <li class="nav-item enlacesSecciones">
-                        <a class="button bg-dark" [routerLink]="['clientes/buscar']" (click)="cambiarLogueo('vet')">
-                            <img src="/assets/images/clientes-vet-option.png">
-                            <div class="logout">Clientes</div>
-                        </a>
-                    </li>
-                </ul>
+              <ul class="navbar-nav navigation">
+                <li class="nav-item enlacesSecciones">
+                  <a class="button bg-dark" [routerLink]="['mascotas/buscar']">
+                    <img src="/assets/images/mascotas-vet-option.png">
+                    <div class="logout">Mascotas</div>
+                  </a>
+                </li>
+                <li class="nav-item enlacesSecciones">
+                  <a class="button bg-dark" [routerLink]="['clientes/buscar']">
+                    <img src="/assets/images/clientes-vet-option.png">
+                    <div class="logout">Clientes</div>
+                  </a>
+                </li>
+              </ul>
             </div>
-        </ng-container>
-        <ng-container *ngIf="tipoLogueo == 'cliente'">
-          <div class="collapse navbar-collapse">
-            <!-- Alinear items a la derecha utilizando ms-auto -->
-            <div class="ms-auto navigation">
-              <a class="button bg-dark" [routerLink]="['login']" (click)="cambiarLogueo('none')">
-                <img [src]="cliente.foto" [alt]="cliente.nombre">
-                <div class="logout">Cerrar Sesión</div>
-              </a>
+          </ng-container>
+          <!-- Si el usuario está logueado, mostrar su foto a la derecha del header -->
+          <ng-container *ngIf="userInfo.foto != ''">
+            <div class="collapse navbar-collapse">
+              <!-- Alinear items a la derecha utilizando ms-auto -->
+              <div class="ms-auto navigation">
+                <a class="button bg-dark" (click)="logout()">
+                  <img [src]=userInfo.foto [alt]=userInfo.nombre>
+                  <div class="logout">Cerrar Sesión</div>
+                </a>
+              </div>
             </div>
-          </div>
+          </ng-container>
         </ng-container>
     </nav>
 </div>

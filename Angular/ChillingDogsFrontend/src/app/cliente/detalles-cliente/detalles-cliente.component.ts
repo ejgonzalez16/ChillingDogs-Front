@@ -15,9 +15,11 @@ import { MascotaService } from '../../service/mascota.service';
 export class DetallesClienteComponent {
   id!: number;
   cliente: Cliente | undefined;
-  tipoLogueo: string = 'vet';
 
-  constructor(private route: ActivatedRoute, private clienteService: ClienteService, private router: Router, private mascotaService: MascotaService) {}
+  constructor(private route: ActivatedRoute,
+              private clienteService: ClienteService,
+              private router: Router,
+              private mascotaService: MascotaService) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -27,11 +29,9 @@ export class DetallesClienteComponent {
           this.cliente = cliente;
           return this.mascotaService.findByClienteId(this.id);
         })
-      ).subscribe(
-          mascotas => {
-            if(this.cliente != undefined) {
-
-              this.cliente.mascotas = mascotas;
+      ).subscribe(mascotas => {
+          if(this.cliente != undefined) {
+            this.cliente.mascotas = mascotas;
           }
         }
       );

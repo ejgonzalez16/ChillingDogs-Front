@@ -10,7 +10,6 @@ import { MainComponent } from './landing/main/main.component';
 import { CarruselComponent } from './transversales/carrusel/carrusel.component';
 import { TablaClienteComponent } from './cliente/tabla-cliente/tabla-cliente.component';
 import { TablaMascotaComponent } from './mascota/tabla-mascota/tabla-mascota.component';
-import { HeaderClienteComponent } from './cliente/header-cliente/header-cliente.component';
 import { SearchBarClienteComponent } from './cliente/search-bar-cliente/search-bar-cliente.component';
 import { DetallesClienteComponent } from './cliente/detalles-cliente/detalles-cliente.component';
 import { FormsModule } from '@angular/forms';
@@ -42,7 +41,6 @@ import { ErrorComponent } from './transversales/error/error.component';
     CarruselComponent,
     TablaClienteComponent,
     TablaMascotaComponent,
-    HeaderClienteComponent,
     SearchBarClienteComponent,
     DetallesClienteComponent,
     FormClienteComponent,

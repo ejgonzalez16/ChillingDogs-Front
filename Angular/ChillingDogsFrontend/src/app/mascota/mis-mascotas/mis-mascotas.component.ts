@@ -5,6 +5,7 @@ import { Mascota } from '../../modelo/mascota';
 import { Cliente } from '../../modelo/cliente';
 import {ClienteService} from "../../service/cliente.service";
 import {catchError, mergeMap, of} from "rxjs";
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'app-mis-mascotas',
@@ -16,13 +17,13 @@ export class MisMascotasComponent {
   cedula!: number;
   cliente!: Cliente;
   mascotas!: Mascota[];
-  tipo: string = 'cliente';
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private mascotaService: MascotaService,
-    private clienteService: ClienteService
+    private clienteService: ClienteService,
+    private authService: AuthService
   ) {}
   ngOnInit(){
     this.route.paramMap.subscribe(params => {
@@ -31,6 +32,9 @@ export class MisMascotasComponent {
         mergeMap(cliente => {
           console.log(cliente);
           this.cliente = cliente;
+          // Cambiar el rol del usuario a cliente y actualizar la información del usuario (para el header)
+          this.authService.actualizarUserInfo('cliente', cliente.nombre, cliente.cedula, cliente.foto);
+          // Obtener las mascotas del cliente
           return this.mascotaService.findByClienteId(this.cedula);
         }),
         catchError(error => {

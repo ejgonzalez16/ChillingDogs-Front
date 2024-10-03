@@ -1,28 +1,40 @@
 import {ChangeDetectorRef, Component, Input, OnInit, SimpleChanges} from '@angular/core';
-import { HeaderService } from '../service/header.service';
-import {Cliente} from "../modelo/cliente";
+import { AuthService } from '../service/auth.service';
+import {Router} from "@angular/router";
 
 @Component({
-  selector: 'landing-header',
+  selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent implements OnInit {
+
+export class HeaderComponent {
   @Input()
-  tipoLogueo: string = 'guest';
+  landing: boolean = false;
 
-  @Input()
-  cliente!: Cliente;
+  userInfo: { rol: string, nombre: string, cedula: string, foto: string } = { rol: 'guest', nombre: '', cedula: '', foto: '' };
 
-  constructor(private headerService: HeaderService) {}
+  constructor(private authService: AuthService,
+              private router: Router
+  ) {}
 
-  ngOnInit() {
-      this.headerService.tipoLogueo$.subscribe(tipo => {
-          this.tipoLogueo = tipo;
-      });
+  ngOnInit(): void {
+    // Suscribirse a la información del usuario
+    this.authService.userInfo$.subscribe(userInfo => {
+      this.userInfo = userInfo;
+    });
   }
 
-  cambiarLogueo(tipo: string) {
-    this.headerService.setTipoLogueo(tipo);
+  logout(): void {
+    this.authService.actualizarUserInfo('guest', '', '', '');
+    this.goToLogin();
+  }
+
+  goToLogin(): void {
+    this.router.navigate(['/login']);
+  }
+
+  goToHome(): void {
+    this.router.navigate(['/landing']);
   }
 }
