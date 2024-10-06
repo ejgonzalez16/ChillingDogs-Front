@@ -1,9 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Mascota } from '../../modelo/mascota';
-import { PrimeNGConfig } from 'primeng/api';
-import { Resenia } from '../../Resenia';
-import { ReseniasService } from '../../service/resenias.service';
-
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'carrusel',
@@ -14,21 +11,10 @@ export class CarruselComponent {
   @Input()
   mascotas: Mascota[] = [];
 
-  // resenias: Resenia[] = [];
-  indiceActivo = 0;
-
-  /*@Input()
-  showResenias: boolean = false;*/
-
   responsiveOptions: any[] = [
     {
-        breakpoint: '1199px',
-        numVisible: 1,
-        numScroll: 1
-    },
-    {
-        breakpoint: '991px',
-        numVisible: 1,
+        breakpoint: '1099px',
+        numVisible: 2,
         numScroll: 1
     },
     {
@@ -38,27 +24,21 @@ export class CarruselComponent {
     }
 ];
 
-  constructor(private primengConfig: PrimeNGConfig, private reseniaService: ReseniasService) { }
+  constructor(
+    private router: Router
+  ) { }
 
-  ngOnInit() {
-    // this.resenias = this.reseniaService.findAll();
-    setTimeout(() => {
-      this.avanzar();
-      this.retroceder();
-    }, 100); // Retraso para forzar la re-renderización
+  getBadgeClass(status: string) {
+    switch (status.toLowerCase()) {
+      case 'activo':
+        return 'estadoActivo';
+      case 'inactivo':
+        return 'estadoInactivo';
+    }
+    return 'estadoActivo';
   }
 
-  avanzar() {
-    this.indiceActivo = (this.indiceActivo + 1) % this.mascotas.length;  // Incrementa el índice y lo vuelve circular
+  verDetallesMascota(id: number) {
+    this.router.navigate(['/mascotas/detalles', id]);
   }
-
-  retroceder() {
-    this.indiceActivo = (this.indiceActivo - 1 + this.mascotas.length) % this.mascotas.length;  // Decrementa el índice y lo vuelve circular
-  }
-
-  onPageChange(event: any) {
-    this.indiceActivo = event.page;
-  }
-
-  detallesMascota(id:number){} //TODO
 }

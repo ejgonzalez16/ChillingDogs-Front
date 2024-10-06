@@ -15,8 +15,11 @@ p{
     text-align: center;
 }
 
-.card {
-    background-color: var(--secondary-color);
+.container-carrusel {
+  width: 80vw;
+  height: 55vh;
+  margin: 0 auto;
+  padding: 2ch;
 }
 
 :host ::ng-deep .p-carousel-prev,
@@ -24,7 +27,7 @@ p{
     width: 50px; // Ajusta según necesites
     height: 50px; // Ajusta según necesites
     font-size: 20em; // Ajusta el tamaño del icono
-    background-color: #6cdbf7;
+    background-color: white;
     border-radius: 50%;
     display: flex;
     align-items: center;

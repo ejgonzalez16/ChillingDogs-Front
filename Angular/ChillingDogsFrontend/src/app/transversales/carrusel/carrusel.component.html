@@ -1,25 +1,43 @@
-<div>
+<div class="container-carrusel mb-5">
     <p-carousel
       [value]="mascotas"
-      [numVisible]="1"
+      [numVisible]="3"
       [numScroll]="1"
-      [circular]="false"
+      [circular]="true"
       [responsiveOptions]="responsiveOptions">
       <ng-template let-mascota pTemplate="item">
-        <a [routerLink]="['/mascotas/detalles', mascota.id]">
-          <div class="centrar">
+        <div class="card border-1 m-2 p-3">
+          <!-- Foto y estado de la mascota -->
+          <div class="mb-3">
+            <div class="position-relative mx-auto">
               <img
-                  [src]="mascota.foto"
-                  [alt]="mascota.nombre"  />
-              <div>
-                  <p>Nombre: {{ mascota.nombre }}</p>
-                  <p>Raza: {{ mascota.raza }}</p>
-                  <p>Estado: {{ mascota.estado }}</p>
-                  <br><br>
-                  <p>Da click para ver detalles</p>
-              </div>
+                [src]="mascota.foto"
+                [alt]="mascota.nombre"
+                class="img-fluid rounded w-100" />
+              <span
+                class="badge position-absolute fs-5"
+                [ngClass]="getBadgeClass(mascota.estado)"
+                [ngStyle]="{ 'left': '5px', 'top': '5px' }">
+                {{ mascota.estado }}
+              </span>
+            </div>
           </div>
-        </a>
+          <!-- Nombre de la mascota -->
+          <div class="mb-3 fw-bold fs-3">
+            {{ mascota.nombre }}
+          </div>
+          <!-- Raza de la mascota y botón ver detalles -->
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="fw-semibold fs-6">
+              {{ mascota.raza }}
+            </div>
+            <span>
+              <button type="button" class="btn btn-outline-primary" (click)="verDetallesMascota(mascota.id)">
+                <i class="bi bi-three-dots"></i> Ver detalles
+              </button>
+            </span>
+          </div>
+        </div>
       </ng-template>
     </p-carousel>
 </div>

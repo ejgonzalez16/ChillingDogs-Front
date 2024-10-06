@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { CarouselModule } from 'primeng/carousel';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,13 +23,14 @@ import { CrearMascotaComponent } from './mascota/crear-mascota/crear-mascota.com
 import { RouterModule } from '@angular/router';
 import { MisMascotasComponent } from './mascota/mis-mascotas/mis-mascotas.component';
 import { LoginComponent } from './login/main/login.component';
-import { ButtonModule } from 'primeng/button';
-import { TagModule } from 'primeng/tag';
 import { MascotaComponent } from './transversales/detalles/mascota/mascota.component';
 import { ClienteComponent } from './transversales/detalles/cliente/cliente.component';
 import { DetallesParaClienteComponent } from './mascota/detalles-para-cliente/detalles-para-cliente.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ErrorComponent } from './transversales/error/error.component';
+
+// PrimeNG Modules
+import { CarouselModule } from 'primeng/carousel';
 
 @NgModule({
   declarations: [
@@ -65,8 +65,6 @@ import { ErrorComponent } from './transversales/error/error.component';
     RouterModule,
     CarouselModule,
     BrowserAnimationsModule,
-    ButtonModule,
-    TagModule,
     HttpClientModule
   ],
   providers: [
