@@ -69,30 +69,38 @@
         <div class="tituloCasos">
             <h1>Historias de nuestros peludos</h1>
         </div>
-        <div id="contenedorCasos">
+        <div class="container-carrusel" *ngIf="resenias.length > 0">
             <p-carousel
                 [value]="resenias"
-                [numVisible]="1"
+                [numVisible]="3"
                 [numScroll]="1"
                 [circular]="true"
-                [autoplayInterval]="5000"
                 [responsiveOptions]="responsiveOptions">
-                    <ng-template let-resenia pTemplate="item">
-                    <div class="centrarCarrusel">
-                        <img
-                            [src]="resenia.fotoMascota"
-                            [alt]="resenia.nombreMascota"  />
-                        <div>
-                            <div class="vertical">
-                                <div class="datos">
-                                <img [src]="resenia.fotoDuenio" [alt]="resenia.nombreDuenio">
-                                <p>{{resenia.nombreDuenio}} - {{resenia.nombreMascota}}</p>
-                                </div>
-                                <p>{{resenia.txtResenia}}</p>
-                            </div>
-                        </div>
+                <ng-template let-resenia pTemplate="item">
+                  <div class="card border-1 m-2">
+                    <!-- Foto de la mascota -->
+                    <div class="mb-3">
+                      <img
+                        [src]="resenia.fotoMascota"
+                        [alt]="resenia.nombreMascota"
+                        class="peludo-carrusel" />
                     </div>
-                    </ng-template>
+                    <!-- Dueño de la mascota -->
+                    <div class="d-flex align-items-center mb-2">
+                      <img
+                        [src]="resenia.fotoDuenio"
+                        [alt]="resenia.nombreDuenio"
+                        class="usuario-resenia" />
+                      <div class="fw-medium fs-6">
+                        {{ resenia.nombreDuenio }}
+                      </div>
+                    </div>
+                    <!-- Reseña de la mascota -->
+                    <div class="mb-2 mr-3">
+                      <p>{{ resenia.txtResenia }}</p>
+                    </div>
+                  </div>
+                </ng-template>
             </p-carousel>
         </div>
     </section>

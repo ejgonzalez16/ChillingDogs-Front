@@ -288,6 +288,7 @@ section {
   width: 50px;
   height: 50px;
   margin-right: 15px;
+  object-fit: cover;
 }
 
 .usuario-nombre {
@@ -456,4 +457,39 @@ section {
     color: white;
     border: 2px solid var(--primary-color);
   }
+}
+
+// Componente de Carrusel
+.container-carrusel {
+  width: 80vw;
+  height: 55vh;
+  margin: 0 auto;
+  padding: 2ch;
+}
+
+.peludo-carrusel {
+  width: 20vw;
+  height: 25vh;
+  object-fit: cover;
+}
+
+.card {
+  // Fondo blanco con opacidad
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 15px;
+  max-width: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  // Ocultar lo que sobresale
+  overflow: hidden;
+
+  p {
+    width: 20vw;
+  }
+}
+
+.fw-medium {
+  font-weight: 500;
 }

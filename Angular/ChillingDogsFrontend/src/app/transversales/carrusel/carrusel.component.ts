@@ -22,7 +22,7 @@ export class CarruselComponent {
         numVisible: 1,
         numScroll: 1
     }
-];
+  ];
 
   constructor(
     private router: Router

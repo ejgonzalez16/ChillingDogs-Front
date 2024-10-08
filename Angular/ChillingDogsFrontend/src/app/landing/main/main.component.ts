@@ -8,29 +8,24 @@ import { Resenia } from '../../Resenia';
   styleUrl: './main.component.scss'
 })
 export class MainComponent {
-  resenias: Resenia[] = [];
-  mostrarResenias: boolean = true;
+  resenias!: Resenia[];
+
+  responsiveOptions: any[] = [
+    {
+      breakpoint: '1099px',
+      numVisible: 2,
+      numScroll: 1
+    },
+    {
+      breakpoint: '767px',
+      numVisible: 1,
+      numScroll: 1
+    }
+  ];
+
   constructor(private reseniaService: ReseniasService) {}
 
   ngOnInit() {
     this.resenias = this.reseniaService.findAll();
   }
-
-  responsiveOptions: any[] = [
-    {
-        breakpoint: '1199px',
-        numVisible: 1,
-        numScroll: 1
-    },
-    {
-        breakpoint: '991px',
-        numVisible: 1,
-        numScroll: 1
-    },
-    {
-        breakpoint: '767px',
-        numVisible: 1,
-        numScroll: 1
-    }
-];
 }
