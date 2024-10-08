@@ -4,7 +4,6 @@ import {Cliente} from "../../modelo/cliente";
 import {ClienteService} from "../../service/cliente.service";
 import { Router } from '@angular/router';
 import { merge, mergeMap } from 'rxjs';
-import { Console } from 'console';
 import { MascotaService } from '../../service/mascota.service';
 
 @Component({
@@ -39,7 +38,12 @@ export class DetallesClienteComponent {
   }
 
   eliminarCliente(id: number) {
-    this.clienteService.deleteById(id);
-    this.router.navigate(['/clientes/buscar']);
+    console.log(this.cliente)
+    this.clienteService.deleteById(id).subscribe(
+      response => {
+        console.log(response);
+        this.router.navigate(['/clientes/buscar']);
+      }
+    );
   }
 }
