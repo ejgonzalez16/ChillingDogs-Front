@@ -28,10 +28,11 @@ import { ClienteComponent } from './transversales/detalles/cliente/cliente.compo
 import { DetallesParaClienteComponent } from './mascota/detalles-para-cliente/detalles-para-cliente.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ErrorComponent } from './transversales/error/error.component';
+import { MainAdminComponent } from './administrador/main/main-admin.component';
+import { CRUDsComponent} from './administrador/cruds/cruds.component';
 
 // PrimeNG Modules
 import { CarouselModule } from 'primeng/carousel';
-import { CRUDsComponent } from './administrador/cruds/cruds.component';
 import { DashboardComponent } from './administrador/dashboard/dashboard.component';
 
 @NgModule({
@@ -60,7 +61,8 @@ import { DashboardComponent } from './administrador/dashboard/dashboard.componen
     DetallesParaClienteComponent,
     ErrorComponent,
     CRUDsComponent,
-    DashboardComponent
+    DashboardComponent,
+    MainAdminComponent
   ],
   imports: [
     BrowserModule,
