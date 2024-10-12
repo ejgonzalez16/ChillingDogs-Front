@@ -30,11 +30,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { ErrorComponent } from './transversales/error/error.component';
 import { MainAdminComponent } from './administrador/main/main-admin.component';
 import { CRUDsComponent} from './administrador/cruds/cruds.component';
+import { DashboardComponent } from './administrador/dashboard/dashboard.component';
+
 
 // PrimeNG Modules
 import { CarouselModule } from 'primeng/carousel';
-import { DashboardComponent } from './administrador/dashboard/dashboard.component';
-
 @NgModule({
   declarations: [
     AppComponent,

@@ -1,1 +1,21 @@
-<p>cruds works!</p>
+<div class="contenedor">
+    <a><img src="/assets/images/logo.png" alt="logo Chilling Dogs"></a>
+    <h1>Chilling Dogs</h1>
+    <h2>CRUD's</h2>
+    <h3>Veterinarios</h3>
+    <div class="btn-cruds">
+        <button [routerLink]="['/veterinarios/registrar']">Registrar</button>
+        <button [routerLink]="['/veterinarios/buscar']">Buscar</button>
+    </div>
+    <h3>Mascotas</h3>
+    <div class="btn-cruds">
+        <button [routerLink]="['/mascotas/registrar']">Registrar</button>
+        <button [routerLink]="['/mascotas/buscar']">Buscar</button>
+    </div>
+    <h3>Clientes</h3>
+    <div class="btn-cruds">
+        <button [routerLink]="['/clientes/registrar']">Registrar</button>
+        <button [routerLink]="['/clientes/buscar']">Buscar</button>
+    </div>
+
+</div>
