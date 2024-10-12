@@ -5,6 +5,7 @@ import {ClienteService} from "../../service/cliente.service";
 import { Router } from '@angular/router';
 import { merge, mergeMap } from 'rxjs';
 import { MascotaService } from '../../service/mascota.service';
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'app-detalles-cliente',
@@ -16,11 +17,20 @@ export class DetallesClienteComponent {
   cliente: Cliente | undefined;
 
   constructor(private route: ActivatedRoute,
-              private clienteService: ClienteService,
               private router: Router,
-              private mascotaService: MascotaService) {}
+              private clienteService: ClienteService,
+              private mascotaService: MascotaService,
+              private authService: AuthService) {}
 
   ngOnInit() {
+    // Verificar que el usuario esté logueado y sea veterinario o admin
+    this.authService.userInfo$.subscribe(userInfo => {
+      if(userInfo.rol !== 'veterinario' && userInfo.rol !== 'admin') {
+        this.router.navigate(['/login']);
+      }
+    });
+
+    // Obtener el id del cliente de la URL y buscarlo en la base de datos
     this.route.paramMap.subscribe(params => {
       this.id = +params.get('id')!;
       this.clienteService.findByCedula(this.id).pipe(
