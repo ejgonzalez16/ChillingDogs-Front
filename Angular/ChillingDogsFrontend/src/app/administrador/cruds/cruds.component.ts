@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'admin-cruds',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class CRUDsComponent {
 
+  constructor(private router: Router) {}
+  goToHome(): void {
+    this.router.navigate(['/landing']);
+  }
 }
