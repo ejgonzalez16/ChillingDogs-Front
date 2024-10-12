@@ -1,16 +1,24 @@
 <div class="main">
     <section class="login-black">
-        <form  (ngSubmit)="onSubmit()" method="get">
+        <form (ngSubmit)="onSubmit()" method="get">
             <div class="type-user-buttons">
-                <button class="type-button-selected">Cliente</button>
-                <button class="type-button" (click)="goToMascotas()">Veterinario</button>
-                <button class="type-button">Administrador</button>
+              <!-- Cambia el estilo de los botones dependiendo del tipo de usuario seleccionado -->
+              <button [ngClass]="tipoLogin === 'cliente' ? 'type-button-selected' : 'type-button'" (click)="tipoLogin = 'cliente'">Cliente</button>
+              <button [ngClass]="tipoLogin === 'veterinario' ? 'type-button-selected' : 'type-button'" (click)="tipoLogin = 'veterinario'">Veterinario</button>
+              <button [ngClass]="tipoLogin === 'administrador' ? 'type-button-selected' : 'type-button'" (click)="tipoLogin = 'administrador'">Administrador</button>
             </div>
             <div class="login-part">
                 <h1>Iniciar Sesión</h1>
 
                 <label for="cedulaTxt">Cedula</label>
                 <input type="number" id="cedulaTxt" name="cedulaTxt" maxlength="10" [(ngModel)]="cedula" required>
+
+                <!-- Si el tipoLoguin no es cliente, se muestra el campo contraseña -->
+                <div *ngIf="tipoLogin !== 'cliente'" class="d-flex flex-column">
+                  <label for="contrasenaTxt">Contraseña</label>
+                  <input type="password" id="contrasenaTxt" name="contrasenaTxt" [(ngModel)]="contrasena" required>
+                </div>
+
                 <button type="submit" class="login-button">Iniciar Sesión</button>
             </div>
         </form>

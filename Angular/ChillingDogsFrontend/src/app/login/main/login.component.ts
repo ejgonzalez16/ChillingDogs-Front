@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import {AuthService} from "../../service/auth.service";
+import {ClienteService} from "../../service/cliente.service";
 
 @Component({
   selector: 'app-main',
@@ -9,11 +10,13 @@ import {AuthService} from "../../service/auth.service";
 })
 export class LoginComponent {
 
-  @Input()
-  cedula!: number;
+  cedula!: string;
+  contrasena: string = '';
+  tipoLogin: string = 'cliente';
 
   constructor(private router: Router,
-              private authService: AuthService
+              private authService: AuthService,
+              private clienteService: ClienteService
               ) { }
 
   ngOnInit() {
@@ -23,12 +26,18 @@ export class LoginComponent {
         this.router.navigate(['/mis-mascotas', userInfo.cedula]);
       } else if(userInfo.rol === 'veterinario') {
         this.router.navigate(['/mascotas/buscar']);
+      } else if (userInfo.rol === 'admin') {
+        this.router.navigate(['/admin']);
       }
     });
   }
 
   onSubmit() {
-    this.router.navigate(['/mis-mascotas', this.cedula]);
+    if(this.tipoLogin === 'cliente') {
+      this.router.navigate(['/mis-mascotas', this.cedula]);
+    } else if(this.tipoLogin === 'veterinario') {
+      // this.router.navigate(['/mascotas/buscar']);
+    }
   }
 
   goToMascotas() {
