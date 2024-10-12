@@ -31,6 +31,8 @@ import { ErrorComponent } from './transversales/error/error.component';
 
 // PrimeNG Modules
 import { CarouselModule } from 'primeng/carousel';
+import { CRUDsComponent } from './administrador/cruds/cruds.component';
+import { DashboardComponent } from './administrador/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { CarouselModule } from 'primeng/carousel';
     MascotaComponent,
     ClienteComponent,
     DetallesParaClienteComponent,
-    ErrorComponent
+    ErrorComponent,
+    CRUDsComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
