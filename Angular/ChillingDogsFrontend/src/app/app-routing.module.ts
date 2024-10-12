@@ -26,11 +26,11 @@ const routes: Routes = [
   { path: 'mascotas/modificar/:id', component: ModificarMascotaComponent},
   { path: 'mascotas/detalles/:id', component: DetallesParaClienteComponent},
   { path: 'mis-mascotas/:cedula', component: MisMascotasComponent},
+  { path: 'administrador/:cedula', component: MainAdminComponent},
   { path: 'landing', component: MainComponent},
   { path: 'login', component: LoginComponent},
   { path: '', component: MainComponent},
   { path: '**', component: ErrorComponent},
-  { path: 'administrador/:cedula', component: MainAdminComponent}
 ];
 
 @NgModule({
