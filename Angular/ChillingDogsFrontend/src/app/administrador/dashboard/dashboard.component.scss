@@ -1,0 +1,48 @@
+#dashboard{
+    align-items: center;
+    text-align: center;
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+}
+
+div{
+    margin-bottom: 2vh;
+}
+
+.tratamientos{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+.blanco{
+    background-color: white;
+    padding: 5vh;
+    align-items: center;
+    text-align: center;
+}
+
+.horizontal{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.tratamientoImg{
+    width: 80px; 
+    height: 80px; 
+    fill: #171A1FFF;
+    margin-bottom: 2vh;
+}
+
+.dogImg{
+    width: 80px; 
+    height: 80px; 
+    fill: #171A1FFF;
+    margin-bottom: 2vh;
+}
