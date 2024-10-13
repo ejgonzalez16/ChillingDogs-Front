@@ -42,8 +42,9 @@ export class DashboardComponent {
     const countMascotas$ = this.dashboardService.countMascotas();
     const countMascotasTratamiento$ = this.dashboardService.countMascotasTratamiento();
     const ventas$ = this.dashboardService.ventas();
-    const ganancia$ = this.dashboardService.ganancia();
-    
+    const ganancia$ = this.dashboardService.ganancias();
+    const topDrogas$ = this.dashboardService.topDrogas();
+
     forkJoin([
       countTratamientos$,
       countTratamientosMes$,
@@ -53,7 +54,8 @@ export class DashboardComponent {
       countMascotas$,
       countMascotasTratamiento$,
       ventas$,
-      ganancia$
+      ganancia$,
+      topDrogas$
     ]).subscribe({
       next: (resultados) => {
         this.totalTratamientos = resultados[0];
@@ -65,6 +67,7 @@ export class DashboardComponent {
         this.totalMascotasTratamiento = resultados[6];
         this.ventas = resultados[7];
         this.ganancias = resultados[8];
+        this.topMedicamentos = resultados[9];
       },
       error: (error) => {
         console.error('Error al obtener los datos del dashboard', error);

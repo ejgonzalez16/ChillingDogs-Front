@@ -42,7 +42,11 @@ export class DashboardService {
     return this.http.get<number>('http://localhost:8099/dashboard/ventas');
   }
 
-  ganancia(): Observable<number> {
-    return this.http.get<number>('http://localhost:8099/dashboard/ganancia');
+  ganancias(): Observable<number> {
+    return this.http.get<number>('http://localhost:8099/dashboard/ganancias');
+  }
+
+  topDrogas(): Observable<string[]> {
+    return this.http.get<string[]>('http://localhost:8099/dashboard/top-drogas');
   }
 }
