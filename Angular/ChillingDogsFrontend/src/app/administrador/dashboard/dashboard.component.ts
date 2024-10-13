@@ -21,4 +21,16 @@ export class DashboardComponent {
   ventas!: number;
   ganancias!: number;
   topMedicamentos!: string[];
+
+  constructor() {
+    this.medicamentosMes = [{
+      medicamento: 'xd',
+      cantidad: 2
+    },{
+      medicamento: 'jajuy',
+      cantidad: 3
+    }];
+
+    this.topMedicamentos = ['xd', 'jajuy'];
+  }
 }

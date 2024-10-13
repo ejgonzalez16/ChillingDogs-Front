@@ -1,6 +1,6 @@
 import { Droga } from "./droga";
 
 export interface MedicamentosMes {
-    medicamento: Droga
+    medicamento: string
     cantidad: number
 }
