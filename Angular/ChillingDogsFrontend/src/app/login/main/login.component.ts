@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import {AuthService} from "../../service/auth.service";
-import {ClienteService} from "../../service/cliente.service";
+import {VeterinarioService} from "../../service/veterinario.service";
 
 @Component({
   selector: 'app-main',
@@ -10,13 +10,14 @@ import {ClienteService} from "../../service/cliente.service";
 })
 export class LoginComponent {
 
-  cedula!: string;
+  cedula: string = '';
   contrasena: string = '';
   tipoLogin: string = 'cliente';
+  loginError: string = '';
 
   constructor(private router: Router,
               private authService: AuthService,
-              private clienteService: ClienteService
+              private veterinarioService: VeterinarioService
               ) { }
 
   ngOnInit() {
@@ -33,10 +34,27 @@ export class LoginComponent {
   }
 
   onSubmit() {
+    // Validar que la cédula y la contraseña no estén vacías
+    if(this.cedula === '' || (this.contrasena === '' && this.tipoLogin !== 'cliente')) {
+      this.loginError = 'Por favor, llena todos los campos';
+      return;
+    }
+    console.log(this.cedula, this.contrasena);
     if(this.tipoLogin === 'cliente') {
       this.router.navigate(['/mis-mascotas', this.cedula]);
     } else if(this.tipoLogin === 'veterinario') {
-      // this.router.navigate(['/mascotas/buscar']);
+      this.veterinarioService.findByCedulaAndContrasena(this.cedula, this.contrasena).subscribe(
+        veterinario => {
+          if(veterinario) {
+            console.log(veterinario);
+            this.authService.actualizarUserInfo('veterinario', veterinario.nombre, veterinario.cedula, veterinario.foto);
+            this.router.navigate(['/mascotas/buscar']);
+          }
+        },
+        error => {
+          this.loginError = 'Credenciales inválidas';
+        }
+      );
     }
   }
 

@@ -3,6 +3,7 @@ import {Cliente} from "../../modelo/cliente";
 import {ClienteService} from "../../service/cliente.service";
 import { ActivatedRoute, Router } from '@angular/router';
 import { mergeMap } from 'rxjs';
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'app-form-cliente',
@@ -14,7 +15,18 @@ export class FormClienteComponent {
   @Input() cliente!: Cliente;
 
   constructor(
-    private clienteService: ClienteService, private router: Router, private route: ActivatedRoute) {
+    private clienteService: ClienteService,
+    private authService: AuthService,
+    private router: Router) {
+  }
+
+  ngOnInit() {
+    // Verificar que el usuario esté logueado y sea veterinario o admin
+    this.authService.userInfo$.subscribe(userInfo => {
+      if(userInfo.rol !== 'veterinario' && userInfo.rol !== 'admin') {
+        this.router.navigate(['/login']);
+      }
+    });
   }
 
   onSubmit() {

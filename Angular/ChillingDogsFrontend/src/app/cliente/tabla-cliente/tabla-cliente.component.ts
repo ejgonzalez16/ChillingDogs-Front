@@ -3,6 +3,7 @@ import {Cliente} from "../../modelo/cliente";
 import {ClienteService} from "../../service/cliente.service";
 import { ActivatedRoute, Router } from '@angular/router';
 import { mergeMap, switchMap } from 'rxjs';
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'app-tabla-cliente',
@@ -13,10 +14,21 @@ export class TablaClienteComponent {
   clientes!: Cliente[];
 
   constructor(
-    private clienteService: ClienteService, private router: Router, private route: ActivatedRoute) {
+    private clienteService: ClienteService,
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    // Verificar que el usuario esté logueado y sea veterinario o admin
+    this.authService.userInfo$.subscribe(userInfo => {
+      if(userInfo.rol !== 'veterinario' && userInfo.rol !== 'admin') {
+        this.router.navigate(['/login']);
+      }
+    });
+
+    // Obtener la lista de clientes
     this.route.paramMap.subscribe(params => {
       this.clienteService.findAll().subscribe(clientes => {
         this.clientes = clientes;

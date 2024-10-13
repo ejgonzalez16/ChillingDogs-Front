@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {Mascota} from "../../modelo/mascota";
 import {MascotaService} from "../../service/mascota.service";
 import { AuthService } from '../../service/auth.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-tabla-mascota',
@@ -13,12 +14,18 @@ export class TablaMascotaComponent {
   vet: string = 'vet';
 
   constructor(
-    private mascotaService: MascotaService, private authService: AuthService) {}
+    private mascotaService: MascotaService,
+    private authService: AuthService,
+    private router: Router) {}
 
   ngOnInit() {
-    // Cambiar el rol del usuario a veterinario y actualizar la información del usuario (para el header)
-    // TODO: Actualizar la información del usuario cuando hayamos traído al veterinario
-    this.authService.actualizarUserInfo('veterinario', 'Profesor Super O', '1234567890', 'https://s3.amazonaws.com/rtvc-assets-misenal.tv/ms-public/imagenes/banner2_4.png?VersionId=null');
+    // Verificar que el usuario esté logueado y sea veterinario o admin
+    this.authService.userInfo$.subscribe(userInfo => {
+      if(userInfo.rol !== 'veterinario' && userInfo.rol !== 'admin') {
+        this.router.navigate(['/login']);
+      }
+    });
+
     // Obtener todas las mascotas
     this.mascotaService.findAll().subscribe(mascotas => {
       this.mascotas = mascotas;

@@ -4,6 +4,7 @@ import { Cliente } from '../../modelo/cliente';
 import { ClienteService } from '../../service/cliente.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MascotaService } from '../../service/mascota.service';
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'app-form-mascota',
@@ -19,6 +20,7 @@ export class FormMascotaComponent {
     private clienteService: ClienteService,
     private router: Router,
     private mascotaService: MascotaService,
+    private authService: AuthService,
     private route: ActivatedRoute
   ){
 
@@ -38,6 +40,13 @@ export class FormMascotaComponent {
 
 
   ngOnInit() :void {
+    // Verificar que el usuario esté logueado y sea veterinario o admin
+    this.authService.userInfo$.subscribe(userInfo => {
+      if(userInfo.rol !== 'veterinario' && userInfo.rol !== 'admin') {
+        this.router.navigate(['/login']);
+      }
+    });
+
     const fotoInput = document.getElementById('foto') as HTMLInputElement;
     const img = document.createElement('img');
 

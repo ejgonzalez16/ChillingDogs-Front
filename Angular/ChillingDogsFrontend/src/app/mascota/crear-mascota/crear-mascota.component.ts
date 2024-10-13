@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Mascota } from '../../modelo/mascota';
+import {AuthService} from "../../service/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-crear-mascota',
