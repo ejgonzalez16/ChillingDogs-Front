@@ -38,11 +38,11 @@ export class DashboardService {
     return this.http.get<number>('http://localhost:8099/dashboard/count-mascotas-tratamiento');
   }
 
-  Ventas(): Observable<number> {
+  ventas(): Observable<number> {
     return this.http.get<number>('http://localhost:8099/dashboard/ventas');
   }
 
-  Ganancia(): Observable<number> {
+  ganancia(): Observable<number> {
     return this.http.get<number>('http://localhost:8099/dashboard/ganancia');
   }
 }

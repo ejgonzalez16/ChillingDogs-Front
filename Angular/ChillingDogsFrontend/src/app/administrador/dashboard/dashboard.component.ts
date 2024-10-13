@@ -2,6 +2,9 @@ import { Component, Input } from '@angular/core';
 import { Administrador } from '../../modelo/administrador';
 import { Tratamiento } from '../../modelo/tratamiento';
 import { MedicamentosMes } from '../../modelo/medicamentosMes';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DashboardService } from '../../service/dashboard.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'admin-dashboard',
@@ -12,7 +15,7 @@ export class DashboardComponent {
   @Input()
   nombreAdministrador!: string;
   totalTratamientos!: number;
-  tratamientosMes!: number;
+  totalTratamientosMes!: number;
   medicamentosMes!: MedicamentosMes[]
   totalVetActivos!: number;
   totalVetInactivos!: number;
@@ -22,15 +25,50 @@ export class DashboardComponent {
   ganancias!: number;
   topMedicamentos!: string[];
 
-  constructor() {
-    this.medicamentosMes = [{
-      medicamento: 'xd',
-      cantidad: 2
-    },{
-      medicamento: 'jajuy',
-      cantidad: 3
-    }];
+  constructor(private router: Router, private route: ActivatedRoute, private dashboardService: DashboardService) {}
 
-    this.topMedicamentos = ['xd', 'jajuy'];
+  ngOnInit(): void {
+    this.route.params.subscribe(() => {
+      this.obtenerDatosDashboard();
+    });
+  }
+
+  obtenerDatosDashboard(): void {
+    const countTratamientos$ = this.dashboardService.countTratamientos();
+    const countTratamientosMes$ = this.dashboardService.countTratamientosMes();
+    const medicamentosMes$ = this.dashboardService.medicamentosMes();
+    const countVetActivos$ = this.dashboardService.countVetActivos();
+    const countVetInactivos$ = this.dashboardService.countVetInactivos();
+    const countMascotas$ = this.dashboardService.countMascotas();
+    const countMascotasTratamiento$ = this.dashboardService.countMascotasTratamiento();
+    const ventas$ = this.dashboardService.ventas();
+    const ganancia$ = this.dashboardService.ganancia();
+    
+    forkJoin([
+      countTratamientos$,
+      countTratamientosMes$,
+      medicamentosMes$,
+      countVetActivos$,
+      countVetInactivos$,
+      countMascotas$,
+      countMascotasTratamiento$,
+      ventas$,
+      ganancia$
+    ]).subscribe({
+      next: (resultados) => {
+        this.totalTratamientos = resultados[0];
+        this.totalTratamientosMes = resultados[1];
+        this.medicamentosMes = resultados[2];
+        this.totalVetActivos = resultados[3];
+        this.totalVetInactivos = resultados[4];
+        this.totalMascotas = resultados[5];
+        this.totalMascotasTratamiento = resultados[6];
+        this.ventas = resultados[7];
+        this.ganancias = resultados[8];
+      },
+      error: (error) => {
+        console.error('Error al obtener los datos del dashboard', error);
+      }
+    });
   }
 }
