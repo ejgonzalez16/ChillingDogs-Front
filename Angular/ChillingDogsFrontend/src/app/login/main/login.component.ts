@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import {AuthService} from "../../service/auth.service";
 import {VeterinarioService} from "../../service/veterinario.service";
+import {AdminService} from "../../service/admin.service";
 
 @Component({
   selector: 'app-main',
@@ -17,7 +18,8 @@ export class LoginComponent {
 
   constructor(private router: Router,
               private authService: AuthService,
-              private veterinarioService: VeterinarioService
+              private veterinarioService: VeterinarioService,
+              private adminService: AdminService
               ) { }
 
   ngOnInit() {
@@ -28,7 +30,7 @@ export class LoginComponent {
       } else if(userInfo.rol === 'veterinario') {
         this.router.navigate(['/mascotas/buscar']);
       } else if (userInfo.rol === 'admin') {
-        this.router.navigate(['/admin']);
+        this.router.navigate(['/administrador', userInfo.cedula]);
       }
     });
   }
@@ -39,7 +41,6 @@ export class LoginComponent {
       this.loginError = 'Por favor, llena todos los campos';
       return;
     }
-    console.log(this.cedula, this.contrasena);
     if(this.tipoLogin === 'cliente') {
       this.router.navigate(['/mis-mascotas', this.cedula]);
     } else if(this.tipoLogin === 'veterinario') {
@@ -50,6 +51,17 @@ export class LoginComponent {
             this.authService.actualizarUserInfo('veterinario', veterinario.nombre, veterinario.cedula, veterinario.foto);
             this.router.navigate(['/mascotas/buscar']);
           }
+        },
+        error => {
+          this.loginError = 'Credenciales inválidas';
+        }
+      );
+    } else if(this.tipoLogin === 'administrador') {
+      this.adminService.findByCedulaAndContrasena(this.cedula, this.contrasena).subscribe(
+        admin => {
+          console.log(admin);
+          this.authService.actualizarUserInfo('admin', admin.nombre, admin.cedula, admin.foto);
+          this.router.navigate(['/administrador', admin.cedula]);
         },
         error => {
           this.loginError = 'Credenciales inválidas';
