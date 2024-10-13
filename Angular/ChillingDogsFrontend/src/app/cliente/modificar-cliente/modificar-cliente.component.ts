@@ -17,19 +17,14 @@ export class ModificarClienteComponent {
   constructor(private route: ActivatedRoute, private clienteService: ClienteService, private mascotaService: MascotaService) {}
 
   ngOnInit() {
-    console.log('Modificando clientezzz');
-    this.route.paramMap.subscribe(params => {
-      this.id = +params.get('id')!;
-      this.clienteService.findByCedula(this.id).pipe(
-        mergeMap(cliente => {
-          this.cliente = cliente;
-          return this.mascotaService.findByClienteId(this.id);
-        })
-      ).subscribe(
-        mascotas => {
-          //this.cliente.mascotas = mascotas;
-        }
-      );
-    })
+    this.route.paramMap.pipe(
+      mergeMap(params => {
+        // Trae el cliente a modificar
+        this.id = +params.get('id')!;
+        return this.clienteService.findByCedula(this.id);
+      })
+    ).subscribe(cliente => {
+      this.cliente = cliente;
+    });
   }
 }

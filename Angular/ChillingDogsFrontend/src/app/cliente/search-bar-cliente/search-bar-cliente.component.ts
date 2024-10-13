@@ -13,6 +13,7 @@ export class SearchBarClienteComponent {
 
   onSubmit() {
     if (this.cedulaCliente) {
+      // Buscar cliente por cedula
       this.router.navigate(['/clientes/buscar', this.cedulaCliente]);
     }
   }

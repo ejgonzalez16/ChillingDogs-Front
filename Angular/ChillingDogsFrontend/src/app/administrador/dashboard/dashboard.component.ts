@@ -31,11 +31,13 @@ export class DashboardComponent implements OnDestroy {
       this.obtenerDatosDashboard();
     });
 
+    // Actualizar la página cada 10 segundos
     this.intervalId = setInterval(() => {
       this.obtenerDatosDashboard();
     }, 10000);
   }
 
+  // Obtener los datos del dashboard de manera paralela
   obtenerDatosDashboard(): void {
     const countTratamientos$ = this.dashboardService.countTratamientos();
     const countTratamientosMes$ = this.dashboardService.countTratamientosMes();
@@ -80,6 +82,7 @@ export class DashboardComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     if (this.intervalId) {
+      // Detener el intervalo
       clearInterval(this.intervalId);
     }
   }

@@ -15,8 +15,8 @@ export class ModificarMascotaComponent {
   constructor(private route: ActivatedRoute, private mascotaService: MascotaService) {}
 
   ngOnInit() {
+    // Trae la mascota que se va a actualizar
     this.id = +this.route.snapshot.paramMap.get('id')!;
-    // Aquí puedes usar el ID para buscar detalles del cliente
     this.mascotaService.findById(this.id).subscribe(mascota => {
       this.mascota = mascota;
     });

@@ -28,10 +28,11 @@ export class FormMascotaComponent {
 
   onSubmit(){
     if (this.modificar) {
+      // Actualiza la mascota y vuelve a recargar la página con la información actualizada
       this.mascotaService.update(this.mascota);
       this.router.navigate(['/mascotas/buscar']);
     } else {
-      console.log(this.mascota);
+      // Crea la mascota y vuelve a recargar la página con la información actualizada
       this.mascotaService.add(this.mascota);
       this.router.navigate(['/mascotas/buscar']);
     }

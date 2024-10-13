@@ -15,6 +15,7 @@ export class SearchBarMascotaComponent {
 
   onSubmit(){
     if(this.nombrePerro){
+      // Buscar mascota por nombre
       this.actualizarLista.emit(this.nombrePerro);
     }
   }

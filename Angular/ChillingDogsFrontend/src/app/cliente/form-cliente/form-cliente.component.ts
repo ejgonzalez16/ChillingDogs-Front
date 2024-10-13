@@ -31,10 +31,12 @@ export class FormClienteComponent {
 
   onSubmit() {
     if (this.modificar) {
+      // Actualiza el cliente y vuelve a recargar la página con la información actualizada
       this.clienteService.update(this.cliente).pipe(
         mergeMap(() => this.router.navigate(['/clientes/buscar']))
       ).subscribe();
     } else {
+      // Crea el cliente y vuelve a recargar la página con la información actualizada
       this.clienteService.add(this.cliente).pipe(
         mergeMap(() => this.router.navigate(['/clientes/buscar']))
       ).subscribe();

@@ -34,6 +34,7 @@ export class TablaMascotaComponent {
   }
 
   recargarMascotas(nombrePerro?: string) {
+    // Trae todas las mascotas de la BD
     this.mascotaService.findAll().subscribe(mascotas => {
       this.mascotas = mascotas.filter(mascota => mascota.nombre.includes(nombrePerro || ''));
     });

@@ -13,10 +13,13 @@ export class CRUDsComponent {
     private router: Router,
     private authService: AuthService
     ) {}
+
+  // Retorna al inicio de sesion
   goToHome(): void {
     this.router.navigate(['/landing']);
   }
 
+  // Cierra la sesión del administrador completamente
   logout(): void {
     this.authService.actualizarUserInfo('guest', '', '', '');
     this.router.navigate(['/login']);

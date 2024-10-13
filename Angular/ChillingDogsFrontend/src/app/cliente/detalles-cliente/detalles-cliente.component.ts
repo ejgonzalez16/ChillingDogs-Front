@@ -47,6 +47,7 @@ export class DetallesClienteComponent {
     })
   }
 
+  // Función para eliminar un cliente de la BD
   eliminarCliente(id: number) {
     console.log(this.cliente)
     this.clienteService.deleteById(id).subscribe(

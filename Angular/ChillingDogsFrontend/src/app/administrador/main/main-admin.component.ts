@@ -15,7 +15,7 @@ export class MainAdminComponent {
   ) { }
 
   ngOnInit() {
-    // Verificar que el usuario esté logueado y sea veterinario o admin
+    // Verificar que el usuario esté logueado y sea admin
     this.authService.userInfo$.subscribe(userInfo => {
       if(userInfo.rol !== 'admin') {
         this.router.navigate(['/login']);
