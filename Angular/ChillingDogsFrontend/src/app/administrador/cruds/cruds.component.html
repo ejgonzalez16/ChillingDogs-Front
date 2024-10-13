@@ -17,5 +17,5 @@
         <button [routerLink]="['/clientes/registrar']">Registrar</button>
         <button [routerLink]="['/clientes/buscar']">Buscar</button>
     </div>
-    <button [routerLink]="['/login']" id="btnVolver">Salir</button>
+    <button (click)="logout()" id="btnVolver">Cerrar Sesión</button>
 </div>
