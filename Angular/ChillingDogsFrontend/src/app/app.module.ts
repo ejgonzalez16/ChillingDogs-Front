@@ -35,6 +35,10 @@ import { DashboardComponent } from './administrador/dashboard/dashboard.componen
 
 // PrimeNG Modules
 import { CarouselModule } from 'primeng/carousel';
+import { CrearTratamientoComponent } from './tratamiento/crear-tratamiento/crear-tratamiento.component';
+import { FormTratamientoComponent } from './tratamiento/form-tratamiento/form-tratamiento.component';
+import { ModificarTratamientoComponent } from './tratamiento/modificar-tratamiento/modificar-tratamiento.component';
+import { TablaTratamientoComponent } from './tratamiento/tabla-tratamiento/tabla-tratamiento.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +66,11 @@ import { CarouselModule } from 'primeng/carousel';
     ErrorComponent,
     CRUDsComponent,
     DashboardComponent,
-    MainAdminComponent
+    MainAdminComponent,
+    CrearTratamientoComponent,
+    FormTratamientoComponent,
+    ModificarTratamientoComponent,
+    TablaTratamientoComponent
   ],
   imports: [
     BrowserModule,
