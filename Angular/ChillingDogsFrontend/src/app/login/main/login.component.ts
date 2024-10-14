@@ -49,7 +49,7 @@ export class LoginComponent {
           if(veterinario) {
             console.log(veterinario);
             this.authService.actualizarUserInfo('veterinario', veterinario.id, veterinario.nombre, veterinario.cedula, veterinario.foto);
-            this.router.navigate(['/mascotas/buscar']);
+            this.router.navigate(['/mis-mascotas', veterinario.cedula]);
           }
         },
         error => {

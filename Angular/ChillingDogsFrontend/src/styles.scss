@@ -37,6 +37,12 @@ h1, h2, h3, h4,no-footer h5, h6 {
 .navigation {
   margin-right: 2vw;
 
+  svg {
+    fill: white;
+    width: 50px;
+    height: 50px;
+  }
+
   img {
     border-radius: 50%;
     width: 50px;
@@ -85,6 +91,10 @@ h1, h2, h3, h4,no-footer h5, h6 {
 
       .logout {
         opacity: 0.9;
+      }
+
+      svg {
+        fill: var(--primary-color);
       }
     }
   }
@@ -496,4 +506,8 @@ section {
 
 .fw-medium {
   font-weight: 500;
+}
+
+.fw-semibold {
+  font-weight: 600;
 }

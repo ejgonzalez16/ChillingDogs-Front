@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Mascota } from '../../modelo/mascota';
 import {Router} from "@angular/router";
+import {MascotaService} from "../../service/mascota.service";
+import {TratamientoService} from "../../service/tratamiento.service";
 
 @Component({
   selector: 'carrusel',
@@ -10,6 +12,9 @@ import {Router} from "@angular/router";
 export class CarruselComponent {
   @Input()
   mascotas: Mascota[] = [];
+
+  @Input()
+  rolUsuario!: string;
 
   responsiveOptions: any[] = [
     {
@@ -25,7 +30,8 @@ export class CarruselComponent {
   ];
 
   constructor(
-    private router: Router
+    private router: Router,
+    private tratamientoService: TratamientoService
   ) { }
 
   getBadgeClass(status: string) {
@@ -39,6 +45,20 @@ export class CarruselComponent {
   }
 
   verDetallesMascota(id: number) {
-    this.router.navigate(['/mascotas/detalles', id]);
+    if (this.rolUsuario === 'cliente') {
+      this.router.navigate(['/mascotas/detalles', id]);
+    } else {
+      this.router.navigate(['/mascotas/buscar', id]);
+    }
+  }
+
+  modificarMascota(id: number) {
+    this.router.navigate(['/mascotas/modificar', id]);
+  }
+
+  eliminarMascota(id: number) {
+    this.tratamientoService.deleteById(id);
+    // Eliminar la mascota de la lista
+    this.mascotas.splice(this.mascotas.findIndex(mascota => mascota.id === id), 1);
   }
 }

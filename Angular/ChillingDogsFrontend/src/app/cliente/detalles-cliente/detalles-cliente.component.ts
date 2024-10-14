@@ -36,7 +36,7 @@ export class DetallesClienteComponent {
       this.clienteService.findByCedula(this.id).pipe(
         mergeMap(cliente => {
           this.cliente = cliente;
-          return this.mascotaService.findByClienteId(this.id);
+          return this.mascotaService.findByClienteCedula(this.id);
         })
       ).subscribe(mascotas => {
           if(this.cliente != undefined) {

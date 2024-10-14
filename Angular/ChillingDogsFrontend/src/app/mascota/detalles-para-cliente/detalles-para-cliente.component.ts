@@ -11,7 +11,8 @@ import { MascotaService } from '../../service/mascota.service';
 export class DetallesParaClienteComponent {
   id!: number
   mascota!: Mascota
-  tipoLogueo = 'cliente';
+  verTratamientos = false
+
   constructor(private route: ActivatedRoute, private mascotaService: MascotaService, private router: Router) {}
 
   ngOnInit() {
@@ -20,5 +21,10 @@ export class DetallesParaClienteComponent {
     this.mascotaService.findById(this.id).subscribe(mascota => {
       this.mascota = mascota;
     });
+  }
+
+  goBack() {
+    // Ir a la página visitada justo antes con el botón de regresar
+    window.history.back();
   }
 }
