@@ -26,7 +26,7 @@ export class HeaderComponent {
   }
 
   logout(): void {
-    this.authService.actualizarUserInfo('guest', '', '', '');
+    this.authService.actualizarUserInfo('guest', -1, '', '', '');
     this.goToLogin();
   }
 

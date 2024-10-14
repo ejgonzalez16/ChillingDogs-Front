@@ -48,7 +48,7 @@ export class LoginComponent {
         veterinario => {
           if(veterinario) {
             console.log(veterinario);
-            this.authService.actualizarUserInfo('veterinario', veterinario.nombre, veterinario.cedula, veterinario.foto);
+            this.authService.actualizarUserInfo('veterinario', veterinario.id, veterinario.nombre, veterinario.cedula, veterinario.foto);
             this.router.navigate(['/mascotas/buscar']);
           }
         },
@@ -60,7 +60,7 @@ export class LoginComponent {
       this.adminService.findByCedulaAndContrasena(this.cedula, this.contrasena).subscribe(
         admin => {
           console.log(admin);
-          this.authService.actualizarUserInfo('admin', admin.nombre, admin.cedula, admin.foto);
+          this.authService.actualizarUserInfo('admin', admin.id, admin.nombre, admin.cedula, admin.foto);
           this.router.navigate(['/administrador', admin.cedula]);
         },
         error => {

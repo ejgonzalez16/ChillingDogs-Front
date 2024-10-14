@@ -33,7 +33,7 @@ export class MisMascotasComponent {
           console.log(cliente);
           this.cliente = cliente;
           // Cambiar el rol del usuario a cliente y actualizar la información del usuario (para el header)
-          this.authService.actualizarUserInfo('cliente', cliente.nombre, cliente.cedula, cliente.foto);
+          this.authService.actualizarUserInfo('cliente', cliente.id, cliente.nombre, cliente.cedula, cliente.foto);
           // Obtener las mascotas del cliente
           return this.mascotaService.findByClienteId(this.cedula);
         }),
