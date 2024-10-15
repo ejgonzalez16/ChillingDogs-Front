@@ -14,6 +14,11 @@ import { MisMascotasComponent } from './mascota/mis-mascotas/mis-mascotas.compon
 import { DetallesParaClienteComponent } from './mascota/detalles-para-cliente/detalles-para-cliente.component';
 import { ErrorComponent } from './transversales/error/error.component';
 import { MainAdminComponent } from './administrador/main/main-admin.component';
+import { CrearVeterinarioComponent } from './veterinario/crear-veterinario/crear-veterinario.component';
+import { TablaVeterinarioComponent } from './veterinario/tabla-veterinario/tabla-veterinario.component';
+import { DetallesVeterinarioComponent } from './veterinario/detalles-veterinario/detalles-veterinario.component';
+import { ModificarVeterinarioComponent } from './veterinario/modificar-veterinario/modificar-veterinario.component';
+import { TablaTratamientoComponent } from './tratamiento/tabla-tratamiento/tabla-tratamiento.component';
 
 const routes: Routes = [
   { path: 'clientes/buscar', component:  TablaClienteComponent},
@@ -29,6 +34,11 @@ const routes: Routes = [
   { path: 'administrador/:cedula', component: MainAdminComponent},
   { path: 'landing', component: MainComponent},
   { path: 'login', component: LoginComponent},
+  { path: 'veterinarios/buscar', component: TablaVeterinarioComponent},
+  { path: 'veterinarios/buscar/:id', component: DetallesVeterinarioComponent},	
+  { path: 'veterinarios/registrar', component: CrearVeterinarioComponent},	
+  { path: 'veterinarios/modificar/:id', component: ModificarVeterinarioComponent},
+  { path: 'tratamientos/buscar', component: TablaTratamientoComponent},
   { path: '', component: MainComponent},
   { path: '**', component: ErrorComponent},
 ];

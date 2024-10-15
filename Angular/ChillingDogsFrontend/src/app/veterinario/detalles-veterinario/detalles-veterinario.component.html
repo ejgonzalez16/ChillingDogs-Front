@@ -1,0 +1,51 @@
+<main>
+    <app-search-bar-veterinario></app-search-bar-veterinario>
+    <ng-container *ngIf="veterinario">
+      <section id="seccionCliente">
+          <div id="datosCliente">
+              <img src="{{veterinario.foto}}" alt="foto">
+              <div id="infoCliente">
+                <span>
+                    <h2>Cedula</h2>
+                    <p>
+                        {{veterinario.cedula}}
+                    </p>
+                </span>
+                <span>
+                      <h2>Nombre</h2>
+                      <p>
+                          {{veterinario.nombre}}
+                      </p>
+                  </span>
+                <span>
+                      <h2>Contraseña</h2>
+                      <p>
+                          {{veterinario.contrasena}}
+                      </p>
+                  </span>
+                  <span>
+                    <h2>Especialidad</h2>
+                    <p>
+                        {{veterinario.especialidad}}
+                    </p>
+                </span>
+
+                <span>
+                    <h2>Estado</h2>
+                    <button *ngIf="veterinario.estado == 'activo'" class = "estadoActivo">Activo</button>
+                    <button *ngIf="veterinario.estado == 'inactivo'" class = "estadoInactivo">Inactivo</button>
+                </span>
+              </div>
+          </div>
+      </section>
+      <div class="botonesAccion">
+          <form (click)="eliminarCliente(veterinario.id)">
+              <div class="contenedorBoton"><button type="submit" id="btnEliminar">Eliminar</button></div>
+          </form>
+          <form [routerLink]="['/veterinarios/modificar', veterinario.cedula]">
+              <div class="contenedorBoton"><button type="submit" id="btnModificar">Modificar</button></div>
+          </form>
+      </div>
+    </ng-container>
+    <button id="btnVolver" [routerLink]="['/veterinarios/buscar']">Volver</button>
+</main>

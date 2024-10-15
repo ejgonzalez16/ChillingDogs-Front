@@ -39,6 +39,13 @@ import { CrearTratamientoComponent } from './tratamiento/crear-tratamiento/crear
 import { FormTratamientoComponent } from './tratamiento/form-tratamiento/form-tratamiento.component';
 import { ModificarTratamientoComponent } from './tratamiento/modificar-tratamiento/modificar-tratamiento.component';
 import { TablaTratamientoComponent } from './tratamiento/tabla-tratamiento/tabla-tratamiento.component';
+import { FormVeterinarioComponent } from './veterinario/form-veterinario/form-veterinario.component';
+import { CrearVeterinarioComponent } from './veterinario/crear-veterinario/crear-veterinario.component';
+import { SearchBarVeterinarioComponent } from './veterinario/search-bar-veterinario/search-bar-veterinario.component';
+import { TablaVeterinarioComponent } from './veterinario/tabla-veterinario/tabla-veterinario.component';
+import { DetallesVeterinarioComponent } from './veterinario/detalles-veterinario/detalles-veterinario.component';
+import { ModificarVeterinarioComponent } from './veterinario/modificar-veterinario/modificar-veterinario.component';
+import { SearchBarTratamientoComponent } from './tratamiento/search-bar-tratamiento/search-bar-tratamiento.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +77,14 @@ import { TablaTratamientoComponent } from './tratamiento/tabla-tratamiento/tabla
     CrearTratamientoComponent,
     FormTratamientoComponent,
     ModificarTratamientoComponent,
-    TablaTratamientoComponent
+    TablaTratamientoComponent,
+    FormVeterinarioComponent,
+    CrearVeterinarioComponent,
+    SearchBarVeterinarioComponent,
+    TablaVeterinarioComponent,
+    DetallesVeterinarioComponent,
+    ModificarVeterinarioComponent,
+    SearchBarTratamientoComponent
   ],
   imports: [
     BrowserModule,

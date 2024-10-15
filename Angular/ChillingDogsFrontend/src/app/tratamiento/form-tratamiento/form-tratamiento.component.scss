@@ -1,0 +1,260 @@
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    width: 100%;
+    height: 100%;
+    min-height: 20vh;
+
+    h1{
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+}
+
+article{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form{
+    border: red 3px solid;
+    width: 150%;
+}
+
+body {
+    background-color: var(--primary-color);
+}
+
+#nombrePerroField{
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+    background: #FCFCFCFF; /* tertiary2-350 */
+    border-radius: 4px 0px 0px 4px; /* border-tl-m border-bl-m */
+    border-width: 1px;
+    border-color: #FBFBFBFF; /* tertiary2-300 */
+    border-style: solid;
+    outline: none;
+    width: 100%;
+    height: 2em;
+    padding-left: 1em;
+    margin-bottom: 50px;
+}
+
+input {
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  
+    &[type=number] {
+      -moz-appearance: textfield;
+    }
+}
+
+form{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.btnForm{
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #006c87;
+    background: #D7F7FFFF;
+    opacity: 1;
+    border: none;
+    border-radius: 0px 4px 4px 0px;
+    gap: 0px;
+    height: 2.25em;
+    margin-bottom: 50px;
+
+    &:hover{
+        background-color: #7bdff8;
+    }
+}
+
+.primer-btn {
+    border-radius: 0;
+}
+
+.crear-btn {
+    background: #b8f5cd;
+    color: #0a4d20;
+
+    &:hover {
+        background-color: #4CE77FFF;
+    }
+}
+
+.btn{
+    padding: 0 14px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: #000000;
+    background: #baffa9;
+    opacity: 1; 
+    border: none; 
+    border-radius: 0px 4px 4px 0px; 
+    gap: 0px;
+    height: 2.25em;
+    margin-bottom: 50px;
+}
+
+button {
+    margin-top: 50px;
+    width: 15em;
+    height: 2.5em;
+    padding: 0 20px;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 500;
+    color: var(--color-3);
+    background: var(--secondary-color);
+    border: none;
+    border-radius: 30px;
+  }
+  
+section {
+    background-color: var(--color-4);
+
+    h1 {
+        text-align: center;
+    }
+
+    table {
+        width: 50%;
+    }
+
+    td {
+        width: 50%;
+    }
+}
+
+#seccionPeludo {
+    margin-top: 50px;
+    padding-top: 5px;
+
+    h1 {
+        margin-top: 40px;
+    }
+    }
+
+    .estadoPeludo {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+
+    table {
+        text-align: start;
+        align-content: center;
+        margin-left: 50px;
+        margin-right: 50px;
+
+        td {
+        padding: 10px;
+        width: fit-content;
+
+        button {
+            width: fit-content;
+            margin-top: 0;
+            font-size: small;
+            margin-bottom: 0;
+            border-radius: 30px;
+        }
+
+        img {
+            margin-right: 0;
+            align-content: end;
+        }
+        }
+        
+    }
+
+    img {
+        margin-right: 60px;
+    }
+}
+
+.celdaSinPadding {
+    padding-right: 0;
+}
+
+.imagenEstado {
+    text-align: right;
+}
+.userImg {
+    border-radius: 50%;
+    /*Hacer que la imagen se le recorte el sobrante, que no haga cover*/
+    object-fit: cover;
+}
+
+.peludo-img {
+    max-width: 40vh;
+    max-height: fit-content;
+}
+
+.seccionDueno {
+    margin-top: 50px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.datosDueno {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+}
+
+.datoDueno {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px 0px;
+}
+
+.espacioEntreDatosArriba {
+    margin-top: 20px;
+}
+
+.espacioEntreDatosDer {
+    margin-right: 100px;
+}
+
+.datosNumericos {
+    display: flex;
+    flex-direction: row;
+
+    p {
+        font-size: medium;
+    }
+}
+
+.imagenesDueno {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.imagenDueno {
+    height: 200px;
+    width: 200px;
+    margin-right: 40px;
+    margin-left: 40px;
+}
+
+.columnaDosDatos {
+    margin-right: 40px;
+}
