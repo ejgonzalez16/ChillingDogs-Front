@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-bar-tratamiento',
@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
 export class SearchBarTratamientoComponent {
   nombrePerro!: string;
   @Output() actualizarLista = new EventEmitter<string>();
+  @Input()
+  veterinarioId!: number;
+  extras!: NavigationExtras;
 
   constructor(private router: Router) {}
 

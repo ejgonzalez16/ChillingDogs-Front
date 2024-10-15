@@ -12,6 +12,7 @@ import {Router} from "@angular/router";
 export class TablaTratamientoComponent {
   mascotas!: Mascota[];
   vet: string = 'vet';
+  veterinarioId!: number;
   
 
   constructor(
@@ -22,9 +23,12 @@ export class TablaTratamientoComponent {
   ngOnInit() {
     // Verificar que el usuario esté logueado y sea veterinario o admin
     this.authService.userInfo$.subscribe(userInfo => {
+      
       if(userInfo.rol !== 'veterinario' && userInfo.rol !== 'admin') {
         this.router.navigate(['/login']);
       }
+      this.veterinarioId = userInfo.id
+      console.log(this.veterinarioId)
     });
 
     // Obtener todas las mascotas

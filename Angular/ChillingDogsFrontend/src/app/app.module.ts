@@ -46,6 +46,8 @@ import { TablaVeterinarioComponent } from './veterinario/tabla-veterinario/tabla
 import { DetallesVeterinarioComponent } from './veterinario/detalles-veterinario/detalles-veterinario.component';
 import { ModificarVeterinarioComponent } from './veterinario/modificar-veterinario/modificar-veterinario.component';
 import { SearchBarTratamientoComponent } from './tratamiento/search-bar-tratamiento/search-bar-tratamiento.component';
+import { TratamientosMascotaComponent } from './tratamiento/tratamientos-mascota/tratamientos-mascota.component';
+import { TratamientosVeterinarioComponent } from './tratamiento/tratamientos-veterinario/tratamientos-veterinario.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,7 +86,9 @@ import { SearchBarTratamientoComponent } from './tratamiento/search-bar-tratamie
     TablaVeterinarioComponent,
     DetallesVeterinarioComponent,
     ModificarVeterinarioComponent,
-    SearchBarTratamientoComponent
+    SearchBarTratamientoComponent,
+    TratamientosMascotaComponent,
+    TratamientosVeterinarioComponent
   ],
   imports: [
     BrowserModule,
