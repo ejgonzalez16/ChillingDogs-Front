@@ -13,6 +13,7 @@ import {AuthService} from "../../service/auth.service";
 export class DetallesMascotaComponent {
   id!: number
   mascota!: Mascota;
+  verTratamientos = false
 
   constructor(private route: ActivatedRoute,
               private mascotaService: MascotaService,
@@ -32,6 +33,7 @@ export class DetallesMascotaComponent {
     // Aquí puedes usar el ID para buscar detalles del cliente
     this.mascotaService.findById(this.id).subscribe(mascota => {
       this.mascota = mascota;
+      console.log(this.mascota);
     });
   }
 
