@@ -9,8 +9,8 @@
                 <th scope="col">Cédula</th>
                 <th scope="col">Foto</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Contraseña</th>
                 <th scope="col">Especialidad</th>
+                <th scope="col">Detalles</th>
                 <th scope="col">Modificar</th>
                 <th scope="col">Eliminar</th>
             </tr>
@@ -31,7 +31,7 @@
                     {{veterinario.nombre}}
                 </td>
                 <td>
-                    {{veterinario.contrasena}}
+                    {{veterinario.especialidad}}
                 </td>
 
                 <td>
@@ -53,6 +53,6 @@
             </tbody>
         </table>
     </section>
-    <a href="http://localhost:8099/landing"><button id="btnVolver">Volver</button></a>
+    <button id="btnVolver" (click)="goToDashboard()">Volver</button>
 </main>
 

@@ -41,4 +41,9 @@ export class DetallesMascotaComponent {
     this.mascotaService.deleteById(id);
     this.router.navigate(['/clientes/buscar']);
   }
+
+  goBack() {
+    // Vuelve pa atrás
+    window.history.back();
+  }
 }

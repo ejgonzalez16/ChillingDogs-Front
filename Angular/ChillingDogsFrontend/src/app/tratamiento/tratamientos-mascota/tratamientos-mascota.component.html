@@ -1,27 +1,27 @@
-<h1>!Mira los tratamientos de {{mascota.nombre}}!</h1>
-<main>
-    <div class="contenedorTabla">
-        <table class="table" id="tablaMascotas">
-            <thead>
-            <tr>
-                <th scope="col">Medicamento</th>
-                <th scope="col">Veterinario</th>
-                <th scope="col">Fecha</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let tratamiento of tratamientos">
-                <td>
-                    {{tratamiento.droga!.nombre}}
-                </td>
-                <td>
-                    {{tratamiento.veterinario!.nombre}}
-                </td>
-                <td>{{tratamiento.fecha}}</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <a href="/login"><button id="btnVolver">Volver</button></a>
-</main>
+<div *ngIf="tratamientos.length == 0" class="contenedor mt-3">
+  <h2>No hay tratamientos</h2>
+</div>
+<!-- Tabla que contiene los tratamientos de una mascota: foto y nombre veterinario, nombre droga y fecha del tratamiento -->
+<div *ngIf="tratamientos.length > 0" class="contenedorTabla mt-3">
+  <table class="table" id="tablaTratamientos">
+    <thead>
+    <tr>
+      <th scope="col">Veterinario</th>
+      <th scope="col">Droga suministrada</th>
+      <th scope="col">Fecha</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let tratamiento of tratamientos">
+      <td>
+        <img [src]="tratamiento.veterinario.foto" [alt]="tratamiento.veterinario.foto" height="40px" width="40px" class="usuario-img">
+        {{tratamiento.veterinario.nombre}}
+      </td>
+      <td>{{tratamiento.droga.nombre}}</td>
+      <td>{{tratamiento.fecha | date: 'dd/MM/yyyy'}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<!--<button id="btnVolver" (click)="goBack()">Volver</button>-->
 

@@ -29,11 +29,11 @@ main{
                 background: var(--color-4);
             }
 
-            &:nth-child(even){  
+            &:nth-child(even){
                 background: var(--color-6);
             }
         }
-    } 
+    }
 }
 
 body {
@@ -44,8 +44,8 @@ body {
 }
 
 .contenedorTabla{
-    width: 80%;
-} 
+    width: 80vw;
+}
 
 td{
     vertical-align: middle;

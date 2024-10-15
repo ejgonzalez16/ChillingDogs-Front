@@ -50,4 +50,9 @@ export class TablaClienteComponent {
         }
     );
 }
+
+  goBack() {
+    // Vuelve pa atrás
+    window.history.back();
+  }
 }

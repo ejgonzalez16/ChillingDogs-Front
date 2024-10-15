@@ -52,4 +52,9 @@ export class TablaMascotaComponent {
     // Eliminar la mascota de la lista
     this.mascotas.splice(this.mascotas.findIndex(mascota => mascota.id === id), 1);
   }
+
+  goBack() {
+    // Vuelve pa atrás
+    window.history.back();
+  }
 }

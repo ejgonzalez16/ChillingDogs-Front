@@ -6,7 +6,7 @@
   <!-- Si verTratamientos es true, se muestra el botón para ocultar los tratamientos y si es false se muestra el botón para mostrar los tratamientos -->
   <button id="btnTratamientos" (click)="verTratamientos = !verTratamientos">{{verTratamientos ? 'Ocultar' : 'Mostrar'}} tratamientos</button>
   <!-- Si verTratamientos es true, se muestra el componente detalle-tratamientos -->
-  <app-tabla-tratamiento *ngIf="verTratamientos" [mascota]="mascota"></app-tabla-tratamiento>
+  <app-tratamientos-mascota *ngIf="verTratamientos"></app-tratamientos-mascota>
 
-  <a href="http://localhost:4200/mascotas/buscar"><button id="btnVolver">Volver</button></a>
+  <button id="btnVolver" (click)="goBack()">Volver</button>
 </main>

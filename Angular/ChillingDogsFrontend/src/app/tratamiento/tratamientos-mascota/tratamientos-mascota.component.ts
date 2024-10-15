@@ -13,28 +13,28 @@ import { Mascota } from '../../modelo/mascota';
   styleUrl: './tratamientos-mascota.component.scss'
 })
 export class TratamientosMascotaComponent {
-  tratamientos!: Tratamiento[]
   id!: number
-  mascota!: Mascota
+  tratamientos: Tratamiento[] = [];
 
-  constructor(private tratamientoService: TratamientoService,private route: ActivatedRoute, private authService: AuthService, private router: Router,
-    private mascotaService: MascotaService
+  constructor(private tratamientoService: TratamientoService,
+              private route: ActivatedRoute,
   ){}
 
   ngOnInit(){
     // Verificar que el usuario esté logueado y sea veterinario o admin
-    this.authService.userInfo$.subscribe(userInfo => {
+    /*this.authService.userInfo$.subscribe(userInfo => {
     if(userInfo.rol !== 'veterinario' && userInfo.rol !== 'admin') {
       this.router.navigate(['/login']);
     }
-    });
+    });*/
     this.id = +this.route.snapshot.paramMap.get('id')!;
     this.tratamientoService.findAllMascota(this.id).subscribe(tratamientos =>{
       this.tratamientos = tratamientos
     });
+  }
 
-    this.mascotaService.findById(this.id).subscribe(mascota =>{
-      this.mascota = mascota
-    })
+  goBack() {
+    // Ir a la página visitada justo antes con el botón de regresar
+    window.history.back();
   }
 }

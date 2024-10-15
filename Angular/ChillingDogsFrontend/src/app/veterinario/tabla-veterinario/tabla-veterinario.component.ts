@@ -13,6 +13,7 @@ import { VeterinarioService } from '../../service/veterinario.service';
 })
 export class TablaVeterinarioComponent {
   veterinarios!: Veterinario[];
+  cedulaAdmin!: string;
 
   constructor(
     private veterinarioService: VeterinarioService,
@@ -27,6 +28,7 @@ export class TablaVeterinarioComponent {
       if(userInfo.rol !== 'admin') {
         this.router.navigate(['/login']);
       }
+      this.cedulaAdmin = userInfo.cedula;
     });
 
     // Obtener la lista de clientes
@@ -52,4 +54,10 @@ export class TablaVeterinarioComponent {
         }
     );
 }
-} 
+
+  goToDashboard() {
+    console.log("Redirigiendo al dashboard " + this.cedulaAdmin);
+    // Redirigir al dashboard con el userInfo.cedula del administrador
+    this.router.navigate(['/administrador', this.cedulaAdmin]);
+  }
+}

@@ -4,7 +4,7 @@ import { MascotaService } from '../../service/mascota.service';
 import { Mascota } from '../../modelo/mascota';
 import { Cliente } from '../../modelo/cliente';
 import {ClienteService} from "../../service/cliente.service";
-import {catchError, map, mergeMap, of, switchMap} from "rxjs";
+import {catchError, map, mergeMap, of, Subject, switchMap, takeUntil} from "rxjs";
 import {AuthService} from "../../service/auth.service";
 import {TratamientoService} from "../../service/tratamiento.service";
 
@@ -15,10 +15,11 @@ import {TratamientoService} from "../../service/tratamiento.service";
 })
 export class MisMascotasComponent {
 
+  private destroy$ = new Subject<void>();  // Notifica cuándo se destruye el componente
   cedula!: number;
   cliente!: Cliente;
   mascotas!: Mascota[];
-  rolUsuario: string = 'cliente';
+  rolUsuario: string = 'clientePending';
 
   constructor(
     private route: ActivatedRoute,
@@ -43,7 +44,8 @@ export class MisMascotasComponent {
         //   Obtenemos los tratamientos y lo mapeamos para devolver las mascotas que ha tratado el veterinario
         if (userInfo.rol === 'veterinario') {
           this.rolUsuario = 'veterinario';
-          return this.tratamientoService.findByVeterinarioId(userInfo.id).pipe(
+          console.log(userInfo);
+          return this.tratamientoService.findAllVeterinario(userInfo.id).pipe(
             map(tratamientos => {
               // Transformamos los tratamientos en el formato de mascotas
               return tratamientos.map(tratamiento => ({
@@ -61,9 +63,14 @@ export class MisMascotasComponent {
           //   Obtenemos el cliente por su cédula
           //   Actualizamos userInfo, asignamos el rol de cliente
           //   Obtenemos las mascotas del cliente por su cédula
+          console.log(userInfo);
           return this.clienteService.findByCedula(this.cedula).pipe(
             mergeMap(cliente => {
               this.cliente = cliente;
+              if (this.rolUsuario === 'clientePending') {
+                this.rolUsuario = 'cliente';
+                this.authService.actualizarUserInfo('cliente', this.cliente.id, this.cliente.nombre, this.cliente.cedula, this.cliente.foto);
+              }
               return this.mascotaService.findByClienteCedula(this.cedula);
             }),
             catchError(error => {
@@ -74,15 +81,22 @@ export class MisMascotasComponent {
             })
           );
         }
-      })
+      }),
+      takeUntil(this.destroy$)  // La suscripción se completará cuando se emita desde destroy$
     ).subscribe(mascotas => {
       // Asignamos las mascotas, que tiene el mismo formato tanto para veterinarios como para clientes
       this.mascotas = mascotas;
     });
 
     // Actualizar la información del usuario (afuera del pipe, pq si no se queda en un loop infinito de actualizaciones)
-    if (this.rolUsuario === 'cliente') {
+    /*if (this.rolUsuario === 'cliente') {
       this.authService.actualizarUserInfo('cliente', this.cliente.id, this.cliente.nombre, this.cliente.cedula, this.cliente.foto);
-    }
+    }*/
+  }
+
+  // Este método se ejecuta cuando el componente se destruye
+  ngOnDestroy(): void {
+    this.destroy$.next();  // Emite para cancelar la suscripción
+    this.destroy$.complete();  // Completa el subject para liberar recursos
   }
 }

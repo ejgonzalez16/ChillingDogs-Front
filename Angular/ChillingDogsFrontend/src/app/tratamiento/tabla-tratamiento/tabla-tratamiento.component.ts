@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { Mascota } from '../../modelo/mascota';
 import { MascotaService } from '../../service/mascota.service';
 import { AuthService } from '../../service/auth.service';
@@ -10,10 +10,12 @@ import {Router} from "@angular/router";
   styleUrl: './tabla-tratamiento.component.scss'
 })
 export class TablaTratamientoComponent {
+  @Input()
+  mascota!: Mascota;
+
   mascotas!: Mascota[];
   vet: string = 'vet';
   veterinarioId!: number;
-  
 
   constructor(
     private mascotaService: MascotaService,
@@ -22,14 +24,14 @@ export class TablaTratamientoComponent {
 
   ngOnInit() {
     // Verificar que el usuario esté logueado y sea veterinario o admin
-    this.authService.userInfo$.subscribe(userInfo => {
-      
+    /*this.authService.userInfo$.subscribe(userInfo => {
+
       if(userInfo.rol !== 'veterinario' && userInfo.rol !== 'admin') {
         this.router.navigate(['/login']);
       }
       this.veterinarioId = userInfo.id
       console.log(this.veterinarioId)
-    });
+    });*/
 
     // Obtener todas las mascotas
     this.mascotaService.findAll().subscribe(mascotas => {
@@ -52,5 +54,5 @@ export class TablaTratamientoComponent {
     }
   }
 
-  
+
 }
