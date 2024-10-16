@@ -61,11 +61,16 @@ export class FormTratamientoComponent {
     });
 
     */
+   this.veterinarioId = 1;
     // Obtener todas las mascotas
+
     this.mascotaService.findAll().subscribe(mascotas => {
       this.mascotas = mascotas;
       console.log(mascotas)
     });
+    this.drogaService.findAll().subscribe(drogas =>{
+      this.drogas = drogas;
+    })
   }
 
   recargarMascotas() {
@@ -87,7 +92,6 @@ export class FormTratamientoComponent {
   }
 
   registrarTratamiento(){
-    alert(this.veterinarioId)
     if(this.mascotaTratamiento == undefined || this.droga == undefined){
       alert("seleccione una droga y una mascota antes de registrar")
       return;
@@ -103,7 +107,7 @@ export class FormTratamientoComponent {
 
   goToMisMascotas(){
     // Navegar a mis-mascotas/:cedula del veterinario
-    this.router.navigate(['/mis-mascotas/'+this.cedulaVeterinario]);
+    this.router.navigate(['veterinarios/mis-mascotas/'+this.cedulaVeterinario]);
   }
 
   goBack() {
