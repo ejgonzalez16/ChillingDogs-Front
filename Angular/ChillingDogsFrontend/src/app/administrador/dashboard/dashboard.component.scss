@@ -11,7 +11,7 @@ div{
 }
 
 .blanco{
-    background-color: white;
+    background-color: #212529;
     padding: 5vh;
     align-items: center;
     text-align: center;
@@ -34,8 +34,20 @@ div{
 .icono{
     width: 80px; 
     height: 80px; 
-    fill: #171A1FFF;
+    fill: white;
     margin-bottom: 2vh;
+}
+
+p, h3{
+    color: white;
+}
+
+p{
+    font-size: 3rem;
+}
+
+#valor{
+    font-size: 1.5rem;
 }
 
 table{
