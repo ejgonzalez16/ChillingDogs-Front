@@ -17,7 +17,7 @@ import {mergeMap} from "rxjs";
   styleUrl: './form-tratamiento.component.scss'
 })
 export class FormTratamientoComponent {
-  nombrePerro!: string;
+  /*nombrePerro!: string;
   mascotas!: Mascota[];
   vet: string = 'vet';
   mascotaTratamiento!: Mascota;
@@ -29,14 +29,14 @@ export class FormTratamientoComponent {
 
   constructor(
     private mascotaService: MascotaService,
-    private authService: AuthService,
+    // private authService: AuthService,
     private router: Router,
     private drogaService: DrogaService,
     private tratamientoService: TratamientoService) {}
 
   ngOnInit() {
     // Verificar que el usuario esté logueado y sea veterinario o admin
-    /*// Hacer la suscripción al observable userInfo$ del servicio AuthService con mergeMap a mascotaService.findAll()
+    /!*!// Hacer la suscripción al observable userInfo$ del servicio AuthService con mergeMap a mascotaService.findAll()
     this.authService.userInfo$.pipe(
       mergeMap(userInfo => {
         console.log(userInfo)
@@ -50,8 +50,8 @@ export class FormTratamientoComponent {
     )).subscribe(mascotas => {
       this.mascotas = mascotas;
       console.log(mascotas)
-    });*/
-    /*this.authService.userInfo$.subscribe(userInfo => {
+    });*!/
+    /!*this.authService.userInfo$.subscribe(userInfo => {
       console.log(userInfo)
       if(userInfo.rol !== 'veterinario') {
         this.router.navigate(['/login']);
@@ -60,14 +60,14 @@ export class FormTratamientoComponent {
       this.cedulaVeterinario = userInfo.cedula
     });
 
-    */
+    *!/
    this.veterinarioId = 1;
     // Obtener todas las mascotas
 
-    this.mascotaService.findAll().subscribe(mascotas => {
+    /!*this.mascotaService.findAll().subscribe(mascotas => {
       this.mascotas = mascotas;
       console.log(mascotas)
-    });
+    });*!/
     this.drogaService.findAll().subscribe(drogas =>{
       this.drogas = drogas;
     })
@@ -113,5 +113,5 @@ export class FormTratamientoComponent {
   goBack() {
     // Vuelve pa atrás
     window.history.back();
-  }
+  }*/
 }

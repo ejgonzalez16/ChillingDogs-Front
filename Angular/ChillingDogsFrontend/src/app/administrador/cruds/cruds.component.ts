@@ -21,7 +21,7 @@ export class CRUDsComponent {
 
   // Cierra la sesión del administrador completamente
   logout(): void {
-    this.authService.actualizarUserInfo('guest', -1, '', '', '');
+    this.authService.logout();
     this.router.navigate(['/login']);
   }
 }

@@ -22,29 +22,65 @@ import { TablaTratamientoComponent } from './tratamiento/tabla-tratamiento/tabla
 import { CrearTratamientoComponent } from './tratamiento/crear-tratamiento/crear-tratamiento.component';
 import { TratamientosMascotaComponent } from './tratamiento/tratamientos-mascota/tratamientos-mascota.component';
 import { TratamientosVeterinarioComponent } from './tratamiento/tratamientos-veterinario/tratamientos-veterinario.component';
+import {AuthGuard} from "./guards/auth.guard";
+import {RoleGuard} from "./guards/role.guard";
 
 const routes: Routes = [
-  { path: 'clientes/buscar', component:  TablaClienteComponent},
-  { path: 'clientes/buscar/:id', component: DetallesClienteComponent},
-  { path: 'clientes/registrar', component: RegistrarClienteComponent},
-  { path: 'clientes/modificar/:id', component: ModificarClienteComponent},
-  { path: 'mascotas/buscar', component: TablaMascotaComponent},
-  { path: 'mascotas/buscar/:id', component: DetallesMascotaComponent},
-  { path: 'mascotas/registrar', component: CrearMascotaComponent},
-  { path: 'mascotas/modificar/:id', component: ModificarMascotaComponent},
+  // CRUD Clientes (tiene acceso veterinario y admin)
+  { path: 'clientes/buscar', component:  TablaClienteComponent,
+    canActivate: [AuthGuard, RoleGuard], data: { allowedRoles: ['veterinario', 'admin'] } },
+  { path: 'clientes/buscar/:cedula', component: DetallesClienteComponent,
+    canActivate: [AuthGuard, RoleGuard], data: { allowedRoles: ['veterinario', 'admin'] } },
+  { path: 'clientes/registrar', component: RegistrarClienteComponent,
+    canActivate: [AuthGuard, RoleGuard], data: { allowedRoles: ['veterinario', 'admin'] } },
+  { path: 'clientes/modificar/:cedula', component: ModificarClienteComponent,
+    canActivate: [AuthGuard, RoleGuard], data: { allowedRoles: ['veterinario', 'admin'] } },
+
+  // CRUD Mascotas (tiene acceso veterinario y admin)
+  { path: 'mascotas/buscar', component: TablaMascotaComponent,
+    canActivate: [AuthGuard, RoleGuard], data: { allowedRoles: ['veterinario', 'admin'] } },
+  { path: 'mascotas/buscar/:id', component: DetallesMascotaComponent,
+    canActivate: [AuthGuard, RoleGuard], data: { allowedRoles: ['veterinario', 'admin'] } },
+  { path: 'mascotas/registrar', component: CrearMascotaComponent,
+    canActivate: [AuthGuard, RoleGuard], data: { allowedRoles: ['veterinario', 'admin'] } },
+  { path: 'mascotas/modificar/:id', component: ModificarMascotaComponent,
+    canActivate: [AuthGuard, RoleGuard], data: { allowedRoles: ['veterinario', 'admin'] } },
+
+  // Detalles de mascotas para clientes (tiene acceso todos los roles)
   { path: 'mascotas/detalles/:id', component: DetallesParaClienteComponent},
+  // Mis mascotas (tienen acceso todos los roles)
+  // Sin embargo, dentro hay que hacer verificación especial pq el componente se reutiliza para cliente y para veterinario
   { path: 'mis-mascotas/:cedula', component: MisMascotasComponent},
-  { path: 'administrador/:cedula', component: MainAdminComponent},
+
+  // CRD Tratamientos (tiene acceso veterinario)
+  { path: 'tratamientos/buscar', component: TablaTratamientoComponent,
+    canActivate: [AuthGuard, RoleGuard], data: { allowedRoles: ['veterinario'] } },
+  { path: 'tratamientos/buscar/:id', component: TratamientosMascotaComponent,
+    canActivate: [AuthGuard, RoleGuard], data: { allowedRoles: ['veterinario'] } },
+  { path: 'tratamientos/registrar', component: CrearTratamientoComponent,
+    canActivate: [AuthGuard, RoleGuard], data: { allowedRoles: ['veterinario'] } },
+  // Esta se eliminaría o se cambiaría por mis-mascotas para veterinario
+  { path: 'tratamientos/mis-tratamientos', component: TratamientosVeterinarioComponent,
+    canActivate: [AuthGuard, RoleGuard], data: { allowedRoles: ['veterinario'] } },
+
+  // Dashboard administrador
+  { path: 'administrador/:cedula', component: MainAdminComponent,
+    canActivate: [AuthGuard, RoleGuard], data: { allowedRoles: ['admin'] } },
+
+  // Veterinarios
+  { path: 'veterinarios/buscar', component: TablaVeterinarioComponent,
+    canActivate: [AuthGuard, RoleGuard], data: { allowedRoles: ['admin'] } },
+  { path: 'veterinarios/buscar/:id', component: DetallesVeterinarioComponent,
+    canActivate: [AuthGuard, RoleGuard], data: { allowedRoles: ['admin'] } },
+  { path: 'veterinarios/registrar', component: CrearVeterinarioComponent,
+    canActivate: [AuthGuard, RoleGuard], data: { allowedRoles: ['admin'] } },
+  { path: 'veterinarios/modificar/:id', component: ModificarVeterinarioComponent,
+    canActivate: [AuthGuard, RoleGuard], data: { allowedRoles: ['admin'] } },
+
+  // Landing
   { path: 'landing', component: MainComponent},
+  // Login
   { path: 'login', component: LoginComponent},
-  { path: 'veterinarios/buscar', component: TablaVeterinarioComponent},
-  { path: 'veterinarios/buscar/:id', component: DetallesVeterinarioComponent},
-  { path: 'veterinarios/registrar', component: CrearVeterinarioComponent},
-  { path: 'veterinarios/modificar/:id', component: ModificarVeterinarioComponent},
-  { path: 'tratamientos/buscar', component: TablaTratamientoComponent},
-  { path: 'tratamientos/buscar/:id', component: TratamientosMascotaComponent},
-  { path: 'tratamientos/registrar', component: CrearTratamientoComponent},
-  { path: 'tratamientos/mis-tratamientos', component: TratamientosVeterinarioComponent},
   { path: '', component: MainComponent},
   { path: '**', component: ErrorComponent},
 ];

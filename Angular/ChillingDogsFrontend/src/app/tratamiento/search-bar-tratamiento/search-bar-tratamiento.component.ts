@@ -25,6 +25,10 @@ export class SearchBarTratamientoComponent {
     }
   }
 
+  goToRegistrarTratamiento() {
+    this.router.navigate(['/tratamientos/registrar']);
+  }
+
   goToMisMascotasVeterinario() {
     // Suscribirse al authService para obtener la cedula del usuario y redirigir a mis-mascotas/:cedula
     this.authService.userInfo$.subscribe(userInfo => {

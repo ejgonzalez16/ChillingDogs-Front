@@ -20,8 +20,8 @@ export class MascotaService {
     return this.http.get<Mascota>('http://localhost:8099/mascotas/'+id);
   }
 
-  findByClienteCedula(id: number): Observable<Mascota[]> {
-    return this.http.get<Mascota[]>('http://localhost:8099/mascotas/cliente/'+id);
+  findByClienteCedula(cedula: string): Observable<Mascota[]> {
+    return this.http.get<Mascota[]>('http://localhost:8099/mascotas/cliente/'+cedula);
   }
 
   add(mascota: Mascota){

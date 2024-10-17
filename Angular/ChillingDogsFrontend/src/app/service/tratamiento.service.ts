@@ -17,7 +17,7 @@ export class TratamientoService {
     return this.http.get<Tratamiento[]>('http://localhost:8099/tratamientos');
   }
 
-  findAllVeterinario(id: number): Observable<Tratamiento[]> {
+  findAllByVeterinarioId(id: number): Observable<Tratamiento[]> {
     return this.http.get<Tratamiento[]>(`http://localhost:8099/tratamientos/veterinario/${id}`);
   }
 

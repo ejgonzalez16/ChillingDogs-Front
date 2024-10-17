@@ -16,7 +16,7 @@ import {TratamientoService} from "../../service/tratamiento.service";
 export class MisMascotasComponent {
 
   private destroy$ = new Subject<void>();  // Notifica cuándo se destruye el componente
-  cedula!: number;
+  cedula!: string;
   cliente!: Cliente;
   mascotas!: Mascota[];
   rolUsuario: string = 'clientePending';
@@ -34,7 +34,8 @@ export class MisMascotasComponent {
     this.route.paramMap.pipe(
       // Primero se obtiene el parámetro de la URL
       switchMap(params => {
-        this.cedula = +params.get('cedula')!;
+        // Convertir +params.get('cedula')!; a string
+        this.cedula = params.get('cedula')!;
         return this.authService.userInfo$;
       }),
       // Luego se revisa el rol del usuario
@@ -45,7 +46,7 @@ export class MisMascotasComponent {
         if (userInfo.rol === 'veterinario') {
           this.rolUsuario = 'veterinario';
           console.log(userInfo);
-          return this.tratamientoService.findAllVeterinario(userInfo.id).pipe(
+          return this.tratamientoService.findAllByVeterinarioId(userInfo.id).pipe(
             map(tratamientos => {
               // Transformamos los tratamientos en el formato de mascotas
               return tratamientos.map(tratamiento => ({
@@ -63,23 +64,9 @@ export class MisMascotasComponent {
           //   Obtenemos el cliente por su cédula
           //   Actualizamos userInfo, asignamos el rol de cliente
           //   Obtenemos las mascotas del cliente por su cédula
+          this.rolUsuario = 'cliente';
           console.log(userInfo);
-          return this.clienteService.findByCedula(this.cedula).pipe(
-            mergeMap(cliente => {
-              this.cliente = cliente;
-              if (this.rolUsuario === 'clientePending') {
-                this.rolUsuario = 'cliente';
-                this.authService.actualizarUserInfo('cliente', this.cliente.id, this.cliente.nombre, this.cliente.cedula, this.cliente.foto);
-              }
-              return this.mascotaService.findByClienteCedula(this.cedula);
-            }),
-            catchError(error => {
-              if (error.status === 404) {
-                this.router.navigate(['**']);
-              }
-              return of([]);  // Devolver una lista vacía en caso de error
-            })
-          );
+          return this.mascotaService.findByClienteCedula(this.cedula);
         }
       }),
       takeUntil(this.destroy$)  // La suscripción se completará cuando se emita desde destroy$

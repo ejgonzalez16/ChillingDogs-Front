@@ -24,7 +24,7 @@ export class TratamientosVeterinarioComponent {
         this.router.navigate(['/login']);
       }
       });
-    this.tratamientoService.findAllVeterinario(this.veterinarioId).subscribe(tratamientos => {
+    this.tratamientoService.findAllByVeterinarioId(this.veterinarioId).subscribe(tratamientos => {
       this.tratamientos = tratamientos
     })
   }

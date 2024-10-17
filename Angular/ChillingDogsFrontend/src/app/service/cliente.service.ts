@@ -14,7 +14,7 @@ export class ClienteService {
     return this.http.get<Cliente[]>('http://localhost:8099/clientes');
   }
 
-  findByCedula(cedula: number): Observable<Cliente> {
+  findByCedula(cedula: string): Observable<Cliente> {
     return this.http.get<Cliente>(`http://localhost:8099/clientes/${cedula}`);
   }
 

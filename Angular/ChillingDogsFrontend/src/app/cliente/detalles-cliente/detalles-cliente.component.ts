@@ -13,7 +13,7 @@ import {AuthService} from "../../service/auth.service";
   styleUrl: './detalles-cliente.component.scss'
 })
 export class DetallesClienteComponent {
-  id!: number;
+  cedula!: string;
   cliente: Cliente | undefined;
 
   constructor(private route: ActivatedRoute,
@@ -30,13 +30,13 @@ export class DetallesClienteComponent {
       }
     });
 
-    // Obtener el id del cliente de la URL y buscarlo en la base de datos
+    // Obtener la cedula del cliente de la URL y buscarlo en la base de datos
     this.route.paramMap.subscribe(params => {
-      this.id = +params.get('id')!;
-      this.clienteService.findByCedula(this.id).pipe(
+      this.cedula = params.get('cedula')!;
+      this.clienteService.findByCedula(this.cedula).pipe(
         mergeMap(cliente => {
           this.cliente = cliente;
-          return this.mascotaService.findByClienteCedula(this.id);
+          return this.mascotaService.findByClienteCedula(this.cedula);
         })
       ).subscribe(mascotas => {
           if(this.cliente != undefined) {

@@ -8,13 +8,13 @@ import {AuthService} from "../../service/auth.service";
   styleUrl: './crear-tratamiento.component.scss'
 })
 export class CrearTratamientoComponent {
-  constructor(
-    private authService: AuthService,
+  /*constructor(
+    // private authService: AuthService,
     private router: Router) {
   }
 
   ngOnInit() {
-    /*this.authService.userInfo$.subscribe(userInfo => {
+    /!*this.authService.userInfo$.subscribe(userInfo => {
       console.log("crear-tratamiento")
       console.log(userInfo)
       if(userInfo.rol !== 'veterinario') {
@@ -22,6 +22,6 @@ export class CrearTratamientoComponent {
       }
       // this.veterinarioId = userInfo.id
       // this.cedulaVeterinario = userInfo.cedula
-    });*/
-  }
+    });*!/
+  }*/
 }
