@@ -6,6 +6,10 @@
     flex-direction: column;
 }
 
+::ng-deep .ngx-charts text {
+    fill: white !important; /* Cambia el color de los textos a blanco */
+}
+
 div{
     margin-bottom: 2vh;
 }
@@ -15,20 +19,25 @@ div{
     padding: 5vh;
     align-items: center;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .duo{
-    width: 30vh;
+    width: 60vh;
+    height: 45vh;
     margin: 2vh;
 }
 
 .horizontal{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     text-align: center;
     margin-bottom: 5vh;
+    width: 100%;
 }
 
 .icono{
@@ -50,13 +59,7 @@ p{
     font-size: 1.5rem;
 }
 
-table{
-    text-align: center;
-    width: 100%;
-}
-
 thead{
-    background: var(--color-3);
     color: var(--color-4);
     font-size: 1.7em;
 }
@@ -68,11 +71,11 @@ tbody{
         }
 
         &:nth-child(even){  
-            background: #d2dde7;
+            background: #c6c6c7;
         }
     }
 }
 
-table, th {
-    border: 1px solid black; /* Bordes negros */
+.completo{
+    width: 90%;
 }

@@ -48,6 +48,9 @@ import { ModificarVeterinarioComponent } from './veterinario/modificar-veterinar
 import { SearchBarTratamientoComponent } from './tratamiento/search-bar-tratamiento/search-bar-tratamiento.component';
 import { TratamientosMascotaComponent } from './tratamiento/tratamientos-mascota/tratamientos-mascota.component';
 import { TratamientosVeterinarioComponent } from './tratamiento/tratamientos-veterinario/tratamientos-veterinario.component';
+
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -97,7 +100,8 @@ import { TratamientosVeterinarioComponent } from './tratamiento/tratamientos-vet
     RouterModule,
     CarouselModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxChartsModule,
   ],
   providers: [
     provideClientHydration()
