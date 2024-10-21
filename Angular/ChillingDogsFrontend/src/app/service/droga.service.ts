@@ -14,4 +14,8 @@ export class DrogaService {
   findAll(): Observable<Droga[]> {
     return this.http.get<Droga[]>('http://localhost:8099/drogas');
   }
+
+  findDisponibles(): Observable<Droga[]> {
+    return this.http.get<Droga[]>('http://localhost:8099/drogas/disponibles');
+  }
 }

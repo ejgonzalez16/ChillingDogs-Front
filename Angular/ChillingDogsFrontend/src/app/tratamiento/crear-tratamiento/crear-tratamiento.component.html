@@ -1,2 +1,4 @@
-<!--<app-form-tratamiento></app-form-tratamiento>-->
-<p>Works</p>
+<main>
+  <detalle-mascota *ngIf="mascota" [mascota]="mascota"></detalle-mascota>
+  <app-form-tratamiento *ngIf="mascota" [mascota]="mascota"></app-form-tratamiento>
+</main>

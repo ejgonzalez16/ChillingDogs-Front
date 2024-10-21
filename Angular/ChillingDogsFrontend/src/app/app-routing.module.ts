@@ -57,7 +57,7 @@ const routes: Routes = [
     canActivate: [AuthGuard, RoleGuard], data: { allowedRoles: ['veterinario'] } },
   { path: 'tratamientos/buscar/:id', component: TratamientosMascotaComponent,
     canActivate: [AuthGuard, RoleGuard], data: { allowedRoles: ['veterinario'] } },
-  { path: 'tratamientos/registrar', component: CrearTratamientoComponent,
+  { path: 'tratamientos/registrar/:idMascota', component: CrearTratamientoComponent,
     canActivate: [AuthGuard, RoleGuard], data: { allowedRoles: ['veterinario'] } },
   // Esta se eliminaría o se cambiaría por mis-mascotas para veterinario
   { path: 'tratamientos/mis-tratamientos', component: TratamientosVeterinarioComponent,

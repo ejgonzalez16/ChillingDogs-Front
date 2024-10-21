@@ -14,6 +14,11 @@ export class RoleGuard implements CanActivate {
     const allowedRoles = route.data['allowedRoles'] as Array<string>;  // Obtener la lista de roles permitidos
     const currentRole = this.authService.getUsuarioRole();  // Obtener el rol actual
 
+    // Imprimir la ruta en la que se está intentando acceder, validando que routeConfig no sea null
+    if (route.routeConfig !== null) {
+      console.log('En RoleGuard', route.routeConfig.path);
+    }
+
     if (currentRole !== 'guest') {
       if (allowedRoles.includes(currentRole)) {
         return true;  // Permitir acceso si el rol actual está en la lista de roles permitidos

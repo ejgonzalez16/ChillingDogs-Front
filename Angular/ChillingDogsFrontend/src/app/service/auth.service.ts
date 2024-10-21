@@ -18,12 +18,9 @@ export class AuthService {
     if (isPlatformBrowser(this.platformId)) {
       const userFromStorage = JSON.parse(localStorage.getItem('user') || 'null');
       console.log('userFromStorage', userFromStorage);
-      if (userFromStorage === 'null') {
-        console.log('userFromStorage === null entre comillas');
-        this.userInfoSubject.next(userFromStorage);
-      } else {
-        this.userInfoSubject.next(this.usuarioVacio);
-      }
+      // Si hay un usuario en el localStorage, actualizar el estado del usuario
+      // Si no enviar el usuario vacío
+      this.userInfoSubject.next(userFromStorage ? userFromStorage : this.usuarioVacio);
     }
   }
 
@@ -51,5 +48,9 @@ export class AuthService {
 
   getUsuarioId(): number {
     return this.userInfoSubject.value?.id || -1;
+  }
+
+  getUsuarioCedula(): string {
+    return this.userInfoSubject.value?.cedula || '';
   }
 }

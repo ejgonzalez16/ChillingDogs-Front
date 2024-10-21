@@ -25,8 +25,8 @@ export class TratamientoService {
     return this.http.get<Tratamiento[]>(`http://localhost:8099/tratamientos/mascota/${id}`);
   }
 
-  add(tratamiento: TratamientoDTO){
-    this.http.post<Tratamiento>('http://localhost:8099/tratamientos', tratamiento).subscribe();
+  add(tratamientoDTO: TratamientoDTO): Observable<Tratamiento> {
+    return this.http.post<Tratamiento>(`http://localhost:8099/tratamientos`, tratamientoDTO);
   }
 
   update(tratamiento: TratamientoDTO): Observable<Tratamiento> {

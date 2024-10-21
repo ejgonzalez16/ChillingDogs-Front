@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import {Router} from "@angular/router";
-import {AuthService} from "../../service/auth.service";
+import {Component, Input} from '@angular/core';
+import {Mascota} from "../../modelo/mascota";
+import {MascotaService} from "../../service/mascota.service";
+import {ActivatedRoute} from "@angular/router";
+import {mergeMap, of} from "rxjs";
 
 @Component({
   selector: 'app-crear-tratamiento',
@@ -8,20 +10,33 @@ import {AuthService} from "../../service/auth.service";
   styleUrl: './crear-tratamiento.component.scss'
 })
 export class CrearTratamientoComponent {
-  /*constructor(
-    // private authService: AuthService,
-    private router: Router) {
+  mascota!: Mascota;
+
+  constructor(
+    private mascotaService: MascotaService,
+    private route: ActivatedRoute
+  ) {
   }
 
   ngOnInit() {
-    /!*this.authService.userInfo$.subscribe(userInfo => {
-      console.log("crear-tratamiento")
-      console.log(userInfo)
-      if(userInfo.rol !== 'veterinario') {
-        this.router.navigate(['/login']);
+    // Coger el idMascota que hay en params para buscar la mascota y mandársela al componente hijo
+    this.route.paramMap.pipe(
+      mergeMap(params => {
+        const idMascota = +params.get('idMascota')!;
+        if (idMascota) {
+          return this.mascotaService.findById(idMascota);
+        } else {
+          // Retornar observable vacío si no hay idMascota
+          return of(null);
+        }
+      })
+    ).subscribe(mascota => {
+      if (!mascota) {
+        alert('No se ha encontrado la mascota');
+        return;
       }
-      // this.veterinarioId = userInfo.id
-      // this.cedulaVeterinario = userInfo.cedula
-    });*!/
-  }*/
+      this.mascota = mascota;
+      console.log('mascota', mascota);
+    });
+  }
 }

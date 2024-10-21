@@ -24,14 +24,10 @@ export class TablaTratamientoComponent {
 
   ngOnInit() {
     // Verificar que el usuario esté logueado y sea veterinario o admin
-    /*this.authService.userInfo$.subscribe(userInfo => {
-
-      if(userInfo.rol !== 'veterinario' && userInfo.rol !== 'admin') {
-        this.router.navigate(['/login']);
-      }
-      this.veterinarioId = userInfo.id
-      console.log(this.veterinarioId)
-    });*/
+    this.authService.userInfo$.subscribe(usuario => {
+      console.log('userInfo', usuario);
+      this.veterinarioId = usuario.id;
+    });
 
     // Obtener todas las mascotas
     this.mascotaService.findAll().subscribe(mascotas => {
@@ -54,5 +50,11 @@ export class TablaTratamientoComponent {
     }
   }
 
-
+  registrarTratamiento(mascota: Mascota) {
+    if (mascota.estado === 'Activo'){
+      this.router.navigate(['/tratamientos/registrar', mascota.id]);
+    } else {
+      alert('La mascota no está activa, no puede realizarle un tratamiento');
+    }
+  }
 }

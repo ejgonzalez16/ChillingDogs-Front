@@ -8,7 +8,6 @@ import { DrogaService } from '../../service/droga.service';
 import { Tratamiento } from '../../modelo/tratamiento';
 import { TratamientoService } from '../../service/tratamiento.service';
 import { TratamientoDTO } from '../../modelo/tratamientoDTO';
-import { Veterinario } from '../../modelo/veterinario';
 import {mergeMap} from "rxjs";
 
 @Component({
@@ -17,10 +16,8 @@ import {mergeMap} from "rxjs";
   styleUrl: './form-tratamiento.component.scss'
 })
 export class FormTratamientoComponent {
-  /*nombrePerro!: string;
-  mascotas!: Mascota[];
-  vet: string = 'vet';
-  mascotaTratamiento!: Mascota;
+  @Input()
+  mascota!: Mascota;
   droga!: Droga;
   drogas!: Droga[];
   tratamientoDto!: TratamientoDTO;
@@ -29,89 +26,49 @@ export class FormTratamientoComponent {
 
   constructor(
     private mascotaService: MascotaService,
-    // private authService: AuthService,
+    private authService: AuthService,
     private router: Router,
     private drogaService: DrogaService,
     private tratamientoService: TratamientoService) {}
 
   ngOnInit() {
-    // Verificar que el usuario esté logueado y sea veterinario o admin
-    /!*!// Hacer la suscripción al observable userInfo$ del servicio AuthService con mergeMap a mascotaService.findAll()
+    // Obtener id y la cédula del veterinario, y luego las drogas disponibles en un sólo suscribe usando pipe y mergeMap
     this.authService.userInfo$.pipe(
-      mergeMap(userInfo => {
-        console.log(userInfo)
-        if(userInfo.rol !== 'veterinario') {
-          this.router.navigate(['/login']);
-        }
-        this.veterinarioId = userInfo.id
-        this.cedulaVeterinario = userInfo.cedula
-        return this.mascotaService.findAll();
+      mergeMap(usuario => {
+        console.log('userInfo', usuario);
+        this.veterinarioId = usuario.id;
+        this.cedulaVeterinario = usuario.cedula;
+        return this.drogaService.findDisponibles();
       }
-    )).subscribe(mascotas => {
-      this.mascotas = mascotas;
-      console.log(mascotas)
-    });*!/
-    /!*this.authService.userInfo$.subscribe(userInfo => {
-      console.log(userInfo)
-      if(userInfo.rol !== 'veterinario') {
-        this.router.navigate(['/login']);
-      }
-      this.veterinarioId = userInfo.id
-      this.cedulaVeterinario = userInfo.cedula
-    });
-
-    *!/
-   this.veterinarioId = 1;
-    // Obtener todas las mascotas
-
-    /!*this.mascotaService.findAll().subscribe(mascotas => {
-      this.mascotas = mascotas;
-      console.log(mascotas)
-    });*!/
-    this.drogaService.findAll().subscribe(drogas =>{
+    )).subscribe(drogas =>{
       this.drogas = drogas;
-    })
-  }
-
-  recargarMascotas() {
-    // Trae todas las mascotas de la BD
-    if(this.nombrePerro != "") {
-      this.mascotaService.findAll().subscribe(mascotas => {
-        this.mascotas = mascotas.filter(mascota => mascota.nombre.includes(this.nombrePerro || ''));
-      });
-    }
-    else{
-      this.mascotaService.findAll().subscribe(mascotas => {
-        this.mascotas = mascotas
-      });
-    }
-  }
-
-  seleccionarMascota(mascota: Mascota){
-    this.mascotaTratamiento = mascota
+    });
   }
 
   registrarTratamiento(){
-    if(this.mascotaTratamiento == undefined || this.droga == undefined){
+    console.log('mascota', this.mascota);
+    if(this.droga == undefined){
       alert("seleccione una droga y una mascota antes de registrar")
       return;
     }
     this.tratamientoDto = {
-      mascotaId: this.mascotaTratamiento.id,
+      mascotaId: this.mascota.id,
       drogaId: this.droga.id,
       veterinarioId: this.veterinarioId
     };
-    this.tratamientoService.add(this.tratamientoDto);
-    this.goToMisMascotas()
+    this.tratamientoService.add(this.tratamientoDto).subscribe(tratamiento => {
+      alert("Tratamiento registrado con éxito");
+      this.goToMisMascotas();
+    });
   }
 
   goToMisMascotas(){
     // Navegar a mis-mascotas/:cedula del veterinario
-    this.router.navigate(['veterinarios/mis-mascotas/'+this.cedulaVeterinario]);
+    this.router.navigate(['mis-mascotas/'+this.cedulaVeterinario]);
   }
 
   goBack() {
     // Vuelve pa atrás
     window.history.back();
-  }*/
+  }
 }

@@ -14,11 +14,15 @@
       </thead>
       <tbody>
       <tr *ngFor="let tratamiento of tratamientos">
-        <td>
+        <td *ngIf="tratamiento.veterinario">
           <img [src]="tratamiento.veterinario.foto" [alt]="tratamiento.veterinario.foto" height="40px" width="40px" class="usuario-img">
           {{tratamiento.veterinario.nombre}}
         </td>
-        <td>{{tratamiento.droga.nombre}}</td>
+        <td *ngIf="!tratamiento.veterinario">
+          Veterinario eliminado
+        </td>
+        <td *ngIf="tratamiento.droga">{{tratamiento.droga.nombre}}</td>
+        <td *ngIf="!tratamiento.droga">Droga eliminada</td>
         <td>{{tratamiento.fecha | date: 'dd/MM/yyyy'}}</td>
       </tr>
       </tbody>

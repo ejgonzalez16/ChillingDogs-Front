@@ -116,9 +116,11 @@ export class FormMascotaComponent {
         if (color === "green") {
             button.classList.remove("btn-grey");
             button.classList.add("estadoActivo");
+            this.mascota.estado = 'Activo';
         } else if (color === "red") {
             button.classList.remove("btn-grey");
             button.classList.add("estadoInactivo");
+          this.mascota.estado = 'Inactivo';
         } else {
             button.classList.remove("btn-grey");
         }

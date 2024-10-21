@@ -35,8 +35,6 @@ import { DashboardComponent } from './administrador/dashboard/dashboard.componen
 
 // PrimeNG Modules
 import { CarouselModule } from 'primeng/carousel';
-import { CrearTratamientoComponent } from './tratamiento/crear-tratamiento/crear-tratamiento.component';
-import { FormTratamientoComponent } from './tratamiento/form-tratamiento/form-tratamiento.component';
 import { ModificarTratamientoComponent } from './tratamiento/modificar-tratamiento/modificar-tratamiento.component';
 import { TablaTratamientoComponent } from './tratamiento/tabla-tratamiento/tabla-tratamiento.component';
 import { FormVeterinarioComponent } from './veterinario/form-veterinario/form-veterinario.component';
@@ -50,6 +48,8 @@ import { TratamientosMascotaComponent } from './tratamiento/tratamientos-mascota
 import { TratamientosVeterinarioComponent } from './tratamiento/tratamientos-veterinario/tratamientos-veterinario.component';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { CrearTratamientoComponent } from './tratamiento/crear-tratamiento/crear-tratamiento.component';
+import { FormTratamientoComponent } from './tratamiento/form-tratamiento/form-tratamiento.component';
 
 @NgModule({
   declarations: [
@@ -79,8 +79,6 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     CRUDsComponent,
     DashboardComponent,
     MainAdminComponent,
-    CrearTratamientoComponent,
-    FormTratamientoComponent,
     ModificarTratamientoComponent,
     TablaTratamientoComponent,
     FormVeterinarioComponent,
@@ -91,7 +89,9 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     ModificarVeterinarioComponent,
     SearchBarTratamientoComponent,
     TratamientosMascotaComponent,
-    TratamientosVeterinarioComponent
+    TratamientosVeterinarioComponent,
+    CrearTratamientoComponent,
+    FormTratamientoComponent
   ],
   imports: [
     BrowserModule,
