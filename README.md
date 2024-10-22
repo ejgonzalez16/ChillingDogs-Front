@@ -1,60 +1,27 @@
-# `Chilling Dogs (Frontend)` :dog:
+# ChillingDogsFrontend
 
-Contiene el Frontend en Angular del proyecto veterinaria Chilling Dogs.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.4.
 
-## `¿Cómo ejecutar la aplicación? 🚀`
+## Development server
 
-_Clone el repositorio con el comando: git clone [https://github.com/sharly-dev/ChillingDogs-Front.git]((https://github.com/sharly-dev/ChillingDogs-Front.git))_
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## `Información principal de Chilling Dogs`
+## Code scaffolding
 
-El nombre Chilling Dogs refleja nuestra onda: un lugar donde tus perros están chill y seguros mientras reciben el mejor cuidado.
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-### Logo 🕶️
+## Build
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/beacddf5-d884-49ea-b27b-eb1f420532c1" alt="Logo Chilling Dogs" width="400">
-</p>
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
+## Running unit tests
 
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-### `Pre-requisitos 📋`
+## Running end-to-end tests
 
-## `Versión 📌`
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-```
- 1.0
-```
+## Further help
 
-## `Construido con: 🛠️` 
-
-_Herramientas utilizadas para crear el proyecto_
-
-* Html
-* Sass (SCSS)
-* TypeScript
-
-### `Desarrollado por: 💻`
-
-* [Carlos Andrés Carrero Sandoval](https://github.com/sharly-dev)
-* [Daniel Santiago Silva Gómez](https://github.com/silvag-daniels)
-* [Édgar Julián González Sierra](https://github.com/ejgonzalez16)
-
-<table align="center">
-  <tr>
-    <td align="center">Carlos Andrés Carrero Sandoval</td>
-    <td align="center">Daniel Santiago Silva Gómez</td>
-    <td align="center">Édgar Julián González Sierra</td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="https://avatars.githubusercontent.com/u/155045111?v=4" width="300">
-    </td>
-    <td align="center">
-      <img src="https://avatars.githubusercontent.com/u/178740893?v=4" width="300" height="300">
-    </td>
-    <td align="center">
-      <img src="https://github.com/user-attachments/assets/7267752a-fdce-4376-b8f4-43285c0cfd89" width="300" height="300">
-    </td>
-  </tr>
-</table>
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
