@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import {Router} from "@angular/router";
+import { Mascota } from '../../modelo/mascota';
+import { log } from 'console';
 
 @Component({
   selector: 'app-search-bar-mascota',
@@ -8,16 +10,19 @@ import {Router} from "@angular/router";
 })
 export class SearchBarMascotaComponent {
   nombrePerro!: string;
+  filtroEstado: string = "";
+  mascotas: Mascota[] = [];
 
-  @Output() actualizarLista = new EventEmitter<string>();
+  @Output() actualizarLista = new EventEmitter<{nombre: string, filter: string}>();
 
   constructor(private router: Router) {}
 
   onSubmit(){
-    if(this.nombrePerro){
       // Buscar mascota por nombre
-      this.actualizarLista.emit(this.nombrePerro);
-    }
+      this.actualizarLista.emit({
+        nombre : this.nombrePerro,
+        filter : this.filtroEstado
+      });
   }
 
   crearMascota(){

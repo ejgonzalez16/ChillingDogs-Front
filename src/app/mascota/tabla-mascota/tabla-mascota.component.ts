@@ -33,16 +33,23 @@ export class TablaMascotaComponent {
     });
   }
 
-  recargarMascotas(nombrePerro?: string) {
+  recargarMascotas(filtro: {nombre: string, filter: string}) {
     // Trae todas las mascotas de la BD
-    if(nombrePerro != " ") {
+    console.log(filtro);
+    if(filtro.nombre != undefined) {
       this.mascotaService.findAll().subscribe(mascotas => {
-        this.mascotas = mascotas.filter(mascota => mascota.nombre.includes(nombrePerro || ''));
+        this.mascotas = mascotas.filter(mascota => mascota.nombre.includes(filtro.nombre || ''));
+        if(filtro.filter != "") {
+          this.filtrarMascotas(filtro.filter);
+        }
       });
     }
     else{
       this.mascotaService.findAll().subscribe(mascotas => {
         this.mascotas = mascotas
+        if(filtro.filter != "") {
+          this.filtrarMascotas(filtro.filter);
+        }
       });
     }
   }
@@ -53,8 +60,20 @@ export class TablaMascotaComponent {
     this.mascotas.splice(this.mascotas.findIndex(mascota => mascota.id === id), 1);
   }
 
+  filtrarMascotas(filter: string): void {
+    switch (filter) {
+      case "Activo":
+        this.mascotas = this.mascotas.filter(mascota => mascota.estado === "Activo");
+        break;
+      case "Inactivo":
+        this.mascotas = this.mascotas.filter(mascota => mascota.estado === "Inactivo");
+        break;
+    }
+  }
+
   goBack() {
     // Vuelve pa atrás
     window.history.back();
   }
 }
+

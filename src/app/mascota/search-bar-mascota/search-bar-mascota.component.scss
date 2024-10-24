@@ -72,6 +72,18 @@ form{
     }
 }
 
+#filtroEstadoField{
+    padding: 0 14px;
+    height: 2.25em;
+    background: #b8f5cd;
+    border-radius: 0px;
+    border-width: 0ch;
+    color: #0a4d20;
+    &:hover {
+        background-color: #4CE77FFF;
+    }
+}
+
 .primer-btn {
     border-radius: 0;
 }
