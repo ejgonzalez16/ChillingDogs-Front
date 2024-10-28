@@ -29,12 +29,14 @@ export class FormMascotaComponent {
   onSubmit(){
     if (this.modificar) {
       // Actualiza la mascota y vuelve a recargar la página con la información actualizada
-      this.mascotaService.update(this.mascota);
-      this.router.navigate(['/mascotas/buscar']);
+      this.mascotaService.update(this.mascota).subscribe(() => {
+        this.router.navigate(['/mascotas/buscar']);
+      });
     } else {
       // Crea la mascota y vuelve a recargar la página con la información actualizada
-      this.mascotaService.add(this.mascota);
-      this.router.navigate(['/mascotas/buscar']);
+      this.mascotaService.add(this.mascota).subscribe(() => {
+        this.router.navigate(['/mascotas/buscar']);
+      });
     }
   }
 

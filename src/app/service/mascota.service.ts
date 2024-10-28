@@ -24,13 +24,12 @@ export class MascotaService {
     return this.http.get<Mascota[]>('http://localhost:8099/mascotas/cliente/'+cedula);
   }
 
-  add(mascota: Mascota){
-    this.http.post('http://localhost:8099/mascotas', mascota).subscribe();
+  add(mascota: Mascota): Observable<any> {
+    return this.http.post('http://localhost:8099/mascotas', mascota);
   }
 
-  update(mascota: Mascota){
-    console.log(mascota);
-    this.http.put('http://localhost:8099/mascotas', mascota).subscribe();
+  update(mascota: Mascota): Observable<any> {
+    return this.http.put('http://localhost:8099/mascotas', mascota);
   }
 
   deleteById(id: number){
