@@ -29,11 +29,11 @@ main{
                 background: var(--color-4);
             }
 
-            &:nth-child(even){  
+            &:nth-child(even){
                 background: var(--color-6);
             }
         }
-    } 
+    }
 }
 
 body {
@@ -45,7 +45,7 @@ body {
 
 .contenedorTabla{
     width: 80%;
-} 
+}
 
 td{
     vertical-align: middle;
@@ -58,26 +58,6 @@ td{
     &input[type="checkbox"]:checked {
         background-color: #25a3c7;
         border-color: #25a3c7;
-    }
-}
-
-#btnVolver{
-    margin-top: 50px;
-    width: 15em;
-    height: 2.5em;
-    padding: 0 20px;
-    font-size: 20px;
-    line-height: 30px;
-    font-weight: 500;
-    color: var(--text-light);
-    background: var(--text-dark);
-    border: none;
-    border-radius: 30px;
-    margin-bottom: 50px;
-
-    &:hover{
-        background-color: white;
-        color: var(--text-dark);
     }
 }
 

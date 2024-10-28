@@ -41,23 +41,23 @@
                   </a>
                 </li>-->
                 <li class="nav-item enlacesSecciones">
-                  <a class="button bg-dark" [routerLink]="['mascotas/buscar']">
+                  <a id="btnBuscarMascotas" class="button bg-dark" [routerLink]="['mascotas/buscar']">
                     <img src="/assets/images/mascotas-vet-option.png" alt="mascotas">
                     <div class="logout">Mascotas</div>
                   </a>
                 </li>
                 <li class="nav-item enlacesSecciones">
-                  <a class="button bg-dark" [routerLink]="['clientes/buscar']">
+                  <a id="btnBuscarClientes" class="button bg-dark" [routerLink]="['clientes/buscar']">
                     <img src="/assets/images/clientes-vet-option.png">
                     <div class="logout">Clientes</div>
                   </a>
                 </li>
                 <li class="nav-item enlacesSecciones">
-                  <a class="button bg-dark" [routerLink]="['tratamientos/buscar']" *ngIf="userInfo.rol == 'veterinario'">
+                  <a id="btnBuscarTratamientos" class="button bg-dark" [routerLink]="['tratamientos/buscar']" *ngIf="userInfo.rol == 'veterinario'">
                     <img src="/assets/images/doctor-logo.png">
                     <div class="logout">Tratamientos</div>
                   </a>
-                  <a class="button bg-dark" [routerLink]="['veterinarios/buscar']" *ngIf="userInfo.rol == 'admin'">
+                  <a id="btnBuscarVeterinarios" class="button bg-dark" [routerLink]="['veterinarios/buscar']" *ngIf="userInfo.rol == 'admin'">
                     <img src="/assets/images/doctor-logo.png">
                     <div class="logout">Veterinarios</div>
                   </a>
@@ -70,7 +70,7 @@
             <div class="collapse navbar-collapse">
               <!-- Alinear items a la derecha utilizando ms-auto -->
               <div class="ms-auto navigation">
-                <a class="button bg-dark" (click)="logout()">
+                <a id="btnLogout" class="button bg-dark" (click)="logout()">
                   <img [src]=userInfo.foto [alt]=userInfo.nombre>
                   <div class="logout">Cerrar Sesión</div>
                 </a>

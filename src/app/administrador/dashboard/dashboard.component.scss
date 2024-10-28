@@ -41,8 +41,8 @@ div{
 }
 
 .icono{
-    width: 80px; 
-    height: 80px; 
+    width: 80px;
+    height: 80px;
     fill: white;
     margin-bottom: 2vh;
 }
@@ -55,7 +55,7 @@ p{
     font-size: 3rem;
 }
 
-#valor{
+.valor{
     font-size: 1.5rem;
 }
 
@@ -70,7 +70,7 @@ tbody{
             background: white;
         }
 
-        &:nth-child(even){  
+        &:nth-child(even){
             background: #c6c6c7;
         }
     }

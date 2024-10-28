@@ -413,7 +413,7 @@ section {
 
 /*Cositas pa todos*/
 
-#btnVolver{
+.btnVolver{
   margin-top: 50px;
   width: 15em;
   height: 2.5em;
@@ -428,7 +428,7 @@ section {
   margin-bottom: 50px;
 }
 
-#btnVolver:hover{
+.btnVolver:hover{
   background-color: white;
   color: var(--text-dark);
 }
