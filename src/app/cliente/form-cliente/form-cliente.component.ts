@@ -13,6 +13,7 @@ import {AuthService} from "../../service/auth.service";
 export class FormClienteComponent {
   @Input() modificar!: boolean;
   @Input() cliente!: Cliente;
+  loginError: string = '';
 
   constructor(
     private clienteService: ClienteService,
@@ -30,6 +31,11 @@ export class FormClienteComponent {
   }
 
   onSubmit() {
+    // Validar el correo
+    if (this.cliente.correo === '' || this.cliente.correo.indexOf('@') === -1) {
+      this.loginError = 'Email inválido';
+      return;
+    }
     if (this.modificar) {
       // Actualiza el cliente y vuelve a recargar la página con la información actualizada
       this.clienteService.update(this.cliente).pipe(
