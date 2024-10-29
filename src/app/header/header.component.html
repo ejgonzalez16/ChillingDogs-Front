@@ -55,7 +55,7 @@
                 <li class="nav-item enlacesSecciones">
                   <a id="btnBuscarTratamientos" class="button bg-dark" [routerLink]="['tratamientos/buscar']" *ngIf="userInfo.rol == 'veterinario'">
                     <img src="/assets/images/doctor-logo.png">
-                    <div class="logout">Tratamientos</div>
+                    <div class="logout" id="btnTratamientos">Tratamientos</div>
                   </a>
                   <a id="btnBuscarVeterinarios" class="button bg-dark" [routerLink]="['veterinarios/buscar']" *ngIf="userInfo.rol == 'admin'">
                     <img src="/assets/images/doctor-logo.png">

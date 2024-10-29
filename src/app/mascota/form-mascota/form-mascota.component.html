@@ -98,8 +98,8 @@
                     <input [(ngModel)]="mascota.foto" type="text" id="foto" name="foto" placeholder="Foto" required>
                 </div>
             </div>
-            <div id="btnModificar" class="contenedorBoton" *ngIf="modificar"><button type="submit" class="btnRegistro present-button">Modificar</button></div>
-            <div id="btnRegistrar" class="contenedorBoton" *ngIf="!modificar"><button type="submit" class="btnRegistro present-button">Registrar</button></div>
+            <div class="contenedorBoton" *ngIf="modificar"><button id="btnModificar" type="submit" class="btnRegistro present-button">Modificar</button></div>
+            <div  class="contenedorBoton" *ngIf="!modificar"><button id="btnRegistrar"  type="submit" class="btnRegistro present-button">Registrar</button></div>
             <div class="contenedorBoton"><button type="submit" class="btnVolver present-button">Volver</button></div>
         </form>
     </section>
