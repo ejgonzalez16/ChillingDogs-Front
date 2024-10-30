@@ -11,29 +11,32 @@ import { TratamientoDTO } from '../modelo/tratamientoDTO';
 })
 export class TratamientoService {
 
+  // baseUrl = 'http://localhost:8099/tratamientos';
+  baseUrl = 'https://chillingdogsback.azurewebsites.net/tratamientos';
+
   constructor(private http: HttpClient) { }
 
   findAll(): Observable<Tratamiento[]> {
-    return this.http.get<Tratamiento[]>('http://localhost:8099/tratamientos');
+    return this.http.get<Tratamiento[]>(this.baseUrl);
   }
 
   findAllByVeterinarioId(id: number): Observable<Tratamiento[]> {
-    return this.http.get<Tratamiento[]>(`http://localhost:8099/tratamientos/veterinario/${id}`);
+    return this.http.get<Tratamiento[]>(`${this.baseUrl}/veterinario/${id}`);
   }
 
   findAllMascota(id: number): Observable<Tratamiento[]> {
-    return this.http.get<Tratamiento[]>(`http://localhost:8099/tratamientos/mascota/${id}`);
+    return this.http.get<Tratamiento[]>(`${this.baseUrl}/mascota/${id}`);
   }
 
   add(tratamientoDTO: TratamientoDTO): Observable<Tratamiento> {
-    return this.http.post<Tratamiento>(`http://localhost:8099/tratamientos`, tratamientoDTO);
+    return this.http.post<Tratamiento>(this.baseUrl, tratamientoDTO);
   }
 
   update(tratamiento: TratamientoDTO): Observable<Tratamiento> {
-    return this.http.put<Tratamiento>(`http://localhost:8099/tratamientos`, tratamiento);
+    return this.http.put<Tratamiento>(this.baseUrl, tratamiento);
   }
 
   deleteById(id: number): Observable<string> {
-    return this.http.delete(`http://localhost:8099/tratamientos/${id}`, { responseType: 'text' });
+    return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
   }
 }
