@@ -57,4 +57,8 @@ export class DetallesClienteComponent {
       }
     );
   }
+
+  goBack() {
+    window.history.back();
+  }
 }

@@ -48,4 +48,8 @@ export class FormClienteComponent {
       ).subscribe();
     }
   }
+
+  goBack() {
+    window.history.back();
+  }
 }
