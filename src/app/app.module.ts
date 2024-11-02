@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -50,6 +50,7 @@ import { TratamientosVeterinarioComponent } from './tratamiento/tratamientos-vet
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { CrearTratamientoComponent } from './tratamiento/crear-tratamiento/crear-tratamiento.component';
 import { FormTratamientoComponent } from './tratamiento/form-tratamiento/form-tratamiento.component';
+import { ChatbotComponent } from './landing/chatbot/chatbot.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { FormTratamientoComponent } from './tratamiento/form-tratamiento/form-tr
     TratamientosMascotaComponent,
     TratamientosVeterinarioComponent,
     CrearTratamientoComponent,
-    FormTratamientoComponent
+    FormTratamientoComponent,
+    ChatbotComponent
   ],
   imports: [
     BrowserModule,
@@ -106,6 +108,7 @@ import { FormTratamientoComponent } from './tratamiento/form-tratamiento/form-tr
   providers: [
     provideClientHydration()
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA] 
 })
 export class AppModule { }

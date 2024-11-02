@@ -9,6 +9,9 @@ import { Resenia } from '../../Resenia';
 })
 export class MainComponent {
   resenias!: Resenia[];
+  chatAbierto: boolean = false;
+  imagenChat: string = 'assets/images/simbolo_chat.png';
+  isFading: boolean = false;
 
   responsiveOptions: any[] = [
     {
@@ -27,5 +30,16 @@ export class MainComponent {
 
   ngOnInit() {
     this.resenias = this.reseniaService.findAll();
+  }
+
+  openChat(){
+    if (this.chatAbierto) {
+      this.chatAbierto = false;
+      this.imagenChat = 'assets/images/simbolo_chat.png';
+  } else {
+      this.chatAbierto = true;
+      this.imagenChat = 'assets/images/simbolo_chat_x.png';
+  }
+    
   }
 }

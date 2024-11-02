@@ -104,4 +104,7 @@
             </p-carousel>
         </div>
     </section>
+
+    <img [src]="imagenChat" alt="Chat" class="imagenChat" (click) = "openChat()">
+    <app-chatbot [visible]="chatAbierto"></app-chatbot>
 </div>

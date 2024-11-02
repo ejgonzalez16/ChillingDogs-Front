@@ -390,3 +390,23 @@ p{
         margin-right: 2ch;
     }
 }
+
+.imagenChat {
+    width: 64px;
+    height: 64px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 15px;
+    transition-property: transform;
+    transition-duration: 0.3s;
+}
+
+.imagenChat:hover {
+    transform: scale(1.1);
+}
+
+.imagenChat:active {
+    transform: scale(0.9);
+    transform: rotate(90deg);
+}
