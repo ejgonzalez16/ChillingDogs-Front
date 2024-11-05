@@ -3,7 +3,7 @@ import {Cliente} from "../../modelo/cliente";
 import {ClienteService} from "../../service/cliente.service";
 import { ActivatedRoute, Router } from '@angular/router';
 import { mergeMap } from 'rxjs';
-import {AuthService} from "../../service/auth.service";
+import {PerfilService} from "../../service/perfil.service";
 
 @Component({
   selector: 'app-form-cliente',
@@ -17,15 +17,15 @@ export class FormClienteComponent {
 
   constructor(
     private clienteService: ClienteService,
-    private authService: AuthService,
-    private router: Router) {
+    private router: Router,
+    private perfilService: PerfilService) {
   }
 
   ngOnInit() {
     // Verificar que el usuario esté logueado y sea veterinario o admin
-    this.authService.userInfo$.subscribe(userInfo => {
-      if(userInfo.rol !== 'veterinario' && userInfo.rol !== 'admin') {
-        this.router.navigate(['/login']);
+    this.perfilService.perfilInfo$.subscribe(perfil => {
+      if (perfil.rol !== 'VETERINARIO' && perfil.rol !== 'ADMIN') {
+        this.redirectNotAuthorized();
       }
     });
   }
@@ -43,13 +43,17 @@ export class FormClienteComponent {
       ).subscribe();
     } else {
       // Crea el cliente y vuelve a recargar la página con la información actualizada
-      this.clienteService.add(this.cliente).pipe(
-        mergeMap(() => this.router.navigate(['/clientes/buscar']))
-      ).subscribe();
+      this.clienteService.add(this.cliente).subscribe(
+        () => this.router.navigate(['/clientes/buscar'])
+      );
     }
   }
 
   goBack() {
     window.history.back();
+  }
+
+  redirectNotAuthorized() {
+    this.router.navigate(['**']);
   }
 }

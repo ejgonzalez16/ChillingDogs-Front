@@ -9,9 +9,9 @@ import { NavigationEnd, Router } from '@angular/router';
 export class AppComponent {
   showHeaderFooter = true;
   title = 'ChillingDogsFrontend';
-  tipoLogueo: string = "guest";
+  tipoLogueo: string = "GUEST";
 
-  constructor(private router: Router) { 
+  constructor(private router: Router) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         console.log(event.urlAfterRedirects);

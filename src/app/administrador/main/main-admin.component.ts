@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {AuthService} from "../../service/auth.service";
 import {Router} from "@angular/router";
+import {PerfilService} from "../../service/perfil.service";
 
 @Component({
   selector: 'admin-main',
@@ -10,18 +10,21 @@ import {Router} from "@angular/router";
 export class MainAdminComponent {
   nombreAdministrador!: string;
   constructor(
-    private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private perfilService: PerfilService
   ) { }
 
   ngOnInit() {
-    // Verificar que el usuario esté logueado y sea admin
-    this.authService.userInfo$.subscribe(userInfo => {
-      if(userInfo.rol !== 'admin') {
-        this.router.navigate(['/login']);
+    this.perfilService.perfilInfo$.subscribe(perfil => {
+      if (perfil.rol !== 'ADMIN') {
+        this.redirectNotAuthorized();
       }
-      this.nombreAdministrador = userInfo.nombre;
+      this.nombreAdministrador = perfil.nombre;
     });
+  }
+
+  redirectNotAuthorized() {
+    this.router.navigate(['**']);
   }
 
 }

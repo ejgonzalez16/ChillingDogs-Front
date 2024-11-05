@@ -1,5 +1,5 @@
 <main>
-    <section>
+    <section *ngIf="cliente">
         <form #modificarForm="ngForm" (ngSubmit)="onSubmit()" method="post" id="modificarForm">
             <input [(ngModel)]="cliente.id" type="number" id="id" name="id" hidden>
             <div class="contenedorForm">

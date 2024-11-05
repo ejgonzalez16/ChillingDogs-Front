@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ReseniasService } from '../../service/resenias.service';
 import { Resenia } from '../../Resenia';
+import {PerfilService} from "../../service/perfil.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'landing-main',
@@ -26,10 +28,25 @@ export class MainComponent {
     }
   ];
 
-  constructor(private reseniaService: ReseniasService) {}
+  constructor(
+    private reseniaService: ReseniasService,
+    private perfilService: PerfilService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.resenias = this.reseniaService.findAll();
+    // Si el usuario ya está autenticado, redirigir según su rol
+    this.perfilService.perfilInfo$.subscribe(perfil => {
+      if (perfil.rol === 'CLIENTE') {
+        this.router.navigate(['/mis-mascotas']);
+      } else if (perfil.rol === 'VETERINARIO') {
+        this.router.navigate(['/mascotas/buscar']);
+      } else if (perfil.rol === 'ADMIN') {
+        this.router.navigate(['/administrador']);
+      } else {
+        this.resenias = this.reseniaService.findAll();
+      }
+    });
   }
 
   openChat(){
@@ -40,6 +57,6 @@ export class MainComponent {
       this.chatAbierto = true;
       this.imagenChat = 'assets/images/simbolo_chat_x.png';
   }
-    
+
   }
 }

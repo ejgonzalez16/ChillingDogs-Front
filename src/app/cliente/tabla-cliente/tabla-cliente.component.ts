@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import {Cliente} from "../../modelo/cliente";
 import {ClienteService} from "../../service/cliente.service";
 import { ActivatedRoute, Router } from '@angular/router';
-import { mergeMap, switchMap } from 'rxjs';
-import {AuthService} from "../../service/auth.service";
+import {mergeMap, of, switchMap} from 'rxjs';
+import {PerfilService} from "../../service/perfil.service";
 
 @Component({
   selector: 'app-tabla-cliente',
@@ -15,25 +15,38 @@ export class TablaClienteComponent {
 
   constructor(
     private clienteService: ClienteService,
-    private authService: AuthService,
     private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private perfilService: PerfilService) {
   }
 
   ngOnInit() {
-    // Verificar que el usuario esté logueado y sea veterinario o admin
-    this.authService.userInfo$.subscribe(userInfo => {
-      if(userInfo.rol !== 'veterinario' && userInfo.rol !== 'admin') {
-        this.router.navigate(['/login']);
-      }
-    });
+    // Suscribirse a perfilService y cuando haya respuesta, obtener la lista de clientes
 
-    // Obtener la lista de clientes
+    // En un solo suscribe utilizando pipe
+    this.perfilService.perfilInfo$.pipe(
+        switchMap(perfil => {
+            if (perfil.rol !== 'VETERINARIO' && perfil.rol !== 'ADMIN') {
+              this.redirectNotAuthorized();
+              return of([]);
+            } else {
+              return this.clienteService.findAll();
+            }
+        })
+    ).subscribe(clientes => {
+        this.clientes = clientes;
+    },
+      error => {
+        console.error('Error al obtener la lista de clientes:', error);
+      }
+    );
+
+    /*// Obtener la lista de clientes
     this.route.paramMap.subscribe(params => {
       this.clienteService.findAll().subscribe(clientes => {
         this.clientes = clientes;
       })
-    })
+    })*/
   }
 
   eliminarCliente(id: number) {
@@ -49,10 +62,14 @@ export class TablaClienteComponent {
             console.log('Lista de clientes actualizada:', this.clientes);
         }
     );
-}
+  }
 
   goBack() {
     // Vuelve pa atrás
     window.history.back();
+  }
+
+  redirectNotAuthorized() {
+    this.router.navigate(['**']);
   }
 }

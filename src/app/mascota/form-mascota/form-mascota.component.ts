@@ -4,7 +4,7 @@ import { Cliente } from '../../modelo/cliente';
 import { ClienteService } from '../../service/cliente.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MascotaService } from '../../service/mascota.service';
-import {AuthService} from "../../service/auth.service";
+import {PerfilService} from "../../service/perfil.service";
 
 @Component({
   selector: 'app-form-mascota',
@@ -20,8 +20,8 @@ export class FormMascotaComponent {
     private clienteService: ClienteService,
     private router: Router,
     private mascotaService: MascotaService,
-    private authService: AuthService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private perfilService: PerfilService
   ){
 
   }
@@ -44,9 +44,9 @@ export class FormMascotaComponent {
 
   ngOnInit() :void {
     // Verificar que el usuario esté logueado y sea veterinario o admin
-    this.authService.userInfo$.subscribe(userInfo => {
-      if(userInfo.rol !== 'veterinario' && userInfo.rol !== 'admin') {
-        this.router.navigate(['/login']);
+    this.perfilService.perfilInfo$.subscribe(perfil => {
+      if (perfil.rol !== 'VETERINARIO' && perfil.rol !== 'ADMIN') {
+        this.redirectNotAuthorized();
       }
     });
 
@@ -127,5 +127,9 @@ export class FormMascotaComponent {
             button.classList.remove("btn-grey");
         }
     }
-}
+  }
+
+  redirectNotAuthorized() {
+    this.router.navigate(['**']);
+  }
 }

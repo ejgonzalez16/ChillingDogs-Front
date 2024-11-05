@@ -1,11 +1,13 @@
-import { Component, Input } from '@angular/core';
+import {Component, Inject, Input, PLATFORM_ID} from '@angular/core';
 import { Router } from '@angular/router';
-import {AuthService} from "../../service/auth.service";
 import {VeterinarioService} from "../../service/veterinario.service";
 import {AdminService} from "../../service/admin.service";
 import {userInfo} from "node:os";
 import {Usuario} from "../../modelo/usuario";
 import {ClienteService} from "../../service/cliente.service";
+import {catchError, of, switchMap, tap} from "rxjs";
+import {isPlatformBrowser} from "@angular/common";
+import {PerfilService} from "../../service/perfil.service";
 
 @Component({
   selector: 'app-main',
@@ -14,23 +16,31 @@ import {ClienteService} from "../../service/cliente.service";
 })
 export class LoginComponent {
 
-  cedula: string = '';
-  contrasena: string = '';
-  tipoLogin: string = 'cliente';
+  usuario: Usuario = {
+    username: '',
+    password: ''
+  };
+  tipoLogin: string = 'CLIENTE';
   loginError: string = '';
 
-  constructor(private router: Router,
-              private authService: AuthService,
-              private clienteService: ClienteService,
-              private veterinarioService: VeterinarioService,
-              private adminService: AdminService
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private router: Router,
+    private clienteService: ClienteService,
+    private veterinarioService: VeterinarioService,
+    private adminService: AdminService,
+    private perfilService: PerfilService
               ) { }
 
   ngOnInit(): void {
     // Si el usuario ya está autenticado, redirigir según su rol
-    this.authService.userInfo$.subscribe(userInfo => {
-      if (userInfo) {
-        this.redirigirSegunRol(userInfo);
+    this.perfilService.perfilInfo$.subscribe(perfil => {
+      if (perfil.rol === 'CLIENTE') {
+        this.router.navigate(['/mis-mascotas']);
+      } else if (perfil.rol === 'VETERINARIO') {
+        this.router.navigate(['/mascotas/buscar']);
+      } else if (perfil.rol === 'ADMIN') {
+        this.router.navigate(['/administrador']);
       }
     });
   }
@@ -38,106 +48,74 @@ export class LoginComponent {
   // Método para manejar el login
   onSubmit(): void {
     // Validar que los campos no estén vacíos
-    if (this.cedula === '' || (this.contrasena === '' && this.tipoLogin !== 'cliente')) {
+    if (this.usuario.username === '' || (this.usuario.password === '' && this.tipoLogin !== 'CLIENTE')) {
       this.loginError = 'Por favor, llena todos los campos';
       return;
     }
 
     // Si el tipo de login es cliente
-    if (this.tipoLogin === 'cliente') {
-      this.clienteService.findByCedula(this.cedula).subscribe(
-        cliente => {
-          if (cliente) {
-            // Crear el objeto userInfo con los datos del cliente
-            const userInfo = {
-              rol: 'cliente',
-              id: cliente.id,
-              nombre: cliente.nombre,
-              cedula: cliente.cedula,
-              foto: cliente.foto
-            };
-
-            // Actualizar el estado del usuario y guardar en localStorage
-            this.authService.actualizarUsuarioInfo(userInfo);
-
-            // Redirigir a la página correspondiente
-            this.router.navigate(['/mis-mascotas', cliente.cedula]);
-          } else {
-            this.loginError = 'Cliente no encontrado';
-          }
-        },
-        error => {
+    if (this.tipoLogin === 'CLIENTE') {
+      this.usuario.password = "";
+      this.clienteService.login(this.usuario).pipe(
+        tap(token => {
+          this.perfilService.tokenAssigned(token.toString());
+        }),
+        switchMap(() => this.clienteService.getPerfil()),
+        tap(perfil => {
+          // Guardar el perfil en localStorage
+          this.perfilService.login(perfil);
+        }),
+        tap(() => {
+          // Redirigir a la página correspondiente
+          this.router.navigate(['/mis-mascotas']);
+        }),
+        catchError(error => {
           this.loginError = 'Cliente no encontrado';
-        }
-      );
+          return of(null); // Devuelve un observable vacío para finalizar la cadena
+        })
+      ).subscribe();
 
       // Si el tipo de login es veterinario
-    } else if (this.tipoLogin === 'veterinario') {
-      this.veterinarioService.findByCedulaAndContrasena(this.cedula, this.contrasena).subscribe(
-        veterinario => {
-          if (veterinario) {
-            // Crear el objeto userInfo con los datos del veterinario
-            const userInfo = {
-              rol: 'veterinario',
-              id: veterinario.id,
-              nombre: veterinario.nombre,
-              cedula: veterinario.cedula,
-              foto: veterinario.foto
-            };
-
-            // Actualizar el estado del usuario y guardar en localStorage
-            this.authService.actualizarUsuarioInfo(userInfo);
-
-            // Redirigir a la página correspondiente
-            this.router.navigate(['/mascotas/buscar']);
-          } else {
-            this.loginError = 'Credenciales inválidas';
-          }
-        },
-        error => {
+    } else if (this.tipoLogin === 'VETERINARIO') {
+      this.veterinarioService.login(this.usuario).pipe(
+        tap(token => {
+          this.perfilService.tokenAssigned(token.toString());
+        }),
+        switchMap(() => this.veterinarioService.getPerfil()),
+        tap(perfil => {
+          // Guardar el perfil en localStorage
+          this.perfilService.login(perfil);
+        }),
+        tap(() => {
+          // Redirigir a la página correspondiente
+          this.router.navigate(['/mis-mascotas']);
+        }),
+        catchError(error => {
           this.loginError = 'Credenciales inválidas';
-        }
-      );
+          return of(null); // Devuelve un observable vacío para finalizar la cadena
+        })
+      ).subscribe();
 
       // Si el tipo de login es administrador
-    } else if (this.tipoLogin === 'administrador') {
-      this.adminService.findByCedulaAndContrasena(this.cedula, this.contrasena).subscribe(
-        admin => {
-          if (admin) {
-            // Crear el objeto userInfo con los datos del administrador
-            const userInfo = {
-              rol: 'admin',
-              id: admin.id,
-              nombre: admin.nombre,
-              cedula: admin.cedula,
-              foto: admin.foto
-            };
-
-            // Actualizar el estado del usuario y guardar en localStorage
-            this.authService.actualizarUsuarioInfo(userInfo);
-
-            // Redirigir a la página correspondiente
-            this.router.navigate(['/administrador', admin.cedula]);
-          } else {
-            this.loginError = 'Credenciales inválidas';
-          }
-        },
-        error => {
+    } else if (this.tipoLogin === 'ADMIN') {
+      this.adminService.login(this.usuario).pipe(
+        tap(token => {
+          this.perfilService.tokenAssigned(token.toString());
+        }),
+        switchMap(() => this.adminService.getPerfil()),
+        tap(perfil => {
+          // Guardar el perfil en localStorage
+          this.perfilService.login(perfil);
+        }),
+        tap(() => {
+          // Redirigir a la página correspondiente
+          this.router.navigate(['/administrador']);
+        }),
+        catchError(error => {
           this.loginError = 'Credenciales inválidas';
-        }
-      );
-    }
-  }
-
-
-  // Función para redirigir según el rol del usuario
-  private redirigirSegunRol(userInfo: any): void {
-    if (userInfo.rol === 'cliente') {
-      this.router.navigate(['/mis-mascotas', userInfo.cedula]);
-    } else if (userInfo.rol === 'veterinario') {
-      this.router.navigate(['/mascotas/buscar']);
-    } else if (userInfo.rol === 'admin') {
-      this.router.navigate(['/administrador', userInfo.cedula]);
+          return of(null); // Devuelve un observable vacío para finalizar la cadena
+        })
+      ).subscribe();
     }
   }
 }

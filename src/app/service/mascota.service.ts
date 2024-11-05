@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class MascotaService {
 
-  // baseUrl = 'http://localhost:8099/mascotas';
-  baseUrl = 'https://chillingdogsback.azurewebsites.net/mascotas';
+  baseUrl = 'http://localhost:8099/mascotas';
+  // baseUrl = 'https://chillingdogsback.azurewebsites.net/mascotas';
 
   constructor(
     private http: HttpClient
@@ -37,5 +37,9 @@ export class MascotaService {
 
   deleteById(id: number){
     this.http.delete(`${this.baseUrl}/`+id).subscribe();
+  }
+
+  findByCliente(): Observable<Mascota[]> {
+    return this.http.get<Mascota[]>(`${this.baseUrl}/cliente`);
   }
 }

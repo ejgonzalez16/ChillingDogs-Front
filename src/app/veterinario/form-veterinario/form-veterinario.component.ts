@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Veterinario } from '../../modelo/veterinario';
 import { VeterinarioService } from '../../service/veterinario.service';
-import { AuthService } from '../../service/auth.service';
 import { mergeMap } from 'rxjs';
 import { Router } from '@angular/router';
+import {PerfilService} from "../../service/perfil.service";
 
 @Component({
   selector: 'app-form-veterinario',
@@ -16,16 +16,15 @@ export class FormVeterinarioComponent {
 
   constructor(
     private veterinarioService: VeterinarioService,
-    private authService: AuthService,
-    private router: Router) {
+    private router: Router,
+    private perfilService: PerfilService) {
   }
 
   ngOnInit() {
     // Verificar que el usuario esté logueado y sea admin
-    this.authService.userInfo$.subscribe(userInfo => {
-      console.log(userInfo)
-      if(userInfo.rol !== 'admin') {
-        this.router.navigate(['/login']);
+    this.perfilService.perfilInfo$.subscribe(perfil => {
+      if (perfil.rol !== 'ADMIN') {
+        this.redirectNotAuthorized();
       }
     });
   }
@@ -75,5 +74,9 @@ export class FormVeterinarioComponent {
             button.classList.remove("btn-grey");
         }
     }
-}
+  }
+
+  redirectNotAuthorized() {
+    this.router.navigate(['**']);
+  }
 }

@@ -11,8 +11,8 @@ import { TratamientoDTO } from '../modelo/tratamientoDTO';
 })
 export class TratamientoService {
 
-  // baseUrl = 'http://localhost:8099/tratamientos';
-  baseUrl = 'https://chillingdogsback.azurewebsites.net/tratamientos';
+  baseUrl = 'http://localhost:8099/tratamientos';
+  // baseUrl = 'https://chillingdogsback.azurewebsites.net/tratamientos';
 
   constructor(private http: HttpClient) { }
 
@@ -38,5 +38,9 @@ export class TratamientoService {
 
   deleteById(id: number): Observable<string> {
     return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
+  }
+
+  findAllByVeterinarioLogueado(): Observable<Tratamiento[]> {
+    return this.http.get<Tratamiento[]>(`${this.baseUrl}/veterinario`);
   }
 }

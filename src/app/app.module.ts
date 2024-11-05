@@ -26,12 +26,11 @@ import { LoginComponent } from './login/main/login.component';
 import { MascotaComponent } from './transversales/detalles/mascota/mascota.component';
 import { ClienteComponent } from './transversales/detalles/cliente/cliente.component';
 import { DetallesParaClienteComponent } from './mascota/detalles-para-cliente/detalles-para-cliente.component';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptors} from '@angular/common/http';
 import { ErrorComponent } from './transversales/error/error.component';
 import { MainAdminComponent } from './administrador/main/main-admin.component';
 import { CRUDsComponent} from './administrador/cruds/cruds.component';
 import { DashboardComponent } from './administrador/dashboard/dashboard.component';
-
 
 // PrimeNG Modules
 import { CarouselModule } from 'primeng/carousel';
@@ -51,6 +50,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { CrearTratamientoComponent } from './tratamiento/crear-tratamiento/crear-tratamiento.component';
 import { FormTratamientoComponent } from './tratamiento/form-tratamiento/form-tratamiento.component';
 import { ChatbotComponent } from './landing/chatbot/chatbot.component';
+import {AuthInterceptor} from "./helpers/auth.interceptor";
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -95,20 +96,22 @@ import { ChatbotComponent } from './landing/chatbot/chatbot.component';
     FormTratamientoComponent,
     ChatbotComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    RouterModule,
-    CarouselModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    NgxChartsModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        RouterModule,
+        CarouselModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        NgxChartsModule,
+        NgOptimizedImage,
+    ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA] 
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

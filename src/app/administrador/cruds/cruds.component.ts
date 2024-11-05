@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import {AuthService} from "../../service/auth.service";
+import {PerfilService} from "../../service/perfil.service";
 
 @Component({
   selector: 'admin-cruds',
@@ -11,8 +11,16 @@ export class CRUDsComponent {
 
   constructor(
     private router: Router,
-    private authService: AuthService
-    ) {}
+    private perfilService: PerfilService
+  ) { }
+
+  ngOnInit() {
+    this.perfilService.perfilInfo$.subscribe(perfil => {
+      if (perfil.rol !== 'ADMIN') {
+        this.redirectNotAuthorized();
+      }
+    });
+  }
 
   // Retorna al inicio de sesion
   goToHome(): void {
@@ -21,7 +29,11 @@ export class CRUDsComponent {
 
   // Cierra la sesión del administrador completamente
   logout(): void {
-    this.authService.logout();
+    this.perfilService.logout();
     this.router.navigate(['/login']);
+  }
+
+  redirectNotAuthorized() {
+    this.router.navigate(['**']);
   }
 }

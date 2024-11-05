@@ -1,14 +1,14 @@
 import { Component,Input } from '@angular/core';
 import { Mascota } from '../../modelo/mascota';
 import { MascotaService } from '../../service/mascota.service';
-import { AuthService } from '../../service/auth.service';
 import {Router} from "@angular/router";
 import { Droga } from '../../modelo/droga';
 import { DrogaService } from '../../service/droga.service';
 import { Tratamiento } from '../../modelo/tratamiento';
 import { TratamientoService } from '../../service/tratamiento.service';
 import { TratamientoDTO } from '../../modelo/tratamientoDTO';
-import {mergeMap} from "rxjs";
+import {mergeMap, switchMap} from "rxjs";
+import {PerfilService} from "../../service/perfil.service";
 
 @Component({
   selector: 'app-form-tratamiento',
@@ -26,21 +26,22 @@ export class FormTratamientoComponent {
 
   constructor(
     private mascotaService: MascotaService,
-    private authService: AuthService,
     private router: Router,
     private drogaService: DrogaService,
-    private tratamientoService: TratamientoService) {}
+    private tratamientoService: TratamientoService,
+    private perfilService: PerfilService) {}
 
   ngOnInit() {
-    // Obtener id y la cédula del veterinario, y luego las drogas disponibles en un sólo suscribe usando pipe y mergeMap
-    this.authService.userInfo$.pipe(
-      mergeMap(usuario => {
-        console.log('userInfo', usuario);
-        this.veterinarioId = usuario.id;
-        this.cedulaVeterinario = usuario.cedula;
+    // Suscribirse a perfilService y cuando haya respuesta, obtener la lista de drogas disponibles
+    // En un solo suscribe utilizando pipe
+    this.perfilService.perfilInfo$.pipe(
+      switchMap(perfil => {
+        if (perfil.rol !== 'VETERINARIO') {
+          this.redirectNotAuthorized();
+        }
         return this.drogaService.findDisponibles();
-      }
-    )).subscribe(drogas =>{
+      })
+    ).subscribe(drogas =>{
       this.drogas = drogas;
     });
   }
@@ -53,8 +54,7 @@ export class FormTratamientoComponent {
     }
     this.tratamientoDto = {
       mascotaId: this.mascota.id,
-      drogaId: this.droga.id,
-      veterinarioId: this.veterinarioId
+      drogaId: this.droga.id
     };
     this.tratamientoService.add(this.tratamientoDto).subscribe(tratamiento => {
       alert("Tratamiento registrado con éxito");
@@ -64,11 +64,15 @@ export class FormTratamientoComponent {
 
   goToMisMascotas(){
     // Navegar a mis-mascotas/:cedula del veterinario
-    this.router.navigate(['mis-mascotas/'+this.cedulaVeterinario]);
+    this.router.navigate(['mis-mascotas']);
   }
 
   goBack() {
     // Vuelve pa atrás
     window.history.back();
+  }
+
+  redirectNotAuthorized() {
+    this.router.navigate(['**']);
   }
 }

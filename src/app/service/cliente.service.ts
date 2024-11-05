@@ -2,14 +2,16 @@ import { Injectable } from '@angular/core';
 import {Cliente} from "../modelo/cliente";
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import {Perfil} from "../modelo/perfil";
+import {Usuario} from "../modelo/usuario";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClienteService {
 
-  // baseUrl = 'http://localhost:8099/clientes';
-  baseUrl = 'https://chillingdogsback.azurewebsites.net/clientes';
+  baseUrl = 'http://localhost:8099/clientes';
+  // baseUrl = 'https://chillingdogsback.azurewebsites.net/clientes';
 
   constructor(private http: HttpClient) { }
 
@@ -31,5 +33,13 @@ export class ClienteService {
 
   deleteById(id: number): Observable<string> {
     return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
+  }
+
+  login(usuario: Usuario): Observable<String> {
+    return this.http.post(this.baseUrl+"/login", usuario, {responseType: 'text'}); // El back devuelve un token (string)
+  }
+
+  getPerfil(): Observable<Perfil> {
+    return this.http.get<Perfil>(`${this.baseUrl}/perfil`);
   }
 }

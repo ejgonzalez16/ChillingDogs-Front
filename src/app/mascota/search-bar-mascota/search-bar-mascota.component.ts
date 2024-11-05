@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import {Router} from "@angular/router";
 import { Mascota } from '../../modelo/mascota';
-import { log } from 'console';
 
 @Component({
   selector: 'app-search-bar-mascota',

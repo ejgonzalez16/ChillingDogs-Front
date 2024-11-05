@@ -4,20 +4,20 @@
             <div class="type-user-buttons">
               <!-- Cambia el estilo de los botones dependiendo del tipo de usuario seleccionado -->
               <!-- Cuando se hace click, cambia el tipoLogin y resetea el loginError -->
-              <button id="btnLoginCliente" type="reset" [ngClass]="tipoLogin === 'cliente' ? 'type-button-selected' : 'type-button'" (click)="tipoLogin = 'cliente'; loginError = ''">Cliente</button>
-              <button id="btnLoginVet" type="reset" [ngClass]="tipoLogin === 'veterinario' ? 'type-button-selected' : 'type-button'" (click)="tipoLogin = 'veterinario'; loginError = ''">Veterinario</button>
-              <button id="btnLoginAdmin" type="reset" [ngClass]="tipoLogin === 'administrador' ? 'type-button-selected' : 'type-button'" (click)="tipoLogin = 'administrador'; loginError = ''">Administrador</button>
+              <button id="btnLoginCliente" type="reset" [ngClass]="tipoLogin === 'CLIENTE' ? 'type-button-selected' : 'type-button'" (click)="tipoLogin = 'CLIENTE'; loginError = ''">Cliente</button>
+              <button id="btnLoginVet" type="reset" [ngClass]="tipoLogin === 'VETERINARIO' ? 'type-button-selected' : 'type-button'" (click)="tipoLogin = 'VETERINARIO'; loginError = ''">Veterinario</button>
+              <button id="btnLoginAdmin" type="reset" [ngClass]="tipoLogin === 'ADMIN' ? 'type-button-selected' : 'type-button'" (click)="tipoLogin = 'ADMIN'; loginError = ''">Administrador</button>
             </div>
             <div class="login-part">
                 <h1>Iniciar Sesión</h1>
 
                 <label for="cedulaTxt">Cedula</label>
-                <input type="number" id="cedulaTxt" name="cedulaTxt" maxlength="10" [(ngModel)]="cedula" required>
+                <input type="number" id="cedulaTxt" name="cedulaTxt" maxlength="10" [(ngModel)]="usuario.username" required>
 
                 <!-- Si el tipoLoguin no es cliente, se muestra el campo contraseña -->
-                <div *ngIf="tipoLogin !== 'cliente'" class="d-flex flex-column">
+                <div *ngIf="tipoLogin !== 'CLIENTE'" class="d-flex flex-column">
                   <label for="contrasenaTxt">Contraseña</label>
-                  <input type="password" id="contrasenaTxt" name="contrasenaTxt" [(ngModel)]="contrasena" required>
+                  <input type="password" id="contrasenaTxt" name="contrasenaTxt" [(ngModel)]="usuario.password" required>
                 </div>
 
                 <button id="btnLogin" type="submit" class="login-button">Iniciar Sesión</button>

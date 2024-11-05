@@ -5,8 +5,8 @@ import { Mascota } from '../../modelo/mascota';
 import { Cliente } from '../../modelo/cliente';
 import {ClienteService} from "../../service/cliente.service";
 import {catchError, map, mergeMap, of, Subject, switchMap, takeUntil} from "rxjs";
-import {AuthService} from "../../service/auth.service";
 import {TratamientoService} from "../../service/tratamiento.service";
+import {PerfilService} from "../../service/perfil.service";
 
 @Component({
   selector: 'app-mis-mascotas',
@@ -27,63 +27,42 @@ export class MisMascotasComponent {
     private mascotaService: MascotaService,
     private clienteService: ClienteService,
     private tratamientoService: TratamientoService,
-    private authService: AuthService
+    private perfilService: PerfilService
   ) {}
+
   ngOnInit(){
-    // Hacer varios suscribe utilizando pipe y mergeMap
-    this.route.paramMap.pipe(
-      // Primero se obtiene el parámetro de la URL
-      switchMap(params => {
-        // Convertir +params.get('cedula')!; a string
-        this.cedula = params.get('cedula')!;
-        return this.authService.userInfo$;
-      }),
-      // Luego se revisa el rol del usuario
-      mergeMap(userInfo => {
-        // Si es veterinario
-        //   Asignamos el rol de veterinario
-        //   Obtenemos los tratamientos y lo mapeamos para devolver las mascotas que ha tratado el veterinario
-        if (userInfo.rol === 'veterinario') {
-          this.rolUsuario = 'veterinario';
-          console.log(userInfo);
-          return this.tratamientoService.findAllByVeterinarioId(userInfo.id).pipe(
-            map(tratamientos => {
-              // Transformamos los tratamientos en el formato de mascotas
-              return tratamientos.map(tratamiento => ({
-                id: tratamiento.mascota.id,
-                nombre: tratamiento.mascota.nombre,
-                raza: tratamiento.fecha.toString(),  // Colocamos la fecha en lugar de la raza
-                enfermedad: tratamiento.droga.nombre,  // Colocamos el nombre de la droga en enfermedad
-                foto: tratamiento.mascota.foto,
-                estado: tratamiento.mascota.estado
-              }));
-            })
+    // Hacer lo que está abajo, pero con un solo subscribe utilizando pipe
+    this.perfilService.perfilInfo$.pipe(
+      switchMap(perfil => {
+        console.log('perfil', perfil);
+        if (perfil.rol == 'ADMIN' || perfil.rol == 'GUEST') {
+          this.redirectNotAuthorized();
+          return of([]);
+        } else if (perfil.rol == 'VETERINARIO') {
+          this.rolUsuario = 'VETERINARIO';
+          console.log('VETERINARIO explotando la DB');
+          return this.tratamientoService.findAllByVeterinarioLogueado().pipe(
+            map(tratamientos =>
+              tratamientos.map(tratamiento => ({
+              id: tratamiento.mascota.id,
+              nombre: tratamiento.mascota.nombre,
+              raza: tratamiento.fecha.toString(),  // Usar la fecha en lugar de la raza
+              enfermedad: tratamiento.droga.nombre,  // Usar el nombre de la droga en lugar de enfermedad
+              foto: tratamiento.mascota.foto,
+              estado: tratamiento.mascota.estado
+            })))
           );
         } else {
-          // Si es cliente
-          //   Obtenemos el cliente por su cédula
-          //   Actualizamos userInfo, asignamos el rol de cliente
-          //   Obtenemos las mascotas del cliente por su cédula
-          this.rolUsuario = 'cliente';
-          console.log(userInfo);
-          return this.mascotaService.findByClienteCedula(this.cedula);
+          this.rolUsuario = 'CLIENTE';
+          return this.mascotaService.findByCliente();
         }
-      }),
-      takeUntil(this.destroy$)  // La suscripción se completará cuando se emita desde destroy$
+      })
     ).subscribe(mascotas => {
-      // Asignamos las mascotas, que tiene el mismo formato tanto para veterinarios como para clientes
       this.mascotas = mascotas;
     });
-
-    // Actualizar la información del usuario (afuera del pipe, pq si no se queda en un loop infinito de actualizaciones)
-    /*if (this.rolUsuario === 'cliente') {
-      this.authService.actualizarUserInfo('cliente', this.cliente.id, this.cliente.nombre, this.cliente.cedula, this.cliente.foto);
-    }*/
   }
 
-  // Este método se ejecuta cuando el componente se destruye
-  ngOnDestroy(): void {
-    this.destroy$.next();  // Emite para cancelar la suscripción
-    this.destroy$.complete();  // Completa el subject para liberar recursos
+  redirectNotAuthorized() {
+    this.router.navigate(['**']);
   }
 }

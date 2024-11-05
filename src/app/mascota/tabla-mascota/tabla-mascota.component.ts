@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import {Mascota} from "../../modelo/mascota";
 import {MascotaService} from "../../service/mascota.service";
-import { AuthService } from '../../service/auth.service';
 import {Router} from "@angular/router";
+import {switchMap} from "rxjs";
+import {PerfilService} from "../../service/perfil.service";
 
 @Component({
   selector: 'app-tabla-mascota',
@@ -11,25 +12,24 @@ import {Router} from "@angular/router";
 })
 export class TablaMascotaComponent {
   mascotas!: Mascota[];
-  vet: string = 'vet';
 
   constructor(
     private mascotaService: MascotaService,
-    private authService: AuthService,
-    private router: Router) {}
+    private router: Router,
+    private perfilService: PerfilService) {}
 
   ngOnInit() {
-    // Verificar que el usuario esté logueado y sea veterinario o admin
-    this.authService.userInfo$.subscribe(userInfo => {
-      if(userInfo.rol !== 'veterinario' && userInfo.rol !== 'admin') {
-        this.router.navigate(['/login']);
-      }
-    });
-
-    // Obtener todas las mascotas
-    this.mascotaService.findAll().subscribe(mascotas => {
+    // Suscribirse a perfilService y cuando haya respuesta, obtener la lista de mascotas
+    // En un solo suscribe utilizando pipe
+    this.perfilService.perfilInfo$.pipe(
+      switchMap(perfil => {
+        if (perfil.rol !== 'VETERINARIO' && perfil.rol !== 'ADMIN') {
+          this.redirectNotAuthorized();
+        }
+        return this.mascotaService.findAll();
+      })
+    ).subscribe(mascotas => {
       this.mascotas = mascotas;
-      console.log(mascotas)
     });
   }
 
@@ -38,7 +38,7 @@ export class TablaMascotaComponent {
     console.log(filtro);
     if(filtro.nombre != undefined) {
       this.mascotaService.findAll().subscribe(mascotas => {
-        this.mascotas = mascotas.filter(mascota => mascota.nombre.includes(filtro.nombre || ''));
+        this.mascotas = mascotas.filter(mascota => mascota.nombre.toLowerCase().includes(filtro.nombre.toLowerCase() || ''));
         if(filtro.filter != "") {
           this.filtrarMascotas(filtro.filter);
         }
@@ -74,6 +74,10 @@ export class TablaMascotaComponent {
   goBack() {
     // Vuelve pa atrás
     window.history.back();
+  }
+
+  redirectNotAuthorized() {
+    this.router.navigate(['**']);
   }
 }
 

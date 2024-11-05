@@ -1,7 +1,9 @@
-import {ChangeDetectorRef, Component, Input, OnInit, SimpleChanges} from '@angular/core';
-import { AuthService } from '../service/auth.service';
+import {ChangeDetectorRef, Component, Inject, Input, OnInit, PLATFORM_ID, SimpleChanges} from '@angular/core';
 import {Router} from "@angular/router";
 import {Usuario} from "../modelo/usuario";
+import {Perfil} from "../modelo/perfil";
+import {isPlatformBrowser} from "@angular/common";
+import {PerfilService} from "../service/perfil.service";
 
 @Component({
   selector: 'app-header',
@@ -13,21 +15,25 @@ export class HeaderComponent {
   @Input()
   landing: boolean = false;
 
-  userInfo: Usuario = { rol: 'guest', id: -1, nombre: '', cedula: '', foto: '' };
+  perfil: Perfil = {
+    nombre: '',
+    foto: '',
+    rol: 'GUEST'
+  };
 
-  constructor(private authService: AuthService,
-              private router: Router
+  constructor(
+    private router: Router,
+    private perfilService: PerfilService,
   ) {}
 
   ngOnInit(): void {
-    // Suscribirse a la información del usuario
-    this.authService.userInfo$.subscribe(userInfo => {
-      this.userInfo = userInfo;
-    })
+    this.perfilService.perfilInfo$.subscribe(perfil => {
+      this.perfil = perfil;
+    });
   }
 
   logout(): void {
-    this.authService.logout();
+    this.perfilService.logout();
     this.router.navigate(['/login']);
   }
 
