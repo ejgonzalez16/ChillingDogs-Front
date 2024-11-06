@@ -1,5 +1,5 @@
 <div class="main">
-    <section class="login-black">
+    <section class="login-black" id="login">
         <form (ngSubmit)="onSubmit()" method="get">
             <div class="type-user-buttons">
               <!-- Cambia el estilo de los botones dependiendo del tipo de usuario seleccionado -->
@@ -8,7 +8,7 @@
               <button type="reset" [ngClass]="tipoLogin === 'veterinario' ? 'type-button-selected' : 'type-button'" (click)="tipoLogin = 'veterinario'; loginError = ''">Veterinario</button>
               <button type="reset" [ngClass]="tipoLogin === 'administrador' ? 'type-button-selected' : 'type-button'" (click)="tipoLogin = 'administrador'; loginError = ''">Administrador</button>
             </div>
-            <div class="login-part">
+            <div class="login-part" id="loginPart">
                 <h1>Iniciar Sesión</h1>
 
                 <label for="cedulaTxt">Cedula</label>
@@ -36,6 +36,8 @@
         </form>
     </section>
     <section class="login-image">
-        <img src="/assets/images/login-dog.png" alt="Login Dog">
+        <img *ngIf="tipoLogin == 'cliente'" src="/assets/images/login-dog.png" alt="Login Dog">
+        <img *ngIf="tipoLogin == 'veterinario'" src="/assets/images/login-vet.png" alt="Login Dog">
+        <img *ngIf="tipoLogin == 'administrador'" src="/assets/images/login-admin.png" alt="Login Dog">
     </section>
 </div>

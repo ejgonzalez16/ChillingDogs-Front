@@ -6,6 +6,8 @@ import {AdminService} from "../../service/admin.service";
 import {userInfo} from "node:os";
 import {Usuario} from "../../modelo/usuario";
 import {ClienteService} from "../../service/cliente.service";
+import { isObservable } from 'rxjs';
+import { LightModeServiceService } from '../../service/light-mode-service.service';
 
 @Component({
   selector: 'app-main',
@@ -13,17 +15,21 @@ import {ClienteService} from "../../service/cliente.service";
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-
+  isModoOscuro!: boolean;
   cedula: string = '';
   contrasena: string = '';
   tipoLogin: string = 'cliente';
   loginError: string = '';
+  login!: HTMLElement | null;
+  loginPart!: HTMLElement | null;
+
 
   constructor(private router: Router,
               private authService: AuthService,
               private clienteService: ClienteService,
               private veterinarioService: VeterinarioService,
-              private adminService: AdminService
+              private adminService: AdminService,
+              private lightModeService: LightModeServiceService
               ) { }
 
   ngOnInit(): void {
@@ -33,6 +39,9 @@ export class LoginComponent {
         this.redirigirSegunRol(userInfo);
       }
     });
+    this.login = document.getElementById("login");
+    this.loginPart = document.getElementById("loginPart");
+    this.lightModeService.registrarLoginComponent(this);
   }
 
   // Método para manejar el login
@@ -139,5 +148,22 @@ export class LoginComponent {
     } else if (userInfo.rol === 'admin') {
       this.router.navigate(['/administrador', userInfo.cedula]);
     }
+  }
+
+  cambiarModo(isModoOscuro: Boolean){
+    this.isModoOscuro = Boolean(isModoOscuro);
+    if(this.isModoOscuro){
+      this.login?.classList.remove("login-light");
+      this.login?.classList.add("login-black");
+
+      this.loginPart?.classList.remove("login-part-light");
+      this.loginPart?.classList.add("login-part");
+      return;
+    }
+    this.login?.classList.remove("login-black");
+    this.login?.classList.add("login-light");
+
+    this.loginPart?.classList.remove("login-part");
+    this.loginPart?.classList.add("login-part-light");
   }
 }

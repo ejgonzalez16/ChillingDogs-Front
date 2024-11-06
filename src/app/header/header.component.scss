@@ -8,6 +8,22 @@
     justify-content: space-between;
 }
 
+.nav-dark {
+    background-color: #212529 !important;
+} 
+
+.nav-light {
+    background-color: white !important;
+}
+
+.link-light{
+    color: white !important;
+}
+
+.link-dark{
+    color:#212529 !important;
+}
+
 .expandir{
   display: flex;
   justify-content: space-between;

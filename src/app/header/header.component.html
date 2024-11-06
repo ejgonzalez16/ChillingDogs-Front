@@ -1,5 +1,5 @@
-<div class="header">
-    <nav class="navbar navbar-dark bg-dark navbar-expand-lg expandir">
+<div class="header" id="header">
+    <nav class="navbar navbar-expand-lg expandir" id="navbar">
         <!-- 3 barritas del navbar responsive -->
         <button class="navbar-toggler black" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-expanded="false">
             <span class="navbar-toggler-icon"></span>
@@ -10,13 +10,13 @@
             <h1>Chilling Dogs</h1>
         </a>
         <!-- Si estamos en el landing, mostrar los enlaces a las secciones de la página -->
-        <ng-container *ngIf="landing">
+        <ng-container *ngIf="landing" >
           <div class="centrar">
               <div class="collapse navbar-collapse"> <!--Contiene el responsive de los elementos-->
                   <ul class="navbar-nav mx-auto">
-                      <li class="nav-item enlacesSecciones"><a href="#sobreNosotros" class="nav-link">Sobre Nosotros</a></li>
-                      <li class="nav-item enlacesSecciones"><a href="#servicios" class="nav-link">Nuestros Servicios</a></li>
-                      <li class="nav-item enlacesSecciones"><a href="#casosDeExito" class="nav-link">Casos de éxito</a></li>
+                      <li class="nav-item enlacesSecciones"><a href="#sobreNosotros" id="linkSobre"  class="nav-link link-light">Sobre Nosotros</a></li>
+                      <li class="nav-item enlacesSecciones"><a href="#servicios" id="linkServicios"  class="nav-link link-light">Nuestros Servicios</a></li>
+                      <li class="nav-item enlacesSecciones"><a href="#casosDeExito" id="linkCasos"  class="nav-link link-light">Casos de éxito</a></li>
                   </ul>
               </div>
 

@@ -60,8 +60,52 @@
   }
 }
 
+.login-part-light{
+  display: flex;
+  flex-direction: column;
+  height: 65%;
+  width: 100%;
+
+  h1{
+    margin-top: 30px;
+    text-align: center;
+  }
+
+  label{
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  input{
+    color: #A8ADB7FF;
+    background-color: white;
+    border-radius: 15px;
+    border: #6F7787FF 1px solid;
+    padding-left: 10px;
+  }
+}
+
 .login-black {
   background-color: #1E2128FF;
+  width: 50%;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1, label {
+    color: #FFFFFFFF;
+    font-weight: bold;
+  }
+
+  label{
+    font-size: 25px;
+    text-align: left;
+  }
+}
+
+.login-light{
+  background-color: white;
   width: 50%;
   min-height: 80vh;
   display: flex;
