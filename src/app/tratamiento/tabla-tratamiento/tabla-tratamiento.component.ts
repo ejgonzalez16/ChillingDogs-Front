@@ -1,8 +1,9 @@
 import {Component, Input} from '@angular/core';
 import { Mascota } from '../../modelo/mascota';
 import { MascotaService } from '../../service/mascota.service';
-import { AuthService } from '../../service/auth.service';
 import {Router} from "@angular/router";
+import {switchMap} from "rxjs";
+import {PerfilService} from "../../service/perfil.service";
 
 @Component({
   selector: 'app-tabla-tratamiento',
@@ -19,20 +20,21 @@ export class TablaTratamientoComponent {
 
   constructor(
     private mascotaService: MascotaService,
-    private authService: AuthService,
-    private router: Router) {}
+    private router: Router,
+    private perfilService: PerfilService) {}
 
   ngOnInit() {
-    // Verificar que el usuario esté logueado y sea veterinario o admin
-    this.authService.userInfo$.subscribe(usuario => {
-      console.log('userInfo', usuario);
-      this.veterinarioId = usuario.id;
-    });
-
-    // Obtener todas las mascotas
-    this.mascotaService.findAll().subscribe(mascotas => {
+    // Suscribirse a perfilService y cuando haya respuesta, obtener la lista de mascotas
+    // En un solo suscribe utilizando pipe
+    this.perfilService.perfilInfo$.pipe(
+      switchMap(perfil => {
+        if (perfil.rol !== 'VETERINARIO') {
+          this.redirectNotAuthorized();
+        }
+        return this.mascotaService.findAll();
+      })
+    ).subscribe(mascotas => {
       this.mascotas = mascotas;
-      console.log(mascotas)
     });
   }
 
@@ -56,5 +58,9 @@ export class TablaTratamientoComponent {
     } else {
       alert('La mascota no está activa, no puede realizarle un tratamiento');
     }
+  }
+
+  redirectNotAuthorized() {
+    this.router.navigate(['**']);
   }
 }

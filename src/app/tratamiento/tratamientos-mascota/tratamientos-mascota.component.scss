@@ -62,27 +62,6 @@ td{
     }
 }
 
-#btnVolver{
-    margin-top: 50px;
-    width: 15em;
-    height: 2.5em;
-    padding: 0 20px;
-    font-size: 20px;
-    line-height: 30px;
-    font-weight: 500;
-    color: var(--text-light);
-    background: var(--text-dark);
-    border: none;
-    border-radius: 30px;
-    margin-bottom: 50px;
-
-    &:hover{
-        background-color: white;
-        color: var(--text-dark);
-    }
-}
-
-
 #botonSinBorde{
     border: 0px;
     background-color: transparent;

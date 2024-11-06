@@ -46,7 +46,7 @@ export class CarruselComponent {
 
   verDetallesMascota(id: number) {
     console.log('Rol usuario:', this.rolUsuario);
-    if (this.rolUsuario === 'cliente') {
+    if (this.rolUsuario === 'CLIENTE') {
       this.router.navigate(['/mascotas/detalles', id]);
     } else {
       this.router.navigate(['/mascotas/buscar', id]);

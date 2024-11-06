@@ -31,8 +31,8 @@ export class DashboardComponent implements OnDestroy {
   dataMascotas!: ChartData[]
   view:[number, number] = [700, 400];
   colorScheme = {
-    name: 'customScheme',   
-    selectable: true,       
+    name: 'customScheme',
+    selectable: true,
     group: ScaleType.Ordinal,  // Usar la enumeración correcta
     domain: ['#FFFFFF', '#b2f0ff']
   };
@@ -87,28 +87,28 @@ export class DashboardComponent implements OnDestroy {
       topDrogas$
     ]).subscribe({
       next: (resultados) => {
-        this.totalTratamientos = resultados[0];
-        this.totalTratamientosMes = resultados[1];
-        this.medicamentosMes = resultados[2];
-        this.dataMedicamentosMes =  transformarMedicamentos(resultados[2]);
-        this.totalVetActivos = resultados[3];
-        this.totalVetInactivos = resultados[4];
-        this.dataVets = tranformarDataVets(resultados[3], resultados[4]);
-        this.totalMascotas = resultados[5];
-        this.totalMascotasTratamiento = resultados[6];
+        this.totalTratamientos = <number>resultados[0];
+        this.totalTratamientosMes = <number>resultados[1];
+        this.medicamentosMes = <MedicamentosMes[]>resultados[2];
+        this.dataMedicamentosMes =  transformarMedicamentos(<MedicamentosMes[]>resultados[2]);
+        this.totalVetActivos = <number>resultados[3];
+        this.totalVetInactivos = <number>resultados[4];
+        this.dataVets = tranformarDataVets(<number>resultados[3], <number>resultados[4]);
+        this.totalMascotas = <number>resultados[5];
+        this.totalMascotasTratamiento = <number>resultados[6];
         this.dataMascotas = [
           {
             name: 'Mascotas en tratamiento',
-            value: resultados[6]
+            value: <number>resultados[6]
           },
           {
             name: 'Mascotas sin tratamiento actual',
             value: resultados[5] - resultados[6]
           }
         ]
-        this.ventas = resultados[7];
-        this.ganancias = resultados[8];
-        this.topMedicamentos = resultados[9];
+        this.ventas = <number>resultados[7];
+        this.ganancias = <number>resultados[8];
+        this.topMedicamentos = <string[]>resultados[9];
       },
       error: (error) => {
         console.error('Error al obtener los datos del dashboard', error);

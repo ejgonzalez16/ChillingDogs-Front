@@ -12,8 +12,9 @@ import { LightModeServiceService } from './service/light-mode-service.service';
 export class AppComponent {
   showHeaderFooter = true;
   title = 'ChillingDogsFrontend';
-  tipoLogueo: string = "guest";
+  tipoLogueo: string = "GUEST";
   @ViewChild(HeaderComponent) header!: HeaderComponent;
+
 
   constructor(private router: Router, private lightModeService: LightModeServiceService) { 
     this.router.events.subscribe((event) => {

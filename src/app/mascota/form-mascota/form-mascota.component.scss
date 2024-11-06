@@ -9,25 +9,6 @@ main{
     min-height: 50vh;
 }
 
-#btnVolver {
-    margin-top: 50px;
-    margin-bottom: 50px;
-    width: 15em;
-    height: 2.5em;
-    padding: 0 20px;
-    font-size: 20px;
-    line-height: 30px;
-    font-weight: 500;
-    color: var(--color-3);
-    background: var(--secondary-color);
-    border: none;
-    border-radius: 30px;
-
-    &:hover{
-        background-color: #7bdff8;
-    }
-}
-
 .contenedorForm{
     background-color: var(--color-4);
     width: 100%;
@@ -52,7 +33,7 @@ input {
       -webkit-appearance: none;
       margin: 0;
     }
-  
+
     &[type=number] {
       -moz-appearance: textfield;
     }
@@ -69,7 +50,7 @@ section{
     }
 
 }
-    
+
 
 td{
     padding-top: 1em;
@@ -97,7 +78,7 @@ button {
     background: green;
 }
 
-#fotoRegistro {
+.fotoRegistro {
     height: 90%;
     width: 90%;
 }
@@ -115,20 +96,20 @@ input{
     border-radius: 15px;
 }
 
-#btnRegistro{
+.btnRegistro{
     margin-top: 1em;
-    padding: 0 20px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-family: Chewy; 
-    font-size: 25px; 
-    line-height: 56px; 
-    font-weight: 400; 
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Chewy;
+    font-size: 25px;
+    line-height: 56px;
+    font-weight: 400;
     color: #FFFFFFFF;
     background: #171A1FFF;
-    opacity: 1; 
-    border: none; 
+    opacity: 1;
+    border: none;
     border-radius: 30px;
     width: 18em;
 

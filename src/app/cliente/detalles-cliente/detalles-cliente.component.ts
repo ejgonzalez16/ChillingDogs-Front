@@ -3,9 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import {Cliente} from "../../modelo/cliente";
 import {ClienteService} from "../../service/cliente.service";
 import { Router } from '@angular/router';
-import { merge, mergeMap } from 'rxjs';
+import {catchError, merge, mergeMap} from 'rxjs';
 import { MascotaService } from '../../service/mascota.service';
-import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'app-detalles-cliente',
@@ -19,17 +18,9 @@ export class DetallesClienteComponent {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private clienteService: ClienteService,
-              private mascotaService: MascotaService,
-              private authService: AuthService) {}
+              private mascotaService: MascotaService) {}
 
   ngOnInit() {
-    // Verificar que el usuario esté logueado y sea veterinario o admin
-    this.authService.userInfo$.subscribe(userInfo => {
-      if(userInfo.rol !== 'veterinario' && userInfo.rol !== 'admin') {
-        this.router.navigate(['/login']);
-      }
-    });
-
     // Obtener la cedula del cliente de la URL y buscarlo en la base de datos
     this.route.paramMap.subscribe(params => {
       this.cedula = params.get('cedula')!;
@@ -37,6 +28,12 @@ export class DetallesClienteComponent {
         mergeMap(cliente => {
           this.cliente = cliente;
           return this.mascotaService.findByClienteCedula(this.cedula);
+        }),
+        catchError(error => {
+          console.log(error);
+          // TODO: Redirigir a página de error de que no tiene permisos
+          this.redirectNotAuthorized();
+          return [];
         })
       ).subscribe(mascotas => {
           if(this.cliente != undefined) {
@@ -56,5 +53,13 @@ export class DetallesClienteComponent {
         this.router.navigate(['/clientes/buscar']);
       }
     );
+  }
+
+  goBack() {
+    window.history.back();
+  }
+
+  redirectNotAuthorized() {
+    this.router.navigate(['**']);
   }
 }

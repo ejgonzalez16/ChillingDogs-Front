@@ -8,32 +8,38 @@ import { Observable } from 'rxjs';
 })
 export class MascotaService {
 
+  baseUrl = 'http://localhost:8099/mascotas';
+  // baseUrl = 'https://chillingdogsback.azurewebsites.net/mascotas';
+
   constructor(
     private http: HttpClient
   ) { }
 
   findAll(): Observable<Mascota[]> {
-    return this.http.get<Mascota[]>('http://localhost:8099/mascotas');
+    return this.http.get<Mascota[]>(this.baseUrl);
   }
 
   findById(id: number): Observable<Mascota> {
-    return this.http.get<Mascota>('http://localhost:8099/mascotas/'+id);
+    return this.http.get<Mascota>(`${this.baseUrl}/`+id);
   }
 
   findByClienteCedula(cedula: string): Observable<Mascota[]> {
-    return this.http.get<Mascota[]>('http://localhost:8099/mascotas/cliente/'+cedula);
+    return this.http.get<Mascota[]>(`${this.baseUrl}/cliente/`+cedula);
   }
 
-  add(mascota: Mascota){
-    this.http.post('http://localhost:8099/mascotas', mascota).subscribe();
+  add(mascota: Mascota): Observable<any> {
+    return this.http.post(this.baseUrl, mascota);
   }
 
-  update(mascota: Mascota){
-    console.log(mascota);
-    this.http.put('http://localhost:8099/mascotas', mascota).subscribe();
+  update(mascota: Mascota): Observable<any> {
+    return this.http.put(this.baseUrl, mascota);
   }
 
   deleteById(id: number){
-    this.http.delete('http://localhost:8099/mascotas/'+id).subscribe();
+    this.http.delete(`${this.baseUrl}/`+id).subscribe();
+  }
+
+  findByCliente(): Observable<Mascota[]> {
+    return this.http.get<Mascota[]>(`${this.baseUrl}/cliente`);
   }
 }

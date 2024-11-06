@@ -1,7 +1,7 @@
 <main>
-  <!-- Cambia el título dependiendo si rolUsuario es 'veterinario' o 'usuario' -->
+  <!-- Cambia el título dependiendo si rolUsuario es 'VETERINARIO' o 'usuario' -->
   <h1 class="text-center fw-bold fs-1 mb-5">
-    {{ rolUsuario === 'veterinario' ? 'Peluditos que has tratado' : 'Tus peluditos registrados' }}
+    {{ rolUsuario === 'VETERINARIO' ? 'Peluditos que has tratado' : 'Tus peluditos registrados' }}
   </h1>
   <carrusel [rolUsuario]="rolUsuario" [mascotas]="mascotas"></carrusel>
 </main>

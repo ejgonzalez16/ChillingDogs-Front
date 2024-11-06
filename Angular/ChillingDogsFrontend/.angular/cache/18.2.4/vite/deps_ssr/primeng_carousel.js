@@ -1,14 +1,5 @@
 import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
-  Footer,
-  Header,
-  ObjectUtils,
-  PrimeNGConfig,
-  PrimeTemplate,
-  SharedModule,
-  UniqueComponentId
-} from "./chunk-372AD3O2.js";
-import {
   CommonModule,
   DOCUMENT,
   NgClass,
@@ -18,6 +9,15 @@ import {
   NgTemplateOutlet,
   isPlatformBrowser
 } from "./chunk-5TU6W3P2.js";
+import {
+  Footer,
+  Header,
+  ObjectUtils,
+  PrimeNGConfig,
+  PrimeTemplate,
+  SharedModule,
+  UniqueComponentId
+} from "./chunk-372AD3O2.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,

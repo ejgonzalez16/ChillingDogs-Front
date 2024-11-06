@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import {ClienteService} from "../../service/cliente.service";
 import { ActivatedRoute, Router } from '@angular/router';
 import { mergeMap, switchMap } from 'rxjs';
-import {AuthService} from "../../service/auth.service";
 import { Veterinario } from '../../modelo/veterinario';
 import { VeterinarioService } from '../../service/veterinario.service';
+import {PerfilService} from "../../service/perfil.service";
 
 @Component({
   selector: 'app-tabla-veterinario',
@@ -17,27 +17,24 @@ export class TablaVeterinarioComponent {
 
   constructor(
     private veterinarioService: VeterinarioService,
-    private authService: AuthService,
     private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private perfilService: PerfilService) {
   }
 
   ngOnInit() {
-    // Verificar que el usuario esté logueado y sea veterinario o admin
-    this.authService.userInfo$.subscribe(userInfo => {
-      if(userInfo.rol !== 'admin') {
-        this.router.navigate(['/login']);
-      }
-      this.cedulaAdmin = userInfo.cedula;
-    });
-
-    // Obtener la lista de clientes
-    this.route.paramMap.subscribe(params => {
-      this.veterinarioService.findAll().subscribe(veterinarios => {
-        this.veterinarios = veterinarios;
-        console.log(veterinarios)
+    // Suscribirse a perfilService y cuando haya respuesta, obtener la lista de veterinarios
+    // En un solo suscribe utilizando pipe
+    this.perfilService.perfilInfo$.pipe(
+      switchMap(perfil => {
+        if (perfil.rol !== 'ADMIN') {
+          this.redirectNotAuthorized();
+        }
+        return this.veterinarioService.findAll();
       })
-    })
+    ).subscribe(veterinarios => {
+      this.veterinarios = veterinarios;
+    });
   }
 
   eliminarVeterinario(id: number) {
@@ -58,6 +55,10 @@ export class TablaVeterinarioComponent {
   goToDashboard() {
     console.log("Redirigiendo al dashboard " + this.cedulaAdmin);
     // Redirigir al dashboard con el userInfo.cedula del administrador
-    this.router.navigate(['/administrador', this.cedulaAdmin]);
+    this.router.navigate(['/administrador']);
+  }
+
+  redirectNotAuthorized() {
+    this.router.navigate(['**']);
   }
 }

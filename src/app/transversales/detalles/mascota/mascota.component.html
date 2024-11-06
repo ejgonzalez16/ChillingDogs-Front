@@ -1,5 +1,5 @@
-<section id="seccionPeludo">
-    <h1>Estado de {{mascota.nombre}}</h1>
+<section *ngIf="mascota" id="seccionPeludo">
+    <h1 id="nombreMascota">Estado de {{mascota.nombre}}</h1>
     <div class = "estadoPeludo">
         <table>
             <tbody>
@@ -11,8 +11,8 @@
                     Estado
                 </td>
                 <td>
-                    <button *ngIf="mascota.estado == 'Activo'" class = "estadoActivo">Activo</button>
-                    <button *ngIf="mascota.estado == 'Inactivo'" class = "estadoInactivo">Inactivo</button>
+                    <button *ngIf="mascota.estado == 'Activo'" class = "estadoMascota estadoActivo">Activo</button>
+                    <button *ngIf="mascota.estado == 'Inactivo'" class = "estadoMascota estadoInactivo">Inactivo</button>
                 </td>
             </tr>
             <tr>
