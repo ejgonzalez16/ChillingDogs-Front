@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { ReseniasService } from '../../service/resenias.service';
 import { Resenia } from '../../Resenia';
 import {PerfilService} from "../../service/perfil.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import { LightModeServiceService } from '../../service/light-mode-service.service';
 
 @Component({
   selector: 'landing-main',
@@ -14,6 +15,11 @@ export class MainComponent {
   chatAbierto: boolean = false;
   imagenChat: string = 'assets/images/simbolo_chat.png';
   isFading: boolean = false;
+  presentacion!: HTMLElement | null;
+  sobreNosotros!: HTMLElement | null;
+  servicios!: HTMLElement | null;
+  casosDeExito!: HTMLElement | null;
+  isModoOscuro: boolean = true;
 
   responsiveOptions: any[] = [
     {
@@ -31,7 +37,9 @@ export class MainComponent {
   constructor(
     private reseniaService: ReseniasService,
     private perfilService: PerfilService,
-    private router: Router
+    private router: Router,
+    private lightModeService: LightModeServiceService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -47,6 +55,21 @@ export class MainComponent {
         this.resenias = this.reseniaService.findAll();
       }
     });
+    this.lightModeService.registrarLandingComponent(this);
+    this.presentacion = document.getElementById('presentacion');
+    this.sobreNosotros = document.getElementById('sobreNosotros');
+    this.servicios = document.getElementById('servicios');
+    this.casosDeExito = document.getElementById('casosDeExito');
+    this.route.queryParams.subscribe(params => {
+      
+      this.isModoOscuro = params['isModoOscuro'] === 'true';
+      if(!this.isModoOscuro && params['isModoOscuro']){
+        this.presentacion?.classList.replace('seccionDorada', 'seccionDorada-light');
+        this.sobreNosotros?.classList.replace('seccionAzul', 'seccionAzul-light');
+        this.servicios?.classList.replace('seccionDorada', 'seccionDorada-light');
+        this.casosDeExito?.classList.replace('seccionAzul', 'seccionAzul-light');
+      }
+    });
   }
 
   openChat(){
@@ -58,5 +81,19 @@ export class MainComponent {
       this.imagenChat = 'assets/images/simbolo_chat_x.png';
   }
 
+  }
+
+  cambiarModo(isModoOscuro: boolean) {  
+    if(isModoOscuro){
+      this.presentacion?.classList.replace('seccionDorada-light', 'seccionDorada');
+      this.sobreNosotros?.classList.replace('seccionAzul-light', 'seccionAzul');
+      this.servicios?.classList.replace('seccionDorada-light', 'seccionDorada');
+      this.casosDeExito?.classList.replace('seccionAzul-light', 'seccionAzul');
+      return;
+    }
+    this.presentacion?.classList.replace('seccionDorada', 'seccionDorada-light');
+    this.sobreNosotros?.classList.replace('seccionAzul', 'seccionAzul-light');
+    this.servicios?.classList.replace('seccionDorada', 'seccionDorada-light');
+    this.casosDeExito?.classList.replace('seccionAzul', 'seccionAzul-light');
   }
 }

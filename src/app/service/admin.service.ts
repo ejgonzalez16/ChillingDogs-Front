@@ -10,8 +10,8 @@ import {Usuario} from "../modelo/usuario";
 })
 export class AdminService {
 
-  baseUrl = 'http://localhost:8099/admin';
-  // baseUrl = 'https://chillingdogsback.azurewebsites.net/admin';
+  //baseUrl = 'http://localhost:8099/admin';
+  baseUrl = 'https://chillingdogsback.azurewebsites.net/admin';
 
   constructor(private http: HttpClient) { }
 

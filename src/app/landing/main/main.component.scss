@@ -41,11 +41,105 @@ section {
 
 .seccionDorada{
     background: var(--primary-color);
+
+    h1, h2, h3, h4, h5, h6 {
+        color: #171a1f !important;
+    }
+
+    p{
+        color: #171a1f;
+    }
+
+    button{
+        background-color: #171a1f !important;
+        color: white !important;
+
+        &:hover{
+            background-color: white !important;
+            color: #171a1f !important;
+        }
+    }
+}
+
+
+.seccionDorada-light{
+    background: var(--primary-color);
+
+    h1, h2, h3, h4, h5, h6 {
+        color: white !important;
+    }
+
+    p{
+        color: white !important;
+    }
+
+    button{
+        background-color: white !important;
+        color:#171a1f !important;
+
+        &:hover{
+            background-color: #171a1f !important;
+            color: white !important;
+        }
+    }
+
+    .descripcionServicio{
+        width: 345px;
+        height: 349px;
+        background: #c2b131cc !important;
+        border-radius: 8px;
+        box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f;
+    }
 }
 
 .seccionAzul {
     background: var(--secondary-color);
     padding: 40px 0;
+
+    h1, h2, h3, h4, h5, h6 {
+        color: #171a1f !important;
+    }
+
+    p{
+        color: #171a1f;
+    }
+
+    button{
+        background-color: #171a1f !important;
+        color: white !important;
+
+        &:hover{
+            background-color: white !important;
+            color: #171a1f !important;
+        }
+    }    
+}
+
+.seccionAzul-light {
+    background: var(--secondary-color-dark);
+    padding: 40px 0;
+
+    h1, h2, h3, h4, h5, h6 {
+        color: white !important;
+    }
+
+    p{
+        color: white;
+    }
+
+    button{
+        background-color: white !important;
+        color:#171a1f !important;
+
+        &:hover{
+            background-color: #171a1f !important;
+            color: white !important;
+        }
+    }
+
+    div{
+        color: white!important;
+    }
 }
 
 #presentacion {
@@ -59,6 +153,14 @@ section {
     justify-content: center;
     margin: 50px;
     width: 70%;
+
+    h1{
+        color: black;
+    }
+
+    p{
+        color: black;
+    }
 }
 
 #presentacion h1{
@@ -89,11 +191,11 @@ section {
     border: none;
     border-radius: 30px;
     margin-top: 20px;
-}
 
-.present-button:hover{
-    background-color: white;
-    color: var(--text-dark);
+    &:hover{
+        background-color: white;
+        color: var(--text-dark);
+    }
 }
 
 .imagenesPresentacion {

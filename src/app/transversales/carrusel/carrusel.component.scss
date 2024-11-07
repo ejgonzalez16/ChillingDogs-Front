@@ -43,3 +43,45 @@ a {
     color: var(--text-dark);
     text-decoration: none;
 }
+
+.carrusel-light{
+    button{
+        color: white !important;
+        border-color: white;
+
+        svg{
+            fill: white !important;
+        }
+
+        &:hover{
+            background-color: white !important;
+            color: var(--text-dark) !important;
+    
+            svg{
+                fill:  rgb(0, 0, 0) !important;
+            }
+        }
+    }
+
+   
+}
+
+.carrusel-dark{
+    button{
+        color: #6C757D !important;
+        border-color: #6C757D;
+
+        svg{
+            fill:  #6C757D !important;
+        }
+
+        &:hover{
+            background-color: #6C757D !important;
+            color: white !important;
+    
+            svg{
+                fill: #000000 !important;
+            }
+        }
+    } 
+}

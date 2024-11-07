@@ -11,8 +11,8 @@ import { TratamientoDTO } from '../modelo/tratamientoDTO';
 })
 export class TratamientoService {
 
-  baseUrl = 'http://localhost:8099/tratamientos';
-  // baseUrl = 'https://chillingdogsback.azurewebsites.net/tratamientos';
+  //baseUrl = 'http://localhost:8099/tratamientos';
+  baseUrl = 'https://chillingdogsback.azurewebsites.net/tratamientos';
 
   constructor(private http: HttpClient) { }
 

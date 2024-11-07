@@ -1,5 +1,5 @@
 import {Component, Inject, Input, PLATFORM_ID} from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {VeterinarioService} from "../../service/veterinario.service";
 import {AdminService} from "../../service/admin.service";
 import {userInfo} from "node:os";
@@ -17,13 +17,13 @@ import { LightModeServiceService } from '../../service/light-mode-service.servic
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+  isModoOscuro!: boolean;
 
   usuario: Usuario = {
     username: '',
     password: ''
   };
   tipoLogin: string = 'CLIENTE';
-  isModoOscuro!: boolean;
   cedula: string = '';
   contrasena: string = '';
   loginError: string = '';
@@ -38,6 +38,7 @@ export class LoginComponent {
     private veterinarioService: VeterinarioService,
     private adminService: AdminService,
     private perfilService: PerfilService,
+    private route: ActivatedRoute,
     private lightModeService: LightModeServiceService) { }
 
   ngOnInit(): void {
@@ -54,6 +55,18 @@ export class LoginComponent {
     this.login = document.getElementById("login");
     this.loginPart = document.getElementById("loginPart");
     this.lightModeService.registrarLoginComponent(this);
+    this.route.queryParams.subscribe(params => {
+      
+      this.isModoOscuro = params['isModoOscuro'] === 'true';
+      if(!this.isModoOscuro){
+        this.login?.classList.remove("login-black");
+        this.login?.classList.add("login-light");
+  
+        this.loginPart?.classList.remove("login-part");
+        this.loginPart?.classList.add("login-part-light");
+      }
+    });
+  
   }
 
   // Método para manejar el login

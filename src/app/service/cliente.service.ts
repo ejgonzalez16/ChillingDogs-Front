@@ -10,8 +10,8 @@ import {Usuario} from "../modelo/usuario";
 })
 export class ClienteService {
 
-  baseUrl = 'http://localhost:8099/clientes';
-  // baseUrl = 'https://chillingdogsback.azurewebsites.net/clientes';
+  //baseUrl = 'http://localhost:8099/clientes';
+  baseUrl = 'https://chillingdogsback.azurewebsites.net/clientes';
 
   constructor(private http: HttpClient) { }
 

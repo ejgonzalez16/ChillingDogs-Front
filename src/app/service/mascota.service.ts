@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class MascotaService {
 
-  baseUrl = 'http://localhost:8099/mascotas';
-  // baseUrl = 'https://chillingdogsback.azurewebsites.net/mascotas';
+  //baseUrl = 'http://localhost:8099/mascotas';
+  baseUrl = 'https://chillingdogsback.azurewebsites.net/mascotas';
 
   constructor(
     private http: HttpClient

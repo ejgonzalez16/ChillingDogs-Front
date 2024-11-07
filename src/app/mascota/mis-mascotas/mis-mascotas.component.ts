@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { MascotaService } from '../../service/mascota.service';
 import { Mascota } from '../../modelo/mascota';
@@ -7,6 +7,8 @@ import {ClienteService} from "../../service/cliente.service";
 import {catchError, map, mergeMap, of, Subject, switchMap, takeUntil} from "rxjs";
 import {TratamientoService} from "../../service/tratamiento.service";
 import {PerfilService} from "../../service/perfil.service";
+import { LightModeServiceService } from '../../service/light-mode-service.service';
+import { CarruselComponent } from '../../transversales/carrusel/carrusel.component';
 
 @Component({
   selector: 'app-mis-mascotas',
@@ -20,14 +22,17 @@ export class MisMascotasComponent {
   cliente!: Cliente;
   mascotas!: Mascota[];
   rolUsuario: string = 'clientePending';
-
+  main: HTMLElement | null = null;
+  @ViewChild(CarruselComponent) carruselComponent!: CarruselComponent;
+ 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private mascotaService: MascotaService,
     private clienteService: ClienteService,
     private tratamientoService: TratamientoService,
-    private perfilService: PerfilService
+    private perfilService: PerfilService,
+    private lightModeService: LightModeServiceService
   ) {}
 
   ngOnInit(){
@@ -60,9 +65,20 @@ export class MisMascotasComponent {
     ).subscribe(mascotas => {
       this.mascotas = mascotas;
     });
+    this.lightModeService.registrarMisMascotasComponent(this);
+    this.main = document.getElementById('main');
   }
 
   redirectNotAuthorized() {
     this.router.navigate(['**']);
+  }
+
+  cambiarModo(isModoOscuro: boolean) {  
+    this.carruselComponent.cambiarModo(isModoOscuro);
+    if(isModoOscuro){
+      this.main?.classList.replace('main-light', 'main-dark');
+      return;
+    }
+    this.main?.classList.replace('main-dark', 'main-light');
   }
 }

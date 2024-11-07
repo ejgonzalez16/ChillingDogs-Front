@@ -10,8 +10,8 @@ import {Perfil} from "../modelo/perfil";
 })
 export class VeterinarioService {
 
-  baseUrl = 'http://localhost:8099/veterinarios';
-  // baseUrl = 'https://chillingdogsback.azurewebsites.net/veterinarios';
+  //baseUrl = 'http://localhost:8099/veterinarios';
+  baseUrl = 'https://chillingdogsback.azurewebsites.net/veterinarios';
 
   constructor(private http: HttpClient) { }
 

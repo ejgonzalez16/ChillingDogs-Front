@@ -16,6 +16,8 @@ export class CarruselComponent {
   @Input()
   rolUsuario!: string;
 
+  carrusel: HTMLElement | null = null;
+
   responsiveOptions: any[] = [
     {
         breakpoint: '1099px',
@@ -33,6 +35,10 @@ export class CarruselComponent {
     private router: Router,
     private tratamientoService: TratamientoService
   ) { }
+
+  ngOnInit(): void{
+    this.carrusel = document.getElementById('carrusel');
+  }
 
   getBadgeClass(status: string) {
     switch (status.toLowerCase()) {
@@ -61,5 +67,13 @@ export class CarruselComponent {
     this.tratamientoService.deleteById(id);
     // Eliminar la mascota de la lista
     this.mascotas.splice(this.mascotas.findIndex(mascota => mascota.id === id), 1);
+  }
+
+  cambiarModo(isModoOscuro: boolean){
+    if(isModoOscuro){
+      this.carrusel?.classList.replace('carrusel-light', 'carrusel-dark');
+      return;
+    }
+    this.carrusel?.classList.replace('carrusel-dark', 'carrusel-light');
   }
 }

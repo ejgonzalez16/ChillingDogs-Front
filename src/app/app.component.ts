@@ -14,8 +14,9 @@ export class AppComponent {
   title = 'ChillingDogsFrontend';
   tipoLogueo: string = "GUEST";
   @ViewChild(HeaderComponent) header!: HeaderComponent;
+  isModoOscuro: boolean = true;
 
-
+ 
   constructor(private router: Router, private lightModeService: LightModeServiceService) { 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -27,7 +28,10 @@ export class AppComponent {
   }
 
   cambiarModo(isModoOscuro: Boolean){
+    this.isModoOscuro = Boolean(isModoOscuro);
     this.header.cambiarModo(isModoOscuro);
     this.lightModeService.cambiarModoLogin(Boolean(isModoOscuro));
+    this.lightModeService.cambiarModoLanding(Boolean(isModoOscuro));
+    this.lightModeService.cambiarModoMisMacotas(Boolean(isModoOscuro));
   }
 }

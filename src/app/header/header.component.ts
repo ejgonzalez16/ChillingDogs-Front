@@ -14,11 +14,11 @@ import {PerfilService} from "../service/perfil.service";
 export class HeaderComponent {
   @Input()
   landing: boolean = false;
-  isModoOscuro: boolean = true;
   navbar!: HTMLElement | null;
   nosotros!: HTMLElement | null;
   servicios!: HTMLElement | null;
   casos!: HTMLElement | null;
+  header: HTMLElement | null = null;
 
   perfil: Perfil = {
     nombre: '',
@@ -35,14 +35,16 @@ export class HeaderComponent {
     this.perfilService.perfilInfo$.subscribe(perfil => {
       this.perfil = perfil;
     });
+  }
+
+  ngAfterViewInit(): void {
     this.navbar = document.getElementById("navbar");
     this.navbar?.classList.add("nav-dark");
 
-    this.nosotros = document.getElementById("linkSobre");
-
-    this.servicios = document.getElementById("linkServicios");
-
-    this.casos = document.getElementById("linkCasos");
+    this.nosotros = document.getElementById("nosotros");
+    this.servicios = document.getElementById("servicios");
+    this.casos = document.getElementById("casos");
+    this.header = document.getElementById("header");
   }
 
   logout(): void {
@@ -51,38 +53,32 @@ export class HeaderComponent {
   }
 
   goToLogin(): void {
-    this.router.navigate(['/login']);
+    var isModoOscuro = true;
+    if(this.navbar?.classList.contains("nav-light")) isModoOscuro = false;
+    this.router.navigate(['/login'], { queryParams: { isModoOscuro: isModoOscuro } });
   }
 
   goToHome(): void {
-    this.router.navigate(['/landing']);
+    var isModoOscuro = true;
+    if(this.navbar?.classList.contains("nav-light")) isModoOscuro = false;
+    this.router.navigate(['/landing'], { queryParams: { isModoOscuro: isModoOscuro } });
   }
 
   cambiarModo(isModoOscuro: Boolean){
     if(isModoOscuro){
-      this.navbar?.classList.remove("nav-light");
-      this.navbar?.classList.add("nav-dark");
+      this.navbar?.classList.replace("nav-light", "nav-dark");
 
-      this.nosotros?.classList.remove("link-dark");
-      this.nosotros?.classList.add("link-light");
-
-      this.servicios?.classList.remove("link-dark");
-      this.servicios?.classList.add("link-light");
-
-      this.casos?.classList.remove("link-dark");
-      this.casos?.classList.add("link-light");
+      this.nosotros?.classList.replace("link-dark", "link-light");
+      this.servicios?.classList.replace("link-dark", "link-light");
+      this.casos?.classList.replace("link-dark", "link-light");
+      this.header?.classList.replace("header-light", "header-dark")
       return;
     }
-    this.navbar?.classList.remove("nav-dark");
-    this.navbar?.classList.add("nav-light");
+    this.navbar?.classList.replace("nav-dark", "nav-light");
 
-    this.nosotros?.classList.remove("link-light");
-    this.nosotros?.classList.add("link-dark");
-
-    this.servicios?.classList.remove("link-light");
-    this.servicios?.classList.add("link-dark");
-
-    this.casos?.classList.remove("link-light");
-    this.casos?.classList.add("link-dark");
+    this.nosotros?.classList.replace("link-light", "link-dark");
+    this.servicios?.classList.replace("link-light", "link-dark");
+    this.casos?.classList.replace("link-light", "link-dark");
+    this.header?.classList.replace("header-dark", "header-light")
   }
 }
