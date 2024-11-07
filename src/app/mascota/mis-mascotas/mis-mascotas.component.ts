@@ -67,6 +67,13 @@ export class MisMascotasComponent {
     });
     this.lightModeService.registrarMisMascotasComponent(this);
     this.main = document.getElementById('main');
+    this.route.queryParams.subscribe(params => {
+      
+      var isModoOscuro = params['isModoOscuro'] === 'true';
+      if(!isModoOscuro && params['isModoOscuro']){
+        this.main?.classList.replace('main-dark', 'main-light');
+      }
+    });
   }
 
   redirectNotAuthorized() {

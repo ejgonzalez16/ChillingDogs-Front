@@ -49,7 +49,9 @@ export class HeaderComponent {
 
   logout(): void {
     this.perfilService.logout();
-    this.router.navigate(['/login']);
+    var isModoOscuro = true;
+    if(this.navbar?.classList.contains("nav-light")) isModoOscuro = false;
+    this.router.navigate(['/login'], { queryParams: { isModoOscuro: isModoOscuro } });
   }
 
   goToLogin(): void {

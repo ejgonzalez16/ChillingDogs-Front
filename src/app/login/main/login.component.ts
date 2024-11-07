@@ -58,7 +58,7 @@ export class LoginComponent {
     this.route.queryParams.subscribe(params => {
       
       this.isModoOscuro = params['isModoOscuro'] === 'true';
-      if(!this.isModoOscuro){
+      if(!this.isModoOscuro && params['isModoOscuro']){
         this.login?.classList.remove("login-black");
         this.login?.classList.add("login-light");
   
@@ -91,7 +91,9 @@ export class LoginComponent {
         }),
         tap(() => {
           // Redirigir a la página correspondiente
-          this.router.navigate(['/mis-mascotas']);
+          var isModoOscuro = true;
+          if(this.login?.classList.contains("login-light")) isModoOscuro = false;
+          this.router.navigate(['/mis-mascotas'], { queryParams: { isModoOscuro: isModoOscuro } });
         }),
         catchError(error => {
           this.loginError = 'Cliente no encontrado';
