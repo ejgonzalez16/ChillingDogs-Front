@@ -21,19 +21,6 @@ export class FooterComponent {
       this.rolUsuario = perfil.rol;
     });
     this.footerElement = document.getElementById('footer');
-    this.route.queryParams.subscribe(params => {
-      
-      var isModoOscuro = params['isModoOscuro'] === 'true';
-      if(!isModoOscuro && params['isModoOscuro']){
-        if(this.footerElement){
-          this.footerElement.classList.replace('footer', 'light-footer');
-          const cambiarModoBtn = document.getElementById("cambiarModoBtn") as HTMLInputElement;
-          cambiarModoBtn.checked = false;
-          this.isModoOscuro = false;
-        }
-        
-      }
-    });
   }
 
   isModoOscuro = true;

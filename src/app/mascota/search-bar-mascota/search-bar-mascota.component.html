@@ -1,4 +1,4 @@
-<main>
+<main [ngClass]="isModoOscuro ? 'main-dark' : 'main-light'">
     <h1>¡Revisa el estado de un peludito!</h1>
     <form  (ngSubmit)="onSubmit()" #buscarForm="ngForm" >
         <input type="text" [(ngModel)]="nombrePerro" name="nombrePerro" placeholder="Nombre del perro..." id="nombrePerroField" required>

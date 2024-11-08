@@ -60,16 +60,12 @@ export class MainComponent {
     this.sobreNosotros = document.getElementById('sobreNosotros');
     this.servicios = document.getElementById('servicios');
     this.casosDeExito = document.getElementById('casosDeExito');
-    this.route.queryParams.subscribe(params => {
-      
-      this.isModoOscuro = params['isModoOscuro'] === 'true';
-      if(!this.isModoOscuro && params['isModoOscuro']){
-        this.presentacion?.classList.replace('seccionDorada', 'seccionDorada-light');
-        this.sobreNosotros?.classList.replace('seccionAzul', 'seccionAzul-light');
-        this.servicios?.classList.replace('seccionDorada', 'seccionDorada-light');
-        this.casosDeExito?.classList.replace('seccionAzul', 'seccionAzul-light');
-      }
-    });
+    if(!this.lightModeService.isModoOscuro){
+      this.presentacion?.classList.replace('seccionDorada', 'seccionDorada-light');
+      this.sobreNosotros?.classList.replace('seccionAzul', 'seccionAzul-light');
+      this.servicios?.classList.replace('seccionDorada', 'seccionDorada-light');
+      this.casosDeExito?.classList.replace('seccionAzul', 'seccionAzul-light');
+    }
   }
 
   openChat(){

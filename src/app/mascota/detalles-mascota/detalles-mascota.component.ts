@@ -37,21 +37,14 @@ export class DetallesMascotaComponent {
         this.redirectNotAuthorized();
       });
     this.main = document.getElementById("class");
-    this.route.queryParams.subscribe(params => {
-    
-      var isModoOscuro = params['isModoOscuro'] === 'true';
-      if(!isModoOscuro && params['isModoOscuro']){
-        this.main?.classList.replace("main-dark", "main-light");
-      }
-    });
-    
+    if(!this.lightModeService.isModoOscuro){
+      this.main?.classList.replace("main-dark", "main-light");
+    }
   }
 
   eliminarCliente(id: number) {
     this.mascotaService.deleteById(id);
-    var isModoOscuro = true;
-    if(this.main?.classList.contains("main-light")) isModoOscuro = false;
-    this.router.navigate(['/clientes/buscar'],  { queryParams: { isModoOscuro: isModoOscuro } });
+    this.router.navigate(['/clientes/buscar']);
   }
 
   goBack() {
@@ -64,7 +57,6 @@ export class DetallesMascotaComponent {
   }
 
   cambiarModo(isModoOscuro: boolean){
-    alert("a")
     if(isModoOscuro){
       this.main?.classList.replace("main-light", "main-dark");
       return;

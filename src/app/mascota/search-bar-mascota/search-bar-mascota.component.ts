@@ -11,6 +11,7 @@ export class SearchBarMascotaComponent {
   nombrePerro!: string;
   filtroEstado: string = "";
   mascotas: Mascota[] = [];
+  isModoOscuro: boolean = true;
 
   @Output() actualizarLista = new EventEmitter<{nombre: string, filter: string}>();
 
@@ -26,5 +27,9 @@ export class SearchBarMascotaComponent {
 
   crearMascota(){
     this.router.navigate(['/mascotas/registrar']);
+  }
+
+  cambiarModo(isModoOscuro: boolean){
+    this.isModoOscuro = isModoOscuro;
   }
 }

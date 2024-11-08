@@ -54,40 +54,19 @@ export class HeaderComponent {
     this.buscarClientes = document.getElementById("btnBuscarClientes")
     this.buscarTratamientos = document.getElementById("btnBuscarTratamientos")
     this.buscarVeterinarios = document.getElementById("btnBuscarVeterinarios")
-    this.route.queryParams.subscribe(params => {
-      
-      var isModoOscuro = params['isModoOscuro'] === 'true';
-      if(!isModoOscuro && params['isModoOscuro']){
-        this.navbar?.classList.replace("nav-dark", "nav-light");
-        this.nosotros?.classList.replace("link-light", "link-dark");
-        this.servicios?.classList.replace("link-light", "link-dark");
-        this.casos?.classList.replace("link-light", "link-dark");
-        this.buttonLogout?.classList.replace("bg-dark", "bg-white");
-        this.buscarClientes?.classList.replace("bg-dark", "bg-white");
-        this.buscarMascotas?.classList.replace("bg-dark", "bg-white");
-        this.buscarTratamientos?.classList.replace("bg-dark", "bg-white");
-        this.buscarTratamientos?.classList.replace("bg-dark", "bg-white");
-      }
-    });
   }
 
   logout(): void {
     this.perfilService.logout();
-    var isModoOscuro = true;
-    if(this.navbar?.classList.contains("nav-light")) isModoOscuro = false;
-    this.router.navigate(['/login'], { queryParams: { isModoOscuro: isModoOscuro } });
+    this.router.navigate(['/login']);
   }
 
   goToLogin(): void {
-    var isModoOscuro = true;
-    if(this.navbar?.classList.contains("nav-light")) isModoOscuro = false;
-    this.router.navigate(['/login'], { queryParams: { isModoOscuro: isModoOscuro } });
+    this.router.navigate(['/login']);
   }
 
   goToHome(): void {
-    var isModoOscuro = true;
-    if(this.navbar?.classList.contains("nav-light")) isModoOscuro = false;
-    this.router.navigate(['/landing'], { queryParams: { isModoOscuro: isModoOscuro } });
+    this.router.navigate(['/landing']);
   }
 
   cambiarModo(isModoOscuro: Boolean){

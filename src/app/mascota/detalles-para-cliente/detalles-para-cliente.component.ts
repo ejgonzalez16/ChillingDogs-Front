@@ -17,6 +17,7 @@ export class DetallesParaClienteComponent {
   verTratamientos = false
   main!: HTMLElement | null;
   btnTratamientos!: HTMLElement | null;
+  btnVolver!: HTMLElement | null;
   @ViewChild(MascotaComponent) mascotaComponent!: MascotaComponent;
 
   constructor(private route: ActivatedRoute, private mascotaService: MascotaService, private router: Router, private lightModeService: LightModeServiceService) {}
@@ -30,26 +31,40 @@ export class DetallesParaClienteComponent {
     });
     this.main = document.getElementById("class");
     this.btnTratamientos = document.getElementById("btnTratamientos");
+    this.btnVolver = document.getElementById("btnVolver");
+  }
+
+  ngAfterViewInit(){
     this.route.queryParams.subscribe(params => {
-    
       var isModoOscuro = params['isModoOscuro'] === 'true';
       if(!isModoOscuro && params['isModoOscuro']){
         this.main?.classList.replace("main-dark", "main-light");
+        this.btnTratamientos?.classList.replace("tratamientos-dark", "tratamientos-light");
+        this.btnVolver?.classList.replace("btnVolver", "btnVolver-light")
       }
     });
   }
 
   goBack() {
-    // Ir a la página visitada justo antes con el botón de regresar
     window.history.back();
   }
+  
+  // Función para agregar un parámetro a la URL
+  addParamToUrl(url: string, param: string, value: string): string {
+    const urlObj = new URL(url);
+    urlObj.searchParams.set(param, value);
+    return urlObj.toString();
+  }
+  
 
   cambiarModo(isModoOscuro: boolean){
     this.mascotaComponent.cambiarModo(isModoOscuro);
     if(isModoOscuro){
       this.btnTratamientos?.classList.replace("tratamientos-light", "tratamientos-dark");
+      this.btnVolver?.classList.replace("btnVolver-light", "btnVolver")
       return;
     }
     this.btnTratamientos?.classList.replace("tratamientos-dark", "tratamientos-light");
+    this.btnVolver?.classList.replace("btnVolver", "btnVolver-light")
   }
 }

@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {Mascota} from "../../modelo/mascota";
 import {MascotaService} from "../../service/mascota.service";
 import {Router} from "@angular/router";
 import {switchMap} from "rxjs";
 import {PerfilService} from "../../service/perfil.service";
+import { SearchBarMascotaComponent } from '../search-bar-mascota/search-bar-mascota.component';
+import { LightModeServiceService } from '../../service/light-mode-service.service';
 
 @Component({
   selector: 'app-tabla-mascota',
@@ -12,11 +14,14 @@ import {PerfilService} from "../../service/perfil.service";
 })
 export class TablaMascotaComponent {
   mascotas!: Mascota[];
+  @ViewChild(SearchBarMascotaComponent) searchBar!: SearchBarMascotaComponent;
+  isModoOscuro: boolean = true;
 
   constructor(
     private mascotaService: MascotaService,
     private router: Router,
-    private perfilService: PerfilService) {}
+    private perfilService: PerfilService,
+    private lightModeService: LightModeServiceService) {}
 
   ngOnInit() {
     // Suscribirse a perfilService y cuando haya respuesta, obtener la lista de mascotas
@@ -31,6 +36,7 @@ export class TablaMascotaComponent {
     ).subscribe(mascotas => {
       this.mascotas = mascotas;
     });
+    this.lightModeService.registrarTablaMascota(this);
   }
 
   recargarMascotas(filtro: {nombre: string, filter: string}) {
@@ -78,6 +84,11 @@ export class TablaMascotaComponent {
 
   redirectNotAuthorized() {
     this.router.navigate(['**']);
+  }
+
+  cambiarModo(isModoOscuro: boolean){
+    this.searchBar.cambiarModo(Boolean(isModoOscuro));
+    this.isModoOscuro = isModoOscuro;
   }
 }
 

@@ -45,5 +45,5 @@
             </tbody>
         </table>
     </div>
-    <button class="btnVolver" (click)="goBack()">Volver</button>
+    <button (click)="goBack()" [ngClass]="isModoOscuro ? 'btnVolver' : 'btnVolver-light'">Volver</button>
 </main>

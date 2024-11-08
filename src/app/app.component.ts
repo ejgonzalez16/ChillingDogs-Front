@@ -30,9 +30,6 @@ export class AppComponent {
   cambiarModo(isModoOscuro: Boolean){
     this.isModoOscuro = Boolean(isModoOscuro);
     this.header.cambiarModo(isModoOscuro);
-    this.lightModeService.cambiarModoLogin(Boolean(isModoOscuro));
-    this.lightModeService.cambiarModoLanding(Boolean(isModoOscuro));
-    this.lightModeService.cambiarModoMisMacotas(Boolean(isModoOscuro));
-    this.lightModeService.cambiarModoDetallesMascota(Boolean(isModoOscuro));
+    this.lightModeService.cambiarModo(Boolean(isModoOscuro));
   }
 }

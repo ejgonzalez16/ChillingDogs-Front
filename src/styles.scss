@@ -434,6 +434,26 @@ section {
   color: var(--text-dark);
 }
 
+.btnVolver-light{
+  margin-top: 50px;
+  width: 15em;
+  height: 2.5em;
+  padding: 0 20px;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 500;
+  color: var(--text-dark);
+  background: var(--text-light);
+  border: none;
+  border-radius: 30px;
+  margin-bottom: 50px;
+}
+
+.btnVolver-light:hover{
+  background-color: black;
+  color: var(--text-light);
+}
+
 /*Estado activo inactivo del perro*/
 
 .estadoActivo{

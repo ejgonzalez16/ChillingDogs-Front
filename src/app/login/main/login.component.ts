@@ -55,18 +55,13 @@ export class LoginComponent {
     this.login = document.getElementById("login");
     this.loginPart = document.getElementById("loginPart");
     this.lightModeService.registrarLoginComponent(this);
-    this.route.queryParams.subscribe(params => {
-      
-      this.isModoOscuro = params['isModoOscuro'] === 'true';
-      if(!this.isModoOscuro && params['isModoOscuro']){
-        this.login?.classList.remove("login-black");
-        this.login?.classList.add("login-light");
-  
-        this.loginPart?.classList.remove("login-part");
-        this.loginPart?.classList.add("login-part-light");
-      }
-    });
-  
+    if(!this.lightModeService.isModoOscuro){
+      this.login?.classList.remove("login-black");
+      this.login?.classList.add("login-light");
+
+      this.loginPart?.classList.remove("login-part");
+      this.loginPart?.classList.add("login-part-light");
+    }
   }
 
   // Método para manejar el login
@@ -91,9 +86,7 @@ export class LoginComponent {
         }),
         tap(() => {
           // Redirigir a la página correspondiente
-          var isModoOscuro = true;
-          if(this.login?.classList.contains("login-light")) isModoOscuro = false;
-          this.router.navigate(['/mis-mascotas'], { queryParams: { isModoOscuro: isModoOscuro } });
+          this.router.navigate(['/mis-mascotas']);
         }),
         catchError(error => {
           this.loginError = 'Cliente no encontrado';

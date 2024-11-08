@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Mascota } from '../../../modelo/mascota';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'detalle-mascota',
@@ -11,16 +12,22 @@ export class MascotaComponent {
   @Input()
   mascota!: Mascota;
   seccionPeludo!: HTMLElement | null;
+  isModoOscuro: boolean = true;
 
-  ngOnInit(): void{
-    this.seccionPeludo = document.getElementById("seccionPeludo");
+  constructor(private route: ActivatedRoute){
+
+  }
+
+  ngAfterViewInit(){
+    this.route.queryParams.subscribe(params => {
+      var isModoOscuro = params['isModoOscuro'] === 'true';
+      if(!isModoOscuro && params['isModoOscuro']){
+        this.isModoOscuro = isModoOscuro;
+      }
+    });
   }
 
   cambiarModo(isModoOscuro: boolean){
-    if(isModoOscuro){
-      this.seccionPeludo?.classList.replace('section-dark', 'section-light');
-      return;
-    }
-    this.seccionPeludo?.classList.replace('section-light', 'section-dark');
+    this.isModoOscuro = isModoOscuro;
   }
 }
