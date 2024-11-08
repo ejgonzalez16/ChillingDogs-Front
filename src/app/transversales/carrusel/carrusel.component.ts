@@ -52,15 +52,19 @@ export class CarruselComponent {
 
   verDetallesMascota(id: number) {
     console.log('Rol usuario:', this.rolUsuario);
+    var isModoOscuro = true;
+    if(this.carrusel?.classList.contains("carrusel-light")) isModoOscuro = false;
     if (this.rolUsuario === 'CLIENTE') {
-      this.router.navigate(['/mascotas/detalles', id]);
+      this.router.navigate(['/mascotas/detalles', id],  { queryParams: { isModoOscuro: isModoOscuro } });
     } else {
-      this.router.navigate(['/mascotas/buscar', id]);
+      this.router.navigate(['/mascotas/buscar', id],  { queryParams: { isModoOscuro: isModoOscuro } });
     }
   }
 
   modificarMascota(id: number) {
-    this.router.navigate(['/mascotas/modificar', id]);
+    var isModoOscuro = true;
+    if(this.carrusel?.classList.contains("carrusel-light")) isModoOscuro = false;
+    this.router.navigate(['/mascotas/modificar', id], { queryParams: { isModoOscuro: isModoOscuro } });
   }
 
   eliminarMascota(id: number) {

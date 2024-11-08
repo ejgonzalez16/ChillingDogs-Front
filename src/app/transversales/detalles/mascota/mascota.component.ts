@@ -10,4 +10,17 @@ export class MascotaComponent {
 
   @Input()
   mascota!: Mascota;
+  seccionPeludo!: HTMLElement | null;
+
+  ngOnInit(): void{
+    this.seccionPeludo = document.getElementById("seccionPeludo");
+  }
+
+  cambiarModo(isModoOscuro: boolean){
+    if(isModoOscuro){
+      this.seccionPeludo?.classList.replace('section-dark', 'section-light');
+      return;
+    }
+    this.seccionPeludo?.classList.replace('section-light', 'section-dark');
+  }
 }

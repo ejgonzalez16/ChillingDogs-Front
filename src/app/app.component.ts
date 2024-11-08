@@ -33,5 +33,6 @@ export class AppComponent {
     this.lightModeService.cambiarModoLogin(Boolean(isModoOscuro));
     this.lightModeService.cambiarModoLanding(Boolean(isModoOscuro));
     this.lightModeService.cambiarModoMisMacotas(Boolean(isModoOscuro));
+    this.lightModeService.cambiarModoDetallesMascota(Boolean(isModoOscuro));
   }
 }

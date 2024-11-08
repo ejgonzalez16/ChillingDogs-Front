@@ -4,6 +4,7 @@ import {MascotaService} from "../../service/mascota.service";
 import { ActivatedRoute } from '@angular/router';
 import {Router} from "@angular/router";
 import {catchError} from "rxjs";
+import { LightModeServiceService } from '../../service/light-mode-service.service';
 
 @Component({
   selector: 'app-detalles-mascota',
@@ -14,10 +15,12 @@ export class DetallesMascotaComponent {
   id!: number
   mascota!: Mascota;
   verTratamientos = false
+  main!: HTMLElement | null;
 
   constructor(private route: ActivatedRoute,
               private mascotaService: MascotaService,
-              private router: Router) {}
+              private router: Router,
+              private lightModeService: LightModeServiceService) {}
 
   ngOnInit() {
     // Obtener el ID de la mascota
@@ -33,11 +36,22 @@ export class DetallesMascotaComponent {
         // TODO: Redirigir a página de error de que no tiene permisos
         this.redirectNotAuthorized();
       });
+    this.main = document.getElementById("class");
+    this.route.queryParams.subscribe(params => {
+    
+      var isModoOscuro = params['isModoOscuro'] === 'true';
+      if(!isModoOscuro && params['isModoOscuro']){
+        this.main?.classList.replace("main-dark", "main-light");
+      }
+    });
+    
   }
 
   eliminarCliente(id: number) {
     this.mascotaService.deleteById(id);
-    this.router.navigate(['/clientes/buscar']);
+    var isModoOscuro = true;
+    if(this.main?.classList.contains("main-light")) isModoOscuro = false;
+    this.router.navigate(['/clientes/buscar'],  { queryParams: { isModoOscuro: isModoOscuro } });
   }
 
   goBack() {
@@ -47,5 +61,14 @@ export class DetallesMascotaComponent {
 
   redirectNotAuthorized() {
     this.router.navigate(['**']);
+  }
+
+  cambiarModo(isModoOscuro: boolean){
+    alert("a")
+    if(isModoOscuro){
+      this.main?.classList.replace("main-light", "main-dark");
+      return;
+    }
+    this.main?.classList.replace("main-dark", "main-light");
   }
 }

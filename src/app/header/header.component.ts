@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, Inject, Input, OnInit, PLATFORM_ID, SimpleChanges} from '@angular/core';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Usuario} from "../modelo/usuario";
 import {Perfil} from "../modelo/perfil";
 import {isPlatformBrowser} from "@angular/common";
@@ -18,7 +18,11 @@ export class HeaderComponent {
   nosotros!: HTMLElement | null;
   servicios!: HTMLElement | null;
   casos!: HTMLElement | null;
-  header: HTMLElement | null = null;
+  buttonLogout!: HTMLElement | null;
+  buscarMascotas!: HTMLElement | null;
+  buscarClientes!: HTMLElement | null;
+  buscarTratamientos!: HTMLElement | null;
+  buscarVeterinarios!: HTMLElement | null;
 
   perfil: Perfil = {
     nombre: '',
@@ -29,22 +33,42 @@ export class HeaderComponent {
   constructor(
     private router: Router,
     private perfilService: PerfilService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.perfilService.perfilInfo$.subscribe(perfil => {
       this.perfil = perfil;
     });
+    
   }
 
   ngAfterViewInit(): void {
     this.navbar = document.getElementById("navbar");
-    this.navbar?.classList.add("nav-dark");
-
+    this.navbar?.classList.add("nav-dark")
     this.nosotros = document.getElementById("nosotros");
     this.servicios = document.getElementById("servicios");
     this.casos = document.getElementById("casos");
-    this.header = document.getElementById("header");
+    this.buttonLogout = document.getElementById("btnLogout")
+    this.buscarMascotas = document.getElementById("btnBuscarMascotas")
+    this.buscarClientes = document.getElementById("btnBuscarClientes")
+    this.buscarTratamientos = document.getElementById("btnBuscarTratamientos")
+    this.buscarVeterinarios = document.getElementById("btnBuscarVeterinarios")
+    this.route.queryParams.subscribe(params => {
+      
+      var isModoOscuro = params['isModoOscuro'] === 'true';
+      if(!isModoOscuro && params['isModoOscuro']){
+        this.navbar?.classList.replace("nav-dark", "nav-light");
+        this.nosotros?.classList.replace("link-light", "link-dark");
+        this.servicios?.classList.replace("link-light", "link-dark");
+        this.casos?.classList.replace("link-light", "link-dark");
+        this.buttonLogout?.classList.replace("bg-dark", "bg-white");
+        this.buscarClientes?.classList.replace("bg-dark", "bg-white");
+        this.buscarMascotas?.classList.replace("bg-dark", "bg-white");
+        this.buscarTratamientos?.classList.replace("bg-dark", "bg-white");
+        this.buscarTratamientos?.classList.replace("bg-dark", "bg-white");
+      }
+    });
   }
 
   logout(): void {
@@ -73,7 +97,11 @@ export class HeaderComponent {
       this.nosotros?.classList.replace("link-dark", "link-light");
       this.servicios?.classList.replace("link-dark", "link-light");
       this.casos?.classList.replace("link-dark", "link-light");
-      this.header?.classList.replace("header-light", "header-dark")
+      this.buttonLogout?.classList.replace("bg-white", "bg-dark");
+      this.buscarClientes?.classList.replace("bg-white", "bg-dark");
+      this.buscarMascotas?.classList.replace("bg-white", "bg-dark");
+      this.buscarTratamientos?.classList.replace("bg-white", "bg-dark");
+      this.buscarVeterinarios?.classList.replace("bg-white", "bg-dark");
       return;
     }
     this.navbar?.classList.replace("nav-dark", "nav-light");
@@ -81,6 +109,10 @@ export class HeaderComponent {
     this.nosotros?.classList.replace("link-light", "link-dark");
     this.servicios?.classList.replace("link-light", "link-dark");
     this.casos?.classList.replace("link-light", "link-dark");
-    this.header?.classList.replace("header-dark", "header-light")
+    this.buttonLogout?.classList.replace("bg-dark", "bg-white");
+    this.buscarClientes?.classList.replace("bg-dark", "bg-white");
+    this.buscarMascotas?.classList.replace("bg-dark", "bg-white");
+    this.buscarTratamientos?.classList.replace("bg-dark", "bg-white");
+    this.buscarTratamientos?.classList.replace("bg-dark", "bg-white");
   }
 }

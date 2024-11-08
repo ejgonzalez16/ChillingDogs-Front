@@ -1,4 +1,4 @@
-main{
+.main-dark{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,6 +34,48 @@ main{
 
         td{
             width: 50%;
+        }
+    }
+}
+
+.main-light{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    width: 100%;
+    min-height: 86vh;
+
+    button {
+        margin-top: 50px;
+        width: 15em;
+        height: 2.5em;
+        padding: 0 20px;
+        font-size: 20px;
+        line-height: 30px;
+        font-weight: 500;
+        color: var(--color-3);
+        background: var(white);
+        border: none;
+        border-radius: 30px;
+    }
+
+    section{
+        background-color: #212529;
+
+        h1 {
+            text-align: center;
+            color: white;
+        }
+    
+        table {
+            width: 50%;
+        }
+    
+        td {
+            width: 50%;
+            color: white;
         }
     }
 }

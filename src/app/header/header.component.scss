@@ -1,4 +1,4 @@
-.header-dark{
+.header{
     position: fixed; /*El header se queda estático*/
     top: 0; /*Mandarlo arriba del todo*/
     width: 100%;
@@ -6,26 +6,12 @@
     z-index: 1;
     display: flex;
     justify-content: space-between;
-
-    a{
-        background-color: #212529 !important;
-        color:white !important; 
-    }
 }
 
-.header-light {
-    position: fixed; /*El header se queda estático*/
-    top: 0; /*Mandarlo arriba del todo*/
-    width: 100%;
-    padding: 0px;
-    z-index: 1;
-    display: flex;
-    justify-content: space-between;
 
-    a{
-        background-color: white !important;
-        color:#212529 !important; 
-    }
+.bg-white{
+    background-color: white;
+    color:#212529;
 }
 
 .nav-dark {
