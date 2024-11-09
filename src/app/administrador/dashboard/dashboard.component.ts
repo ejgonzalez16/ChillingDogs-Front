@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DashboardService } from '../../service/dashboard.service';
 import { forkJoin, Subscription } from 'rxjs';
 import { ScaleType } from '@swimlane/ngx-charts';
+import { LightModeServiceService } from '../../service/light-mode-service.service';
 
 @Component({
   selector: 'admin-dashboard',
@@ -24,6 +25,7 @@ export class DashboardComponent implements OnDestroy {
   ventas!: number;
   ganancias!: number;
   topMedicamentos!: string[];
+  isModoOscuro: boolean = true;
 
   //GRAFICA
   dataMedicamentosMes!: ChartData[]
@@ -45,11 +47,13 @@ export class DashboardComponent implements OnDestroy {
   showYAxisLabel = true;
   yAxisLabel = 'Unidades vendidas en el mes';
   legendTitle = "Medicamentos";
+  legendTitle2 = "Veterinarios";
+  legendTitle3 = "Mascotas";
   //GRAFICA
 
   private intervalId!: any;
 
-  constructor(private router: Router, private route: ActivatedRoute, private dashboardService: DashboardService) {}
+  constructor(private router: Router, private route: ActivatedRoute, private dashboardService: DashboardService, private lightModeService: LightModeServiceService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(() => {
@@ -59,6 +63,7 @@ export class DashboardComponent implements OnDestroy {
     this.intervalId = setInterval(() => {
       this.obtenerDatosDashboard();
     }, 10000);
+    this.isModoOscuro = this.lightModeService.isModoOscuro;
   }
 
   // Obtener los datos del dashboard de manera paralela
@@ -122,6 +127,25 @@ export class DashboardComponent implements OnDestroy {
       clearInterval(this.intervalId);
     }
   }
+
+  cambiarModo(isModoOscuro: boolean){
+    this.isModoOscuro = isModoOscuro;
+    if(!isModoOscuro){
+      this.colorScheme  = {
+        name: 'customScheme',
+        selectable: true,
+        group: ScaleType.Ordinal,  // Usar la enumeración correcta
+        domain: ['#212529', '#b2f0ff']
+      };
+      return;
+    }
+    this.colorScheme = {
+      name: 'customScheme',
+      selectable: true,
+      group: ScaleType.Ordinal,  // Usar la enumeración correcta
+      domain: ['#FFFFFF', '#b2f0ff']
+    };
+  }
 }
 
 export interface ChartData {
@@ -145,6 +169,5 @@ function tranformarDataVets(activos: number, inactivos: number): ChartData[] {
       name: 'Inactivos',
       value: inactivos
     }
-  ];
+  ]; 
 }
-

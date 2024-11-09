@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+import { LightModeServiceService } from '../../service/light-mode-service.service';
 
 @Component({
   selector: 'app-search-bar-tratamiento',
@@ -12,6 +13,12 @@ export class SearchBarTratamientoComponent {
   @Input()
   veterinarioId!: number;
   isModoOscuro: boolean = true;
+
+  constructor(private lightModeSerice: LightModeServiceService){}
+
+  ngOnInit(){
+    this.isModoOscuro = this.lightModeSerice.isModoOscuro;
+  }
 
   onSubmit() {
     if(this.nombrePerro){
