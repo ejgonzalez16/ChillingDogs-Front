@@ -39,6 +39,7 @@ export class FormDrogaComponent {
         this.redirectNotAuthorized();
       }
     });
+    this.isModoOscuro = this.lightModeService.isModoOscuro;
   }
 
   redirectNotAuthorized() {
