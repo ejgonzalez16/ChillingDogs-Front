@@ -22,6 +22,10 @@ import { TablaTratamientoComponent } from './tratamiento/tabla-tratamiento/tabla
 import { CrearTratamientoComponent } from './tratamiento/crear-tratamiento/crear-tratamiento.component';
 import { TratamientosMascotaComponent } from './tratamiento/tratamientos-mascota/tratamientos-mascota.component';
 import { TratamientosVeterinarioComponent } from './tratamiento/tratamientos-veterinario/tratamientos-veterinario.component';
+import { TablaDrogaComponent } from './drogas/tabla-droga/tabla-droga.component';
+import { CrearDrogaComponent } from './drogas/crear-droga/crear-droga.component';
+import { DetallesDrogaComponent } from './drogas/detalles-droga/detalles-droga.component';
+import { ModificarDrogaComponent } from './drogas/modificar-droga/modificar-droga.component';
 
 const routes: Routes = [
   // CRUD Clientes (tiene acceso veterinario y admin)
@@ -57,6 +61,12 @@ const routes: Routes = [
   { path: 'veterinarios/buscar/:id', component: DetallesVeterinarioComponent },
   { path: 'veterinarios/registrar', component: CrearVeterinarioComponent },
   { path: 'veterinarios/modificar/:id', component: ModificarVeterinarioComponent },
+
+  //Drogas
+  { path: 'drogas/crear', component: CrearDrogaComponent },
+  { path: 'drogas/buscar', component: TablaDrogaComponent },
+  { path: 'drogas/buscar/:id', component: DetallesDrogaComponent },
+  { path: 'drogas/modificar/:id', component: ModificarDrogaComponent },
 
   // Landing
   { path: 'landing', component: MainComponent},

@@ -20,4 +20,13 @@ export class DrogaService {
   findDisponibles(): Observable<Droga[]> {
     return this.http.get<Droga[]>(`${this.baseUrl}/disponibles`);
   }
+
+  add(droga: Droga): Observable<Droga> {
+    return this.http.post<Droga>(this.baseUrl, droga);
+  }
+
+  update(droga: Droga): Observable<Droga> {
+    return this.http.put<Droga>(this.baseUrl, droga);
+  }
+
 }
