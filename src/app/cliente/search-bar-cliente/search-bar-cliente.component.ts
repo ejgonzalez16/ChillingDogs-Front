@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { LightModeServiceService } from '../../service/light-mode-service.service';
 
@@ -8,8 +8,10 @@ import { LightModeServiceService } from '../../service/light-mode-service.servic
   styleUrl: './search-bar-cliente.component.scss'
 })
 export class SearchBarClienteComponent {
-  cedulaCliente!: number;
+  nombreOCedula!: string;
   isModoOscuro: boolean = true;
+
+  @Output() actualizarLista = new EventEmitter<{nombreOCedula: string}>();
 
   constructor(private router: Router,private lightModeService: LightModeServiceService) {}
 
@@ -20,10 +22,10 @@ export class SearchBarClienteComponent {
   }
 
   onSubmit() {
-    if (this.cedulaCliente) {
-      // Buscar cliente por cedula
-      this.router.navigate(['/clientes/buscar', this.cedulaCliente]);
-    }
+    // Buscar cliente por nombre o cedula
+    this.actualizarLista.emit({
+      nombreOCedula : this.nombreOCedula,
+    });
   }
 
   cambiarModo(isModoOscuro: boolean){

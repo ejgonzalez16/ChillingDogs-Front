@@ -85,4 +85,23 @@ export class TablaClienteComponent {
     this.isModoOscuro = isModoOscuro;
     this.searchBar.cambiarModo(isModoOscuro);
   }
+
+  recargarClientes(filtro: {nombreOCedula: string}) {
+    // Trae todas las mascotas de la BD
+    console.log(filtro);
+    if(filtro.nombreOCedula != undefined) {
+      this.clienteService.findAll().subscribe(clientes => {
+        if(filtro.nombreOCedula.match(/^[0-9]+$/)) {
+          this.clientes = clientes.filter(clientes => clientes.cedula.toLowerCase().includes(filtro.nombreOCedula.toLowerCase() || ''));
+        }else{
+          this.clientes = clientes.filter(clientes => clientes.nombre.toLowerCase().includes(filtro.nombreOCedula.toLowerCase() || ''));
+        }   
+      });
+    }
+    else{
+      this.clienteService.findAll().subscribe(clientes => {
+        this.clientes = clientes;
+      });
+    }
+  }
 }
