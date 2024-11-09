@@ -1,6 +1,6 @@
 
 <main [ngClass]="isModoOscuro ? 'main' : 'main-light'">
-    <app-search-bar-veterinario></app-search-bar-veterinario>
+    <app-search-bar-veterinario (actualizarLista)="recargarVets($event)"></app-search-bar-veterinario>
     <section class="contenedorTabla">
         <table class="table" id="tablaMascotas">
             <thead>

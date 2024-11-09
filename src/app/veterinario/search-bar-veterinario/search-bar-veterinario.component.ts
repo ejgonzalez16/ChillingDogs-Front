@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { LightModeServiceService } from '../../service/light-mode-service.service';
 
@@ -8,6 +8,10 @@ import { LightModeServiceService } from '../../service/light-mode-service.servic
   styleUrl: './search-bar-veterinario.component.scss'
 })
 export class SearchBarVeterinarioComponent {
+  nombreOrCedula!: string;
+  filtroEstado: string = "";
+
+  @Output() actualizarLista = new EventEmitter<{nombreOrCedula: string, filter: string}>();
   cedulaVeterinario!: number;
   isModoOscuro: boolean = true;
 
@@ -20,10 +24,17 @@ export class SearchBarVeterinarioComponent {
   }
 
   onSubmit() {
-    if (this.cedulaVeterinario) {
-      // Buscar cliente por cedula
-      this.router.navigate(['/veterinarios/buscar', this.cedulaVeterinario]);
-    }
+    console.log(this.filtroEstado)
+    // Buscar vet por cedula o nombre por nombre
+    this.actualizarLista.emit({
+      nombreOrCedula : this.nombreOrCedula,
+      filter : this.filtroEstado
+    });
+
+    // if (this.cedulaVeterinario) {
+    //   // Buscar cliente por cedula
+    //   this.router.navigate(['/veterinarios/buscar', this.cedulaVeterinario]);
+    // }
   }
 
   cambiarModo(isModoOscuro: boolean){

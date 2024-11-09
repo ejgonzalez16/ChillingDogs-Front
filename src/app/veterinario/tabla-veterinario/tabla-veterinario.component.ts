@@ -45,6 +45,48 @@ export class TablaVeterinarioComponent {
     }
   }
 
+  recargarVets(filtro: {nombreOrCedula: string, filter: string}) {
+    // Trae todas las mascotas de la BD
+    console.log(filtro);
+    if(filtro.nombreOrCedula != undefined) {
+      //mirar si nombreOrCedula contiene numeros (cedula)
+      if(filtro.nombreOrCedula.match(/^[0-9]+$/)) {
+        this.veterinarioService.findAll().subscribe(veterinarios => {
+          this.veterinarios = veterinarios.filter(veterinario => veterinario.cedula.toLowerCase().includes(filtro.nombreOrCedula.toLowerCase() || ''));
+          if(filtro.filter != "") {
+            this.filtrarVets(filtro.filter);
+          }
+        });
+      }else{
+        this.veterinarioService.findAll().subscribe(veterinarios => {
+          this.veterinarios = veterinarios.filter(veterinario => veterinario.nombre.toLowerCase().includes(filtro.nombreOrCedula.toLowerCase() || ''));
+          if(filtro.filter != "") {
+            this.filtrarVets(filtro.filter);
+          }
+        });
+      }
+    }
+    else{
+      this.veterinarioService.findAll().subscribe(veterinarios => {
+        this.veterinarios = veterinarios
+        if(filtro.filter != "") {
+          this.filtrarVets(filtro.filter);
+        }
+      });
+    }
+  }
+
+  filtrarVets(filter: string): void {
+    switch (filter) {
+      case "Activo":
+        this.veterinarios = this.veterinarios.filter(veterinario => veterinario.estado === "activo");
+        break;
+      case "Inactivo":
+        this.veterinarios = this.veterinarios.filter(veterinario => veterinario.estado === "inactivo");
+        break;
+    }
+  }
+
   eliminarVeterinario(id: number) {
     console.log("matando a", id);
     this.veterinarioService.deleteById(id.toString()).pipe(
