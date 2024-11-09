@@ -1,5 +1,5 @@
 
 <main>
-    <h1>Registra un nuevo cliente</h1>
+    <h1 [ngClass]="isModoOscuro ? 'h1-dark' : 'h1-light'">Registra un nuevo cliente</h1>
     <app-form-cliente [modificar]="false" [cliente]="cliente"></app-form-cliente>
 </main>

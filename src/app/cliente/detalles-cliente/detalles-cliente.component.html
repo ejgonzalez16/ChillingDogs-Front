@@ -1,7 +1,7 @@
-<main>
+<main [ngClass]="isModoOscuro ? 'main' : 'main-light'">
     <app-search-bar-cliente></app-search-bar-cliente>
     <ng-container *ngIf="cliente">
-      <section id="seccionCliente">
+      <section [ngClass]="isModoOscuro ? 'seccionCliente' : 'seccionCliente-light'">
           <div id="datosCliente">
               <img src="{{cliente.foto}}" alt="foto">
               <div id="infoCliente">
@@ -32,15 +32,15 @@
               </div>
           </div>
       </section>
-      <div class="botonesAccion">
+      <div [ngClass]="isModoOscuro ? 'botonesAccion' : 'botonesAccion-light'">
           <form (click)="eliminarCliente(cliente.id)">
-              <div class="contenedorBoton"><button type="submit" id="btnEliminar">Eliminar</button></div>
+              <div [ngClass]="isModoOscuro ? 'contenedorBoton' : 'contenedorBoton-light'"><button type="submit">Eliminar</button></div>
           </form>
           <form [routerLink]="['/clientes/modificar', cliente.cedula]">
-              <div class="contenedorBoton"><button type="submit" id="btnModificar">Modificar</button></div>
+              <div [ngClass]="isModoOscuro ? 'contenedorBoton' : 'contenedorBoton-light'"><button type="submit">Modificar</button></div>
           </form>
       </div>
-      <h2>Mascotas</h2>
+      <h2 [ngClass]="isModoOscuro ? 'h2-dark' : 'h2-light'">Mascotas</h2>
       <div class="contenedorTabla">
           <table *ngIf="cliente.mascotas">
               <thead>
@@ -77,5 +77,5 @@
           </table>
       </div>
     </ng-container>
-    <button (click)="goBack()" class="btnVolver">Volver</button>
+    <button (click)="goBack()" [ngClass]="isModoOscuro ? 'btnVolver' : 'btnVolver-light'">Volver</button>
 </main>

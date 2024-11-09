@@ -2,7 +2,7 @@
     <section>
         <form #VeterinarioForm="ngForm" (ngSubmit)="onSubmit()" method="post" id="VeterinarioForm">
             <input [(ngModel)]="veterinario.id" type="number" id="id" name="id" hidden>
-            <div class="contenedorForm">
+            <div [ngClass]="isModoOscuro ? 'contenedorForm' : 'contenedorForm-light'">
                 <table>
                     <tbody>
                         <tr>
@@ -74,11 +74,11 @@
                     <input [(ngModel)]="veterinario.foto" type="text" id="foto" name="foto" placeholder="Foto" required>
                 </div>
             </div>
-            <div class="contenedorBoton" *ngIf="modificar"><button type="submit" class="btnModificar">Guardar cambios</button></div>
-            <div class="contenedorBoton" *ngIf="!modificar"><button type="submit" class="btnModificar">Registrar</button></div>
+            <div class="contenedorBoton" *ngIf="modificar"><button type="submit" [ngClass]="isModoOscuro ? 'btnModificar' : 'btnModificar-dark'">Guardar cambios</button></div>
+            <div class="contenedorBoton" *ngIf="!modificar"><button type="submit" [ngClass]="isModoOscuro ? 'btnModificar' : 'btnModificar-dark'">Registrar</button></div>
         </form>
     </section>
-    <button [routerLink]="['/veterinarios/buscar']" class="btnVolver">Volver</button>
+    <button [routerLink]="['/veterinarios/buscar']" [ngClass]="isModoOscuro ? 'btnVolver' : 'btnVolver-light'">Volver</button>
 </main>
 
 

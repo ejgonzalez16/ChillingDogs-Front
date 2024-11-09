@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import {Router} from "@angular/router";
 import { Mascota } from '../../modelo/mascota';
+import { LightModeServiceService } from '../../service/light-mode-service.service';
 
 @Component({
   selector: 'app-search-bar-mascota',
@@ -15,14 +16,22 @@ export class SearchBarMascotaComponent {
 
   @Output() actualizarLista = new EventEmitter<{nombre: string, filter: string}>();
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,
+    private lightModeService: LightModeServiceService) {}
+
+
+  ngOnInit(){
+    if(!this.lightModeService.isModoOscuro){
+      this.isModoOscuro = false;
+    }
+  }
 
   onSubmit(){
-      // Buscar mascota por nombre
-      this.actualizarLista.emit({
-        nombre : this.nombrePerro,
-        filter : this.filtroEstado
-      });
+    // Buscar mascota por nombre
+    this.actualizarLista.emit({
+      nombre : this.nombrePerro,
+      filter : this.filtroEstado
+    });
   }
 
   crearMascota(){

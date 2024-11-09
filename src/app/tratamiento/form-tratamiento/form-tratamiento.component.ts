@@ -9,6 +9,7 @@ import { TratamientoService } from '../../service/tratamiento.service';
 import { TratamientoDTO } from '../../modelo/tratamientoDTO';
 import {mergeMap, switchMap} from "rxjs";
 import {PerfilService} from "../../service/perfil.service";
+import { LightModeServiceService } from '../../service/light-mode-service.service';
 
 @Component({
   selector: 'app-form-tratamiento',
@@ -23,13 +24,14 @@ export class FormTratamientoComponent {
   tratamientoDto!: TratamientoDTO;
   veterinarioId!: number;
   cedulaVeterinario!: string;
+  isModoOscuro: boolean = true;
 
   constructor(
     private mascotaService: MascotaService,
     private router: Router,
     private drogaService: DrogaService,
     private tratamientoService: TratamientoService,
-    private perfilService: PerfilService) {}
+    private perfilService: PerfilService, private lightModeService: LightModeServiceService) {}
 
   ngOnInit() {
     // Suscribirse a perfilService y cuando haya respuesta, obtener la lista de drogas disponibles
@@ -44,6 +46,7 @@ export class FormTratamientoComponent {
     ).subscribe(drogas =>{
       this.drogas = drogas;
     });
+    this.isModoOscuro = this.lightModeService.isModoOscuro;
   }
 
   registrarTratamiento(){
@@ -74,5 +77,9 @@ export class FormTratamientoComponent {
 
   redirectNotAuthorized() {
     this.router.navigate(['**']);
+  }
+  
+  cambiarModo(isModoOscuro: boolean) {
+    this.isModoOscuro = isModoOscuro;
   }
 }

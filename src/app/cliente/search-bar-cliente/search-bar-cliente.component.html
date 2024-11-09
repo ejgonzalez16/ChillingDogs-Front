@@ -1,5 +1,5 @@
 <main>
-    <h1>Revisa el estado de un cliente</h1>
+    <h1 [ngClass]="isModoOscuro ? 'h1-dark' : 'h1-light'">Revisa el estado de un cliente</h1>
     <article>
         <form (ngSubmit)="onSubmit()" method="post">
             <input type="number" name="cedulaCliente" placeholder="Cédula" id="cedulaField" [(ngModel)]="cedulaCliente" required>

@@ -5,6 +5,7 @@ import { ClienteService } from '../../service/cliente.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MascotaService } from '../../service/mascota.service';
 import {PerfilService} from "../../service/perfil.service";
+import { LightModeServiceService } from '../../service/light-mode-service.service';
 
 @Component({
   selector: 'app-form-mascota',
@@ -15,13 +16,15 @@ export class FormMascotaComponent {
   @Input() modificar!: boolean
   @Input() mascota!: Mascota;
   clientes!: Cliente[];
+  isModoOscuro: boolean = true
 
   constructor(
     private clienteService: ClienteService,
     private router: Router,
     private mascotaService: MascotaService,
     private route: ActivatedRoute,
-    private perfilService: PerfilService
+    private perfilService: PerfilService,
+    private lightModeService: LightModeServiceService
   ){
 
   }
@@ -94,6 +97,9 @@ export class FormMascotaComponent {
         }
     });
 
+    if(!this.lightModeService.isModoOscuro){
+      this.isModoOscuro = false;
+    }
   }
 
   selectButton(event: MouseEvent, color: string) {
@@ -131,5 +137,9 @@ export class FormMascotaComponent {
 
   redirectNotAuthorized() {
     this.router.navigate(['**']);
+  }
+
+  cambiarModo(isModoOscuro: boolean) {
+    this.isModoOscuro = isModoOscuro;
   }
 }

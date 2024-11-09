@@ -4,6 +4,7 @@ import {ClienteService} from "../../service/cliente.service";
 import { ActivatedRoute, Router } from '@angular/router';
 import { mergeMap } from 'rxjs';
 import {PerfilService} from "../../service/perfil.service";
+import { LightModeServiceService } from '../../service/light-mode-service.service';
 
 @Component({
   selector: 'app-form-cliente',
@@ -14,11 +15,12 @@ export class FormClienteComponent {
   @Input() modificar!: boolean;
   @Input() cliente!: Cliente;
   loginError: string = '';
+  isModoOscuro: boolean = true;
 
   constructor(
     private clienteService: ClienteService,
     private router: Router,
-    private perfilService: PerfilService) {
+    private perfilService: PerfilService, private lightModeService: LightModeServiceService) {
   }
 
   ngOnInit() {
@@ -28,6 +30,9 @@ export class FormClienteComponent {
         this.redirectNotAuthorized();
       }
     });
+    if(!this.lightModeService.isModoOscuro){
+      this.isModoOscuro = false;
+    }
   }
 
   onSubmit() {
@@ -55,5 +60,9 @@ export class FormClienteComponent {
 
   redirectNotAuthorized() {
     this.router.navigate(['**']);
+  }
+
+  cambiarModo(isModoOscuro: boolean){
+    this.isModoOscuro = isModoOscuro;
   }
 }

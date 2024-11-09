@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {Mascota} from "../../modelo/mascota";
 import {MascotaService} from "../../service/mascota.service";
 import { ActivatedRoute } from '@angular/router';
 import {Router} from "@angular/router";
 import {catchError} from "rxjs";
 import { LightModeServiceService } from '../../service/light-mode-service.service';
+import { MascotaComponent } from '../../transversales/detalles/mascota/mascota.component';
+import { ClienteComponent } from '../../transversales/detalles/cliente/cliente.component';
 
 @Component({
   selector: 'app-detalles-mascota',
@@ -16,11 +18,13 @@ export class DetallesMascotaComponent {
   mascota!: Mascota;
   verTratamientos = false
   main!: HTMLElement | null;
+  @ViewChild(MascotaComponent) mascotaComponent!: MascotaComponent;
+  @ViewChild(ClienteComponent) clienteComponent!: ClienteComponent;
+
 
   constructor(private route: ActivatedRoute,
               private mascotaService: MascotaService,
-              private router: Router,
-              private lightModeService: LightModeServiceService) {}
+              private router: Router, private lightModeService: LightModeServiceService) {}
 
   ngOnInit() {
     // Obtener el ID de la mascota
@@ -36,10 +40,7 @@ export class DetallesMascotaComponent {
         // TODO: Redirigir a página de error de que no tiene permisos
         this.redirectNotAuthorized();
       });
-    this.main = document.getElementById("class");
-    if(!this.lightModeService.isModoOscuro){
-      this.main?.classList.replace("main-dark", "main-light");
-    }
+    this.lightModeService.registrarDetallesMascota(this);
   }
 
   eliminarCliente(id: number) {
@@ -57,10 +58,7 @@ export class DetallesMascotaComponent {
   }
 
   cambiarModo(isModoOscuro: boolean){
-    if(isModoOscuro){
-      this.main?.classList.replace("main-light", "main-dark");
-      return;
-    }
-    this.main?.classList.replace("main-dark", "main-light");
+    this.mascotaComponent.cambiarModo(isModoOscuro);
+    this.clienteComponent.cambiarModo(isModoOscuro);
   }
 }

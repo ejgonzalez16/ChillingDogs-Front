@@ -23,7 +23,7 @@ export class DetallesParaClienteComponent {
   constructor(private route: ActivatedRoute, private mascotaService: MascotaService, private router: Router, private lightModeService: LightModeServiceService) {}
 
   ngOnInit() {
-    this.lightModeService.registrarDetallesMascota(this);
+    this.lightModeService.registrarDetallesParaClienteMascota(this);
     this.id = +this.route.snapshot.paramMap.get('id')!;
     // Aquí puedes usar el ID para buscar detalles del cliente
     this.mascotaService.findById(this.id).subscribe(mascota => {

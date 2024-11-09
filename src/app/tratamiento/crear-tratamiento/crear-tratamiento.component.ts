@@ -1,8 +1,11 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, ViewChild} from '@angular/core';
 import {Mascota} from "../../modelo/mascota";
 import {MascotaService} from "../../service/mascota.service";
 import {ActivatedRoute} from "@angular/router";
 import {mergeMap, of} from "rxjs";
+import { LightModeServiceService } from '../../service/light-mode-service.service';
+import { MascotaComponent } from '../../transversales/detalles/mascota/mascota.component';
+import { FormTratamientoComponent } from '../form-tratamiento/form-tratamiento.component';
 
 @Component({
   selector: 'app-crear-tratamiento',
@@ -11,10 +14,13 @@ import {mergeMap, of} from "rxjs";
 })
 export class CrearTratamientoComponent {
   mascota!: Mascota;
+  isModoOscuro: boolean = true;
+  @ViewChild(MascotaComponent) mascotaComponent?: MascotaComponent
+  @ViewChild(FormTratamientoComponent) tratamientoComponent?: FormTratamientoComponent
 
   constructor(
     private mascotaService: MascotaService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute, private lightModeService: LightModeServiceService
   ) {
   }
 
@@ -38,5 +44,13 @@ export class CrearTratamientoComponent {
       this.mascota = mascota;
       console.log('mascota', mascota);
     });
+    this.lightModeService.registrarCrearTratamientosComponent(this);
+    this.isModoOscuro = this.lightModeService.isModoOscuro;
+  }
+
+  cambiarModo(isModoOscuro: boolean){
+    this.isModoOscuro = isModoOscuro;
+    this.mascotaComponent?.cambiarModo(isModoOscuro);
+    this.tratamientoComponent?.cambiarModo(isModoOscuro);
   }
 }

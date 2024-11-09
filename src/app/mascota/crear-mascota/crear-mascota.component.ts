@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Mascota } from '../../modelo/mascota';
-import {Router} from "@angular/router";
+import { LightModeServiceService } from '../../service/light-mode-service.service';
+import { FormMascotaComponent } from '../form-mascota/form-mascota.component';
 
 @Component({
   selector: 'app-crear-mascota',
@@ -28,4 +29,20 @@ export class CrearMascotaComponent {
     },
     tratamientos:[]
   };
+  isModoOscuro: boolean = true;
+  @ViewChild(FormMascotaComponent) formMascota!: FormMascotaComponent;
+
+  constructor(private lightModeService: LightModeServiceService) { }
+
+  ngOnInit(){
+    this.lightModeService.registrarCrearMascota(this);
+    if(!this.lightModeService.isModoOscuro){
+      this.isModoOscuro = false;
+    }
+  }
+
+  cambiarModo(isModoOscuro: boolean) {
+    this.isModoOscuro = isModoOscuro;
+    this.formMascota.cambiarModo(isModoOscuro);
+  }
 }

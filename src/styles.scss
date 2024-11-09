@@ -1,7 +1,7 @@
 :root{
   --primary-color: #e7a65c;
   --secondary-color: #b2f0ff;
-  --secondary-color-dark: #3aadca;
+  --secondary-color-dark: #1d96b4;
   --color-3: black;
   --color-4: white;
   --color-5: #f8e9c4;
@@ -68,6 +68,19 @@ h1, h2, h3, h4,no-footer h5, h6 {
     text-decoration: none;
     float: right;
     color: white;
+    width: 50px;
+    margin-left: 50px;
+    transition: width 0.35s;
+    -webkit-transition: width 0.35s;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .button-light {
+    text-decoration: none;
+    float: right;
+    color: #212529;
     width: 50px;
     margin-left: 50px;
     transition: width 0.35s;

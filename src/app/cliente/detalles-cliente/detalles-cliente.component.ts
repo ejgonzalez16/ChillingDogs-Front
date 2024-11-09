@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {Cliente} from "../../modelo/cliente";
 import {ClienteService} from "../../service/cliente.service";
 import { Router } from '@angular/router';
 import {catchError, merge, mergeMap} from 'rxjs';
 import { MascotaService } from '../../service/mascota.service';
+import { LightModeServiceService } from '../../service/light-mode-service.service';
+import { SearchBarClienteComponent } from '../search-bar-cliente/search-bar-cliente.component';
 
 @Component({
   selector: 'app-detalles-cliente',
@@ -14,11 +16,13 @@ import { MascotaService } from '../../service/mascota.service';
 export class DetallesClienteComponent {
   cedula!: string;
   cliente: Cliente | undefined;
+  isModoOscuro: boolean = true;
+  @ViewChild(SearchBarClienteComponent) searchBarClienteComponent?: SearchBarClienteComponent;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private clienteService: ClienteService,
-              private mascotaService: MascotaService) {}
+              private mascotaService: MascotaService, private lightModeService: LightModeServiceService) {}
 
   ngOnInit() {
     // Obtener la cedula del cliente de la URL y buscarlo en la base de datos
@@ -42,6 +46,10 @@ export class DetallesClienteComponent {
         }
       );
     })
+    this.lightModeService.registrarDetallesClienteComponent(this);
+    if(!this.lightModeService.isModoOscuro){
+      this.isModoOscuro = false;
+    }
   }
 
   // Función para eliminar un cliente de la BD
@@ -61,5 +69,10 @@ export class DetallesClienteComponent {
 
   redirectNotAuthorized() {
     this.router.navigate(['**']);
+  }
+
+  cambiarModo(isModoOscuro: boolean){
+    this.isModoOscuro = isModoOscuro;
+    this.searchBarClienteComponent?.cambiarModo(isModoOscuro);
   }
 }

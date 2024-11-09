@@ -1,4 +1,4 @@
-<section class="seccionDueno">
+<section id="seccionPeludo" class="seccionDueno" [ngClass]="isModoOscuro ? 'section-light' : 'section-dark'">
     <h1>Dueño de {{mascota.nombre}}</h1>
     <article class="datosDueno">
         <section class="imagenesDueno" id="seccionImagenes">

@@ -1,5 +1,5 @@
 
-<main>
+<main [ngClass]="isModoOscuro ? 'main' : 'main-light'">
     <app-search-bar-veterinario></app-search-bar-veterinario>
     <section class="contenedorTabla">
         <table class="table" id="tablaMascotas">
@@ -53,6 +53,6 @@
             </tbody>
         </table>
     </section>
-    <button class="btnVolver" (click)="goToDashboard()">Volver</button>
+    <button [ngClass]="isModoOscuro ? 'btnVolver' : 'btnVolver-light'" (click)="goToDashboard()">Volver</button>
 </main>
 

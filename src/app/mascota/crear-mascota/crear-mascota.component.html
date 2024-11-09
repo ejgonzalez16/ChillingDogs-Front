@@ -1,4 +1,4 @@
 <main>
-    <h1>Registra un nuevo peludito</h1>
+    <h1 [ngClass]="isModoOscuro ? 'h1-dark' : 'h1-light'">Registra un nuevo peludito</h1>
     <app-form-mascota [modificar]="false" [mascota]="mascota"></app-form-mascota>
 </main>

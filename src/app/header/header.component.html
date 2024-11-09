@@ -42,13 +42,13 @@
                 </li>-->
                 <li class="nav-item enlacesSecciones">
                   <a id="btnBuscarMascotas" class="button" [routerLink]="['mascotas/buscar']">
-                    <img src="/assets/images/mascotas-vet-option.png" alt="mascotas">
+                    <img id="mascotasImg" src="/assets/images/mascotas-vet-option-light.png" alt="mascotas">
                     <div class="logout">Mascotas</div>
                   </a>
                 </li>
                 <li class="nav-item enlacesSecciones">
                   <a id="btnBuscarClientes" class="button" [routerLink]="['clientes/buscar']">
-                    <img src="/assets/images/clientes-vet-option.png">
+                    <img id="clientesImg" src="/assets/images/clientes-vet-option-light.png">
                     <div class="logout">Clientes</div>
                   </a>
                 </li>
@@ -70,7 +70,7 @@
             <div class="collapse navbar-collapse">
               <!-- Alinear items a la derecha utilizando ms-auto -->
               <div class="ms-auto navigation">
-                <a id="btnLogout" class="button bg-dark" (click)="logout()">
+                <a id="btnLogout" class="button" (click)="logout()">
                   <!-- Que haga el hijueputa width y height para que no joda el ngSrc -->
                   <img ngSrc="{{perfil.foto}}" width="50" height="50">
                   <div class="logout">Cerrar Sesión</div>

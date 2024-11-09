@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Veterinario } from '../../modelo/veterinario';
 import { VeterinarioService } from '../../service/veterinario.service';
+import { LightModeServiceService } from '../../service/light-mode-service.service';
+import { SearchBarVeterinarioComponent } from '../search-bar-veterinario/search-bar-veterinario.component';
 
 @Component({
   selector: 'app-detalles-veterinario',
@@ -12,10 +14,12 @@ import { VeterinarioService } from '../../service/veterinario.service';
 export class DetallesVeterinarioComponent {
   id!: number;
   veterinario: Veterinario | undefined;
+  isModoOscuro: boolean = true;
+  @ViewChild(SearchBarVeterinarioComponent) searchBarVeterinarioComponent?: SearchBarVeterinarioComponent;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private veterinarioService: VeterinarioService) {}
+              private veterinarioService: VeterinarioService, private lightModeService: LightModeServiceService) {}
 
   ngOnInit() {
     // Obtener el id del cliente de la URL y buscarlo en la base de datos
@@ -32,6 +36,8 @@ export class DetallesVeterinarioComponent {
         }
       );
     })
+    this.lightModeService.registrarDetallesVeterinario(this);
+    this.isModoOscuro = this.lightModeService.isModoOscuro;
   }
 
   // Función para eliminar un cliente de la BD
@@ -47,5 +53,10 @@ export class DetallesVeterinarioComponent {
 
   redirectNotAuthorized() {
     this.router.navigate(['**']);
+  }
+
+  cambiarModo(isModoOscuro: boolean) {
+    this.isModoOscuro = isModoOscuro;
+    this.searchBarVeterinarioComponent?.cambiarModo(isModoOscuro);
   }
 }

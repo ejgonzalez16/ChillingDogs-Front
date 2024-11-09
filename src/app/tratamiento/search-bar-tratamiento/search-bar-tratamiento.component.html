@@ -1,5 +1,5 @@
 <main>
-    <h1>¡Mira los tratamientos de una mascota!</h1>
+    <h1 [ngClass]="isModoOscuro ? 'h1-dark' : 'h1-light'">¡Mira los tratamientos de una mascota!</h1>
     <article>
         <form (ngSubmit)="onSubmit()" method="post" class="form">
             <input type="text" name="nombrePerro" placeholder="Nombre del perro..." id="nombrePerroField" [(ngModel)]="nombrePerro" required>

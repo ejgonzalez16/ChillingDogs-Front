@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {Cliente} from "../../modelo/cliente";
 import {ClienteService} from "../../service/cliente.service";
 import { ActivatedRoute, Router } from '@angular/router';
 import {mergeMap, of, switchMap} from 'rxjs';
 import {PerfilService} from "../../service/perfil.service";
+import { LightModeServiceService } from '../../service/light-mode-service.service';
+import { SearchBarClienteComponent } from '../search-bar-cliente/search-bar-cliente.component';
 
 @Component({
   selector: 'app-tabla-cliente',
@@ -12,12 +14,14 @@ import {PerfilService} from "../../service/perfil.service";
 })
 export class TablaClienteComponent {
   clientes!: Cliente[];
+  isModoOscuro: boolean = true;
+  @ViewChild(SearchBarClienteComponent) searchBar!: SearchBarClienteComponent
 
   constructor(
     private clienteService: ClienteService,
     private router: Router,
     private route: ActivatedRoute,
-    private perfilService: PerfilService) {
+    private perfilService: PerfilService, private lightModeService: LightModeServiceService) {
   }
 
   ngOnInit() {
@@ -47,6 +51,10 @@ export class TablaClienteComponent {
         this.clientes = clientes;
       })
     })*/
+   this.lightModeService.registrarTablaCliente(this);
+   if(!this.lightModeService.isModoOscuro){
+     this.isModoOscuro = false;
+   }
   }
 
   eliminarCliente(id: number) {
@@ -71,5 +79,10 @@ export class TablaClienteComponent {
 
   redirectNotAuthorized() {
     this.router.navigate(['**']);
+  }
+
+  cambiarModo(isModoOscuro: boolean) {  
+    this.isModoOscuro = isModoOscuro;
+    this.searchBar.cambiarModo(isModoOscuro);
   }
 }

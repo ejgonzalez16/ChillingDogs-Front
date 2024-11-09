@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Cliente } from '../../modelo/cliente';
+import { FormClienteComponent } from '../form-cliente/form-cliente.component';
+import { LightModeServiceService } from '../../service/light-mode-service.service';
 
 @Component({
   selector: 'app-registrar-cliente',
@@ -16,4 +18,21 @@ export class RegistrarClienteComponent {
     foto: '',
     mascotas: []
   };
+  isModoOscuro: boolean = true
+  @ViewChild(FormClienteComponent) formClienteComponent!: FormClienteComponent;
+
+  constructor(private lightModeService: LightModeServiceService){}
+
+  ngOnInit(){
+    this.lightModeService.registrarRegistrarClienteComponent(this);
+    if(!this.lightModeService.isModoOscuro){
+      this.isModoOscuro = false;
+      this.formClienteComponent.cambiarModo(false);
+    }
+  }
+
+  cambiarModo(isModoOscuro: boolean){
+    this.isModoOscuro = isModoOscuro;
+    this.formClienteComponent.cambiarModo(isModoOscuro);
+  }
 }

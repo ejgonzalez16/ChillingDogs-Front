@@ -1,5 +1,5 @@
 <main>
-    <h1>¡Registra un veterinario!</h1>
+    <h1 [ngClass]="isModoOscuro ? 'h1-dark' : 'h1-light'">¡Registra un veterinario!</h1>
     <app-form-veterinario [modificar]="false" [veterinario]="veterinario"></app-form-veterinario>
 </main>
 

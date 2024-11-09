@@ -11,11 +11,16 @@ export class SearchBarTratamientoComponent {
   @Output() actualizarLista = new EventEmitter<string>();
   @Input()
   veterinarioId!: number;
+  isModoOscuro: boolean = true;
 
   onSubmit() {
     if(this.nombrePerro){
       // Buscar mascota por nombre
       this.actualizarLista.emit(this.nombrePerro);
     }
+  }
+
+  cambiarModo(isModoOscuro: boolean){
+    this.isModoOscuro = isModoOscuro;
   }
 }

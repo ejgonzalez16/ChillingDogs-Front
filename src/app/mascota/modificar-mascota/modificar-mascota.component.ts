@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Mascota } from '../../modelo/mascota';
 import { ActivatedRoute } from '@angular/router';
 import { MascotaService } from '../../service/mascota.service';
+import { LightModeServiceService } from '../../service/light-mode-service.service';
+import { FormMascotaComponent } from '../form-mascota/form-mascota.component';
 
 @Component({
   selector: 'app-modificar-mascota',
@@ -11,8 +13,10 @@ import { MascotaService } from '../../service/mascota.service';
 export class ModificarMascotaComponent {
   id!: number;
   mascota!: Mascota;
+  isModoOscuro: boolean = true;
+  @ViewChild(FormMascotaComponent) formMascota!: FormMascotaComponent
 
-  constructor(private route: ActivatedRoute, private mascotaService: MascotaService) {}
+  constructor(private route: ActivatedRoute, private mascotaService: MascotaService, private lightModeService: LightModeServiceService) {}
 
   ngOnInit() {
     // Trae la mascota que se va a actualizar
@@ -20,5 +24,14 @@ export class ModificarMascotaComponent {
     this.mascotaService.findById(this.id).subscribe(mascota => {
       this.mascota = mascota;
     });
+    this.lightModeService.registrarModificarMascota(this);
+    if(!this.lightModeService.isModoOscuro){  
+      this.isModoOscuro = false;
+    }
+  }
+  
+  cambiarModo(isModoOscuro: boolean) {
+    this.isModoOscuro = isModoOscuro;
+    this.formMascota.cambiarModo(isModoOscuro);
   }
 }

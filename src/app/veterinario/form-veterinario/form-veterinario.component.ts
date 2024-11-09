@@ -4,6 +4,7 @@ import { VeterinarioService } from '../../service/veterinario.service';
 import { mergeMap } from 'rxjs';
 import { Router } from '@angular/router';
 import {PerfilService} from "../../service/perfil.service";
+import { LightModeServiceService } from '../../service/light-mode-service.service';
 
 @Component({
   selector: 'app-form-veterinario',
@@ -13,11 +14,12 @@ import {PerfilService} from "../../service/perfil.service";
 export class FormVeterinarioComponent {
   @Input() modificar!: boolean;
   @Input() veterinario!: Veterinario;
+  isModoOscuro: boolean = true;
 
   constructor(
     private veterinarioService: VeterinarioService,
     private router: Router,
-    private perfilService: PerfilService) {
+    private perfilService: PerfilService, private lightModeService: LightModeServiceService) {
   }
 
   ngOnInit() {
@@ -27,6 +29,7 @@ export class FormVeterinarioComponent {
         this.redirectNotAuthorized();
       }
     });
+    this.isModoOscuro = this.lightModeService.isModoOscuro;
   }
 
   onSubmit() {
@@ -78,5 +81,9 @@ export class FormVeterinarioComponent {
 
   redirectNotAuthorized() {
     this.router.navigate(['**']);
+  }
+
+  cambiarModo(isModoOscuro: boolean){
+    this.isModoOscuro = isModoOscuro;
   }
 }

@@ -37,6 +37,9 @@ export class TablaMascotaComponent {
       this.mascotas = mascotas;
     });
     this.lightModeService.registrarTablaMascota(this);
+    if(!this.lightModeService.isModoOscuro){
+      this.isModoOscuro = false;
+    }
   }
 
   recargarMascotas(filtro: {nombre: string, filter: string}) {

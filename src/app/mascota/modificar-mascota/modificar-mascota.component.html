@@ -1,6 +1,6 @@
 
 <main>
-    <h1>Modifica un peludito</h1>
+    <h1 [ngClass]="isModoOscuro ? 'h1-dark' : 'h1-light'">Modifica un peludito</h1>
 <app-form-mascota [modificar]="true" [mascota]="mascota"></app-form-mascota>
 </main>
 

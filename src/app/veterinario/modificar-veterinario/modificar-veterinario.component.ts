@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Veterinario } from '../../modelo/veterinario';
 import { ActivatedRoute } from '@angular/router';
 import { merge, mergeMap } from 'rxjs';
 import { VeterinarioService } from '../../service/veterinario.service';
+import { LightModeServiceService } from '../../service/light-mode-service.service';
+import { FormVeterinarioComponent } from '../form-veterinario/form-veterinario.component';
 
 @Component({
   selector: 'app-modificar-veterinario',
@@ -12,8 +14,10 @@ import { VeterinarioService } from '../../service/veterinario.service';
 export class ModificarVeterinarioComponent {
   id!: number;
   veterinario!: Veterinario;
+  isModoOscuro: boolean = true;
+  @ViewChild(FormVeterinarioComponent) formVeterinarioComponent!: FormVeterinarioComponent
 
-  constructor(private route: ActivatedRoute, private veterinarioService: VeterinarioService) {}
+  constructor(private route: ActivatedRoute, private veterinarioService: VeterinarioService, private lightModeService: LightModeServiceService) {}
 
   ngOnInit() {
     this.route.paramMap.pipe(
@@ -25,5 +29,10 @@ export class ModificarVeterinarioComponent {
     ).subscribe(veterinario => {
       this.veterinario = veterinario;
     });
+  }
+
+  cambiarModo(isModoOscuro: boolean){
+    this.isModoOscuro = isModoOscuro;
+    this.formVeterinarioComponent.cambiarModo(isModoOscuro);
   }
 }

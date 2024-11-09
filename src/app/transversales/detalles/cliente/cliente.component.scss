@@ -11,8 +11,8 @@ button {
     border: none;
     border-radius: 30px;
   }
-  
-  section {
+
+  .section-light {
     background-color: var(--color-4);
   
     h1 {
@@ -25,6 +25,34 @@ button {
   
     td {
       width: 50%;
+    }
+  }
+  
+  .section-dark {
+    background-color: #212529;
+
+    h1 {
+      text-align: center;
+      color: white;
+    }
+  
+    h3 {
+      text-align: center;
+      color: white;
+    }
+
+    p {
+      text-align: center;
+      color: white;
+    }
+  
+    table {
+      width: 50%;
+    }
+  
+    td {
+      width: 50%;
+      color: white;
     }
   }
   

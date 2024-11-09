@@ -1,7 +1,7 @@
 <div class="d-flex flex-column mb-3 align-items-center">
   <h1>Selecciona el Medicamento</h1>
-  <section id="seccionPeludo">
-    <div class = "estadoPeludo">
+  <section [ngClass]="isModoOscuro ? 'section' : 'section-dark'">
+    <div [ngClass]="isModoOscuro ? 'estadoPeludo' : 'estadoPeludo-light'"> 
       <table>
         <tbody>
         <tr>

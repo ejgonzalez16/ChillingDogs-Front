@@ -76,11 +76,11 @@ export class HeaderComponent {
       this.nosotros?.classList.replace("link-dark", "link-light");
       this.servicios?.classList.replace("link-dark", "link-light");
       this.casos?.classList.replace("link-dark", "link-light");
-      this.buttonLogout?.classList.replace("bg-white", "bg-dark");
-      this.buscarClientes?.classList.replace("bg-white", "bg-dark");
-      this.buscarMascotas?.classList.replace("bg-white", "bg-dark");
-      this.buscarTratamientos?.classList.replace("bg-white", "bg-dark");
-      this.buscarVeterinarios?.classList.replace("bg-white", "bg-dark");
+      this.buttonLogout?.classList.replace("button-light", "button");
+      this.buscarClientes?.classList.replace("button-light", "button");
+      this.buscarMascotas?.classList.replace("button-light", "button");
+      this.buscarTratamientos?.classList.replace("button-light", "button");
+      this.buscarVeterinarios?.classList.replace("button-light", "button");
       return;
     }
     this.navbar?.classList.replace("nav-dark", "nav-light");
@@ -88,10 +88,10 @@ export class HeaderComponent {
     this.nosotros?.classList.replace("link-light", "link-dark");
     this.servicios?.classList.replace("link-light", "link-dark");
     this.casos?.classList.replace("link-light", "link-dark");
-    this.buttonLogout?.classList.replace("bg-dark", "bg-white");
-    this.buscarClientes?.classList.replace("bg-dark", "bg-white");
-    this.buscarMascotas?.classList.replace("bg-dark", "bg-white");
-    this.buscarTratamientos?.classList.replace("bg-dark", "bg-white");
-    this.buscarTratamientos?.classList.replace("bg-dark", "bg-white");
+    this.buttonLogout?.classList.replace("button", "button-light");
+    this.buscarClientes?.classList.replace("button", "button-light");
+    this.buscarMascotas?.classList.replace("button", "button-light");
+    this.buscarTratamientos?.classList.replace("button", "button-light");
+    this.buscarTratamientos?.classList.replace("button", "button-light");
   }
 }
