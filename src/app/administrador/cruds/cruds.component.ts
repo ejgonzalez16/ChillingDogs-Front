@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import {PerfilService} from "../../service/perfil.service";
+import { LightModeServiceService } from '../../service/light-mode-service.service';
 
 @Component({
   selector: 'admin-cruds',
@@ -8,10 +9,11 @@ import {PerfilService} from "../../service/perfil.service";
   styleUrl: './cruds.component.scss'
 })
 export class CRUDsComponent {
+  isModoOscuro: boolean = true;
 
   constructor(
     private router: Router,
-    private perfilService: PerfilService
+    private perfilService: PerfilService, private lightModeService: LightModeServiceService
   ) { }
 
   ngOnInit() {
@@ -20,6 +22,7 @@ export class CRUDsComponent {
         this.redirectNotAuthorized();
       }
     });
+    this.isModoOscuro = this.lightModeService.isModoOscuro;
   }
 
   // Retorna al inicio de sesion
@@ -35,5 +38,9 @@ export class CRUDsComponent {
 
   redirectNotAuthorized() {
     this.router.navigate(['**']);
+  }
+
+  cambiarModo(isModoOscuro: boolean){
+    this.isModoOscuro = isModoOscuro;
   }
 }

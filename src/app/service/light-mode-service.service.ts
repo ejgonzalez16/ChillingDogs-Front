@@ -18,6 +18,8 @@ import { ModificarVeterinarioComponent } from '../veterinario/modificar-veterina
 import { DetallesVeterinarioComponent } from '../veterinario/detalles-veterinario/detalles-veterinario.component';
 import { CrearTratamientoComponent } from '../tratamiento/crear-tratamiento/crear-tratamiento.component';
 import { CrearDrogaComponent } from '../drogas/crear-droga/crear-droga.component';
+import { TratamientosMascotaComponent } from '../tratamiento/tratamientos-mascota/tratamientos-mascota.component';
+import { MainAdminComponent } from '../administrador/main/main-admin.component';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +44,9 @@ export class LightModeServiceService {
   private detallesVeterinarioComponent: DetallesVeterinarioComponent | null = null;
   private crearTramientosComponent: CrearTratamientoComponent | null = null;
   private crearDrogaComponent: CrearDrogaComponent | null = null;
+  private tratamientosMascotaComponent: TratamientosMascotaComponent | null = null;
+  private mainAdmin: MainAdminComponent | null = null;
+  
   isModoOscuro: boolean = true;
 
   constructor() { }
@@ -122,6 +127,14 @@ export class LightModeServiceService {
     this.crearDrogaComponent = component;
   }
 
+  registrarTratamientosMascota(component: TratamientosMascotaComponent){
+    this.tratamientosMascotaComponent =  component;
+  }
+
+  registrarMainAdmin(component: MainAdminComponent){
+    this.mainAdmin =  component;
+  }
+
   obtenerModoIsModoOscuro(isModoOscuro: boolean): boolean{
     return isModoOscuro;
   }
@@ -146,6 +159,8 @@ export class LightModeServiceService {
     this.cambiarModoDetallesVeternario(isModoOscuro);
     this.cambiarModoCrearTratamientos(isModoOscuro);
     this.cambiarModoCrearDroga(isModoOscuro);
+    this.cambiarModoTratamientosMascota(isModoOscuro);
+    this.cambiarModoMainAdmin(isModoOscuro);
   }
 
   // Método para llamar la función de LoginComponent
@@ -296,6 +311,22 @@ export class LightModeServiceService {
   cambiarModoCrearDroga(isModoOscuro: boolean){
     if (this.crearDrogaComponent) {
       this.crearDrogaComponent.cambiarModo(isModoOscuro); // Llama a la función en LoginComponent 
+    } else {
+      console.warn('LoginComponent no está registrado en el servicio.');
+    }
+  }
+
+  cambiarModoTratamientosMascota(isModoOscuro: boolean){
+    if (this.tratamientosMascotaComponent) {
+      this.tratamientosMascotaComponent.cambiarModo(isModoOscuro); // Llama a la función en LoginComponent 
+    } else {
+      console.warn('LoginComponent no está registrado en el servicio.');
+    }
+  }
+
+  cambiarModoMainAdmin(isModoOscuro: boolean){
+    if (this.mainAdmin) {
+      this.mainAdmin.cambiarModo(isModoOscuro); // Llama a la función en LoginComponent
     } else {
       console.warn('LoginComponent no está registrado en el servicio.');
     }

@@ -1,6 +1,6 @@
 
 <main>
-    <h1>Modifica los datos de un cliente</h1>
+    <h1 [ngClass]="isModoOscuro ? 'h1-dark' : 'h1-light'">Modifica los datos de un cliente</h1>
     <app-form-veterinario [modificar]="true" [veterinario]="veterinario"></app-form-veterinario>
 </main>
 

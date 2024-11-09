@@ -39,6 +39,7 @@ export class HeaderComponent {
   ngOnInit(): void {
     this.perfilService.perfilInfo$.subscribe(perfil => {
       this.perfil = perfil;
+      console.log(this.perfil.rol)
     });
     
   }

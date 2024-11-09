@@ -11,14 +11,28 @@ h1{
     margin-bottom: 20vh;
 }
 
-h2, h3, .btn-cruds{
+.h2, .h3, .btn-cruds{
     margin-bottom: 5vh;
     color: white;
 }
 
-button{
+.h2-dark, .h3-dark{
+    margin-bottom: 5vh;
+    color: black;
+}
+
+.button{
     margin-bottom: 1vh;
     background-color: white;
+    border-radius: 10ch;
+    width: 30ch;
+    font-weight: 500;
+}
+
+.button-dark{
+    margin-bottom: 1vh;
+    background-color: #212529;
+    color: white;
     border-radius: 10ch;
     width: 30ch;
     font-weight: 500;
@@ -30,6 +44,10 @@ img{
     height: 20vh;
 }
 
-.logout{
-    color: black;
+.contenedor{
+    background-color: #212529;
+}
+
+.contenedor-light{
+    background-color: white;
 }

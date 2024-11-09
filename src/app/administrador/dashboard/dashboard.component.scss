@@ -6,8 +6,12 @@
     flex-direction: column;
 }
 
-::ng-deep .ngx-charts text {
+.fill-white {
     fill: white !important; /* Cambia el color de los textos a blanco */
+}
+
+.fill-dark {
+    fill: rgb(0, 0, 0) !important; /* Cambia el color de los textos a blanco */
 }
 
 div{
@@ -16,6 +20,16 @@ div{
 
 .blanco{
     background-color: #212529;
+    padding: 5vh;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.blanco-light{
+    background-color: #ffffff;
     padding: 5vh;
     align-items: center;
     text-align: center;
@@ -47,8 +61,19 @@ div{
     margin-bottom: 2vh;
 }
 
-p, h3{
+.icono-dark{
+    width: 80px;
+    height: 80px;
+    fill: #212529;
+    margin-bottom: 2vh;
+}
+
+.text-light {
     color: white;
+}
+
+.text-dark {
+    color: black;
 }
 
 p{
@@ -64,7 +89,7 @@ thead{
     font-size: 1.7em;
 }
 
-tbody{
+.tbody{
     tr{
         &:nth-child(odd){
             background: white;
@@ -76,6 +101,28 @@ tbody{
     }
 }
 
+.tbody-dark{
+    tr{
+        &:nth-child(odd){
+            background: black;
+            color: white;
+        }
+
+        &:nth-child(even){
+            background: #212529;
+            color: white;
+        }
+    }
+}
+
 .completo{
     width: 90%;
+}
+
+.thead{
+    color: black !important;
+}
+
+.table-bordered-dark{
+    border-color:  #000000 !important;
 }
