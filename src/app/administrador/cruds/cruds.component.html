@@ -17,5 +17,10 @@
         <button [routerLink]="['/clientes/registrar']">Registrar</button>
         <button [routerLink]="['/clientes/buscar']">Buscar</button>
     </div>
-    <button (click)="logout()" class="btnVolver">Cerrar Sesión</button>
+    <h3>Drogas</h3>
+    <div class="btn-cruds">
+        <button [routerLink]="['/drogas/crear']">Crear</button>
+        <button [routerLink]="['/drogas/buscar']">Buscar</button>
+    </div>
+    <button (click)="logout()" class="btnVolver logout">Cerrar Sesión</button>
 </div>
