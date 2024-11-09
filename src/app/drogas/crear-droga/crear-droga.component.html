@@ -1,1 +1,4 @@
-<p>crear-droga works!</p>
+<main>
+    <h1 [ngClass]="isModoOscuro ? 'h1-dark' : 'h1-light'">Registra una nueva droga</h1>
+    <app-form-droga [modificar]="false" [droga]="droga"></app-form-droga>
+</main>

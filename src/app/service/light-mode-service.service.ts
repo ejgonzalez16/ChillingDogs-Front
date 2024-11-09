@@ -17,6 +17,7 @@ import { CrearVeterinarioComponent } from '../veterinario/crear-veterinario/crea
 import { ModificarVeterinarioComponent } from '../veterinario/modificar-veterinario/modificar-veterinario.component';
 import { DetallesVeterinarioComponent } from '../veterinario/detalles-veterinario/detalles-veterinario.component';
 import { CrearTratamientoComponent } from '../tratamiento/crear-tratamiento/crear-tratamiento.component';
+import { CrearDrogaComponent } from '../drogas/crear-droga/crear-droga.component';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +41,7 @@ export class LightModeServiceService {
   private modificarVeterinarioComponent: ModificarVeterinarioComponent | null = null;
   private detallesVeterinarioComponent: DetallesVeterinarioComponent | null = null;
   private crearTramientosComponent: CrearTratamientoComponent | null = null;
+  private crearDrogaComponent: CrearDrogaComponent | null = null;
   isModoOscuro: boolean = true;
 
   constructor() { }
@@ -116,6 +118,10 @@ export class LightModeServiceService {
     this.crearTramientosComponent =  component;
   }
 
+  registrarCrearDroga(component: CrearDrogaComponent) {
+    this.crearDrogaComponent = component;
+  }
+
   obtenerModoIsModoOscuro(isModoOscuro: boolean): boolean{
     return isModoOscuro;
   }
@@ -139,6 +145,7 @@ export class LightModeServiceService {
     this.cambiarModoCrearVeterinario(isModoOscuro);
     this.cambiarModoDetallesVeternario(isModoOscuro);
     this.cambiarModoCrearTratamientos(isModoOscuro);
+    this.cambiarModoCrearDroga(isModoOscuro);
   }
 
   // Método para llamar la función de LoginComponent
@@ -281,6 +288,14 @@ export class LightModeServiceService {
   cambiarModoCrearTratamientos(isModoOscuro: boolean){
     if (this.crearTramientosComponent) {
       this.crearTramientosComponent.cambiarModo(isModoOscuro); // Llama a la función en LoginComponent 
+    } else {
+      console.warn('LoginComponent no está registrado en el servicio.');
+    }
+  }
+
+  cambiarModoCrearDroga(isModoOscuro: boolean){
+    if (this.crearDrogaComponent) {
+      this.crearDrogaComponent.cambiarModo(isModoOscuro); // Llama a la función en LoginComponent 
     } else {
       console.warn('LoginComponent no está registrado en el servicio.');
     }
