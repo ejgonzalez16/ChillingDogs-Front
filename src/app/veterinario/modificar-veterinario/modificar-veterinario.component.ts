@@ -29,6 +29,8 @@ export class ModificarVeterinarioComponent {
     ).subscribe(veterinario => {
       this.veterinario = veterinario;
     });
+    this.isModoOscuro = this.lightModeService.isModoOscuro;
+    this.lightModeService.registrarModificarVeterinarioComponent(this);
   }
 
   cambiarModo(isModoOscuro: boolean){

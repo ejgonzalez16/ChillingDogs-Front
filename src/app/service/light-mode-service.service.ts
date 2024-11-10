@@ -20,6 +20,7 @@ import { CrearTratamientoComponent } from '../tratamiento/crear-tratamiento/crea
 import { CrearDrogaComponent } from '../drogas/crear-droga/crear-droga.component';
 import { TratamientosMascotaComponent } from '../tratamiento/tratamientos-mascota/tratamientos-mascota.component';
 import { MainAdminComponent } from '../administrador/main/main-admin.component';
+import { ModificarDrogaComponent } from '../drogas/modificar-droga/modificar-droga.component';
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +47,7 @@ export class LightModeServiceService {
   private crearDrogaComponent: CrearDrogaComponent | null = null;
   private tratamientosMascotaComponent: TratamientosMascotaComponent | null = null;
   private mainAdmin: MainAdminComponent | null = null;
+  private modifcarDrogaComponent: ModificarDrogaComponent | null = null;
   
   isModoOscuro: boolean = true;
 
@@ -135,6 +137,10 @@ export class LightModeServiceService {
     this.mainAdmin =  component;
   }
 
+  registrarModificarDroga(component: ModificarDrogaComponent){
+    this.modifcarDrogaComponent =  component;
+  }
+
   obtenerModoIsModoOscuro(isModoOscuro: boolean): boolean{
     return isModoOscuro;
   }
@@ -161,6 +167,8 @@ export class LightModeServiceService {
     this.cambiarModoCrearDroga(isModoOscuro);
     this.cambiarModoTratamientosMascota(isModoOscuro);
     this.cambiarModoMainAdmin(isModoOscuro);
+    this.cambiarModoModificarVeterinario(isModoOscuro);3
+    this.cambiarModoModificarDroga(isModoOscuro);
   }
 
   // Método para llamar la función de LoginComponent
@@ -327,6 +335,14 @@ export class LightModeServiceService {
   cambiarModoMainAdmin(isModoOscuro: boolean){
     if (this.mainAdmin) {
       this.mainAdmin.cambiarModo(isModoOscuro); // Llama a la función en LoginComponent
+    } else {
+      console.warn('LoginComponent no está registrado en el servicio.');
+    }
+  }
+
+  cambiarModoModificarDroga(isModoOscuro: boolean){
+    if (this.modifcarDrogaComponent) {
+      this.modifcarDrogaComponent.cambiarModo(isModoOscuro); // Llama a la función en LoginComponent
     } else {
       console.warn('LoginComponent no está registrado en el servicio.');
     }

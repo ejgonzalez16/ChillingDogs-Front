@@ -5,6 +5,7 @@ import { MascotaService } from '../../service/mascota.service';
 import { LightModeServiceService } from '../../service/light-mode-service.service';
 import { DetallesMascotaComponent } from '../detalles-mascota/detalles-mascota.component';
 import { MascotaComponent } from '../../transversales/detalles/mascota/mascota.component';
+import { isModuleNamespaceObject } from 'node:util/types';
 
 @Component({
   selector: 'app-detalles-para-cliente',
@@ -36,10 +37,9 @@ export class DetallesParaClienteComponent {
 
   ngAfterViewInit(){
     this.route.queryParams.subscribe(params => {
-      var isModoOscuro = params['isModoOscuro'] === 'true';
-      if(!isModoOscuro && params['isModoOscuro']){
+      if(!this.lightModeService.isModoOscuro){
         this.main?.classList.replace("main-dark", "main-light");
-        this.btnTratamientos?.classList.replace("tratamientos-dark", "tratamientos-light");
+        this.btnTratamientos?.classList.replace("tratamientos-light", "tratamientos-dark");
         this.btnVolver?.classList.replace("btnVolver", "btnVolver-light")
       }
     });
@@ -60,11 +60,11 @@ export class DetallesParaClienteComponent {
   cambiarModo(isModoOscuro: boolean){
     this.mascotaComponent.cambiarModo(isModoOscuro);
     if(isModoOscuro){
-      this.btnTratamientos?.classList.replace("tratamientos-light", "tratamientos-dark");
+      this.btnTratamientos?.classList.replace("tratamientos-dark", "tratamientos-light");
       this.btnVolver?.classList.replace("btnVolver-light", "btnVolver")
       return;
     }
-    this.btnTratamientos?.classList.replace("tratamientos-dark", "tratamientos-light");
+    this.btnTratamientos?.classList.replace("tratamientos-light", "tratamientos-dark");
     this.btnVolver?.classList.replace("btnVolver", "btnVolver-light")
   }
 }

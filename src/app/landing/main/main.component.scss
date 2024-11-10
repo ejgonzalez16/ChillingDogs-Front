@@ -92,6 +92,61 @@ section {
     }
 }
 
+.seccionDorada-cita{
+    background: var(--primary-color);
+
+    h1, h2, h3, h4, h5, h6 {
+        color: #171a1f !important;
+    }
+
+    p{
+        color: #171a1f;
+    }
+
+    button{
+        background-color: white !important;
+        color:#171a1f !important;
+
+        &:hover{
+            background-color: #171a1f !important;
+            color: white !important;
+        }
+    }
+}
+
+
+.seccionDorada-cita-light{
+    background: var(--primary-color);
+
+    h1, h2, h3, h4, h5, h6 {
+        color: white !important;
+    }
+
+    p{
+        color: white !important;
+    }
+
+    button{
+        background-color: #171a1f !important;
+        color: white !important;
+
+        &:hover{
+            background-color: white !important;
+            color: #171a1f !important;
+        }
+    }
+    
+    .descripcionServicio{
+        width: 345px;
+        height: 349px;
+        background: #c2b131cc !important;
+        border-radius: 8px;
+        box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f;
+    }
+}
+
+
+
 .seccionAzul {
     background: var(--secondary-color);
     padding: 40px 0;
@@ -560,6 +615,27 @@ p{
     }
 }
 
+.agendarCitaForm-light{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 150px;
+    width: 40%;
+    background-color: white;
+    margin-bottom: 100px;
+    padding-top: 20px;
+
+    input{
+        margin-bottom: 50px;
+        width: 50%;
+        height: 8%;
+        border-radius: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
 .btnRegistro-light{
     margin-top: 1em;
     padding: 0 20px;
@@ -570,12 +646,32 @@ p{
     font-size: 25px;
     line-height: 56px;
     font-weight: 400;
-    color: #171A1FFF;
-    background-color: #FFFFFFFF;
     opacity: 1;
     border: none;
     border-radius: 30px;
     width: 18em;
+    margin-bottom: 1em;
+
+    &:hover{
+        background-color: #171A1FFF;
+        color: #FFFFFFFF;
+    }
+}
+
+.btnverMasServicios{
+    margin-top: 1em;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Chewy;
+    font-size: 25px;
+    line-height: 56px;
+    font-weight: 400;
+    opacity: 1;
+    border: none;
+    border-radius: 30px;
+    width: 10em;
     margin-bottom: 1em;
 
     &:hover{

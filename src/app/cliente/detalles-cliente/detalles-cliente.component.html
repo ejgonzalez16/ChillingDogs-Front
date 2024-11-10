@@ -1,7 +1,7 @@
 <main [ngClass]="isModoOscuro ? 'main' : 'main-light'">
     <app-search-bar-cliente></app-search-bar-cliente>
     <ng-container *ngIf="cliente">
-      <section [ngClass]="isModoOscuro ? 'seccionCliente' : 'seccionCliente-light'">
+      <section [ngClass]="isModoOscuro ? 'seccionCliente-light' : 'seccionCliente'">
           <div id="datosCliente">
               <img src="{{cliente.foto}}" alt="foto">
               <div id="infoCliente">
@@ -32,12 +32,12 @@
               </div>
           </div>
       </section>
-      <div [ngClass]="isModoOscuro ? 'botonesAccion' : 'botonesAccion-light'">
+      <div [ngClass]="isModoOscuro ? 'botonesAccion-light' : 'botonesAccion'">
           <form (click)="eliminarCliente(cliente.id)">
-              <div [ngClass]="isModoOscuro ? 'contenedorBoton' : 'contenedorBoton-light'"><button type="submit">Eliminar</button></div>
+              <div [ngClass]="isModoOscuro ? 'contenedorBoton-light' : 'contenedorBoton'"><button type="submit">Eliminar</button></div>
           </form>
           <form [routerLink]="['/clientes/modificar', cliente.cedula]">
-              <div [ngClass]="isModoOscuro ? 'contenedorBoton' : 'contenedorBoton-light'"><button type="submit">Modificar</button></div>
+              <div [ngClass]="isModoOscuro ? 'contenedorBoton-light' : 'contenedorBoton'"><button type="submit">Modificar</button></div>
           </form>
       </div>
       <h2 [ngClass]="isModoOscuro ? 'h2-dark' : 'h2-light'">Mascotas</h2>

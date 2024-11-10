@@ -1,7 +1,7 @@
 <div class="contenedor">
     <detalle-mascota [mascota]="mascota"></detalle-mascota>
     <!-- Si verTratamientos es true, se muestra el botón para ocultar los tratamientos y si es false se muestra el botón para mostrar los tratamientos -->
-    <button id="btnTratamientos" class="tratamientos-dark"(click)="verTratamientos = !verTratamientos">{{verTratamientos ? 'Ocultar' : 'Mostrar'}} tratamientos</button>
+    <button id="btnTratamientos" class="tratamientos-light"(click)="verTratamientos = !verTratamientos">{{verTratamientos ? 'Ocultar' : 'Mostrar'}} tratamientos</button>
 
     <!-- Si verTratamientos es true, se muestra el componente detalle-tratamientos -->
     <app-tratamientos-mascota *ngIf="verTratamientos"></app-tratamientos-mascota>

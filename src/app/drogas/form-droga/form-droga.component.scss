@@ -21,7 +21,7 @@ main{
 }
 
 .contenedorForm-light{
-    background-color: var(--color-3);
+    background-color: #171A1FFF;
     width: 100%;
     height: 30%;
     padding: 3em;
@@ -32,13 +32,13 @@ main{
     color: white;
 
     input{
-        background-color: black;
+        background-color: #171A1FFF;
         border-color: white;
         color: white;
     }
 
     select{
-        background-color: black;
+        background-color: #171A1FFF;
         border-color: white;
         color: white;
     }
@@ -68,6 +68,9 @@ input {
 }
 
 section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     h1{
         text-align: center;
         padding: 1em;
@@ -93,7 +96,7 @@ button {
     width: fit-content;
     margin-top: 0;
     font-size: small;
-    margin-bottom: 0;
+    margin-bottom: 40px;
 }
 
 #activo {

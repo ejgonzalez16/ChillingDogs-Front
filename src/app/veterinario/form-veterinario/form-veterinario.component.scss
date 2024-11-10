@@ -21,7 +21,7 @@ main{
 }
 
 .contenedorForm-light{
-    background-color: var(--color-3);
+    background-color: #16191e;
     width: 100%;
     height: 30%;
     padding: 3em;
@@ -32,13 +32,13 @@ main{
     color: white;
 
     input{
-        background-color: black;
+        background-color: #16191e;
         border-color: white;
         color: white;
     }
 
     select{
-        background-color: black;
+        background-color: #16191e;
         border-color: white;
         color: white;
     }
@@ -132,7 +132,7 @@ input{
     line-height: 56px;
     font-weight: 400;
     color: #FFFFFFFF;
-    background: black;
+    background: #16191e;
     opacity: 1;
     border: none;
     border-radius: 4px;

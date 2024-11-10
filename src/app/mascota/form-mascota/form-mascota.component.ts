@@ -144,4 +144,9 @@ export class FormMascotaComponent {
   cambiarModo(isModoOscuro: boolean) {
     this.isModoOscuro = isModoOscuro;
   }
+
+  goBack() {
+    window.history.back();
+  }
+
 }

@@ -109,38 +109,6 @@ button {
   border-radius: 30px;
 }
 
-.section {
-  background-color: var(--color-4);
-
-  h1 {
-    text-align: center;
-  }
-
-  table {
-    width: 50%;
-  }
-
-  td {
-    width: 50%;
-  }
-}
-
-.section-dark {
-  background-color: var(--color-3);
-
-  h1 {
-    text-align: center;
-  }
-
-  table {
-    width: 50%;
-  }
-
-  td {
-    width: 50%;
-  }
-}
-
 #contenedorTabla {
   margin-top: 50px;
   padding-top: 5px;
@@ -168,6 +136,8 @@ button {
   margin-top: 20px;
   margin-bottom: 50px;
   padding-bottom: 30px;
+  background-color: #ffffff;
+  color: #212529;
 
   table {
     text-align: start;
@@ -225,7 +195,7 @@ button {
   margin-top: 20px;
   margin-bottom: 50px;
   padding-bottom: 30px;
-  background-color: black;
+  background-color: #212529;
   color: white;
 
   table {
@@ -260,7 +230,7 @@ button {
       }
 
       select{
-        background-color: black;
+        background-color: #212529;
         color: white;
       }
     }

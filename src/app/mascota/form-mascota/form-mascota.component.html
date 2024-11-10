@@ -3,7 +3,7 @@
     <section>
         <form (ngSubmit)="onSubmit()" #form="ngForm" id="modificarForm">
             <input [(ngModel)]="mascota.cliente!.id" type="number" id="id" name="id" hidden>
-            <div [ngClass]="isModoOscuro ? 'contenedorForm' : 'contenedorForm-light'">
+            <div [ngClass]="isModoOscuro ? 'contenedorForm-light' : 'contenedorForm'">
                 <table>
                     <tbody>
                     <tr>
@@ -99,9 +99,9 @@
                 </div>
             </div>
             <div class="contenedorBoton" *ngIf="modificar"><button id="btnModificar" type="submit" class="present-button" [ngClass]="isModoOscuro ? 'btnRegistro' : 'btnRegistro-light'">Modificar</button></div>
-            <div  class="contenedorBoton" *ngIf="!modificar"><button id="btnRegistrar"  type="submit" class="present-button" [ngClass]="isModoOscuro ? 'btnRegistro' : 'btnRegistro-light'">Registrar</button></div>
-            <div class="contenedorBoton"><button type="submit" class="btnVolver present-button">Volver</button></div>
+            <div  class="contenedorBoton" *ngIf="!modificar"><button id="btnRegistrar"  type="submit" class="present-button" [ngClass]="isModoOscuro ? 'btnRegistro' : 'btnRegistro-light'">Registrar</button></div> 
         </form>
+        <div class="contenedorBoton"><button type="submit" (click)="goBack()" class="btnVolver present-button">Volver</button></div>
     </section>
 </main>
 

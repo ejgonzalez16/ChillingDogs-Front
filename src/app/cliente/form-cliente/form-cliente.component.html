@@ -2,7 +2,7 @@
     <section *ngIf="cliente">
         <form #modificarForm="ngForm" (ngSubmit)="onSubmit()" method="post" id="modificarForm">
             <input [(ngModel)]="cliente.id" type="number" id="id" name="id" hidden>
-            <div [ngClass]="isModoOscuro ? 'contenedorForm' : 'contenedorForm-light'">
+            <div [ngClass]="isModoOscuro ? 'contenedorForm-light' : 'contenedorForm'">
                 <table>
                     <tbody>
                         <tr>
@@ -70,10 +70,10 @@
                 </div>
             </div>
             <div class="contenedorBoton" *ngIf="modificar">
-              <button type="submit" [ngClass]="isModoOscuro ? 'btnModificar' : 'btnModificar-dark'">Guardar cambios</button>
+              <button type="submit" [ngClass]="isModoOscuro ? 'btnModificar-dark' : 'btnModificar'">Guardar cambios</button>
             </div>
             <div class="contenedorBoton" *ngIf="!modificar">
-              <button id="btnRegistrar" type="submit" [ngClass]="isModoOscuro ? 'btnModificar' : 'btnModificar-dark'">Registrar</button>
+              <button id="btnRegistrar" type="submit" [ngClass]="isModoOscuro ? 'btnModificar-dark' : 'btnModificar'">Registrar</button>
             </div>
 
             <!-- Si loginError no está vacío, muestra mensaje de error -->
