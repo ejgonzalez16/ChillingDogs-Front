@@ -10,7 +10,8 @@
                             Nombre
                         </td>
                         <td>
-                            <input  [(ngModel)]="droga.nombre" type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+                            <input [(ngModel)]="droga.nombre" type="text" id="nombre" name="nombre" placeholder="Nombre" required #nombre="ngModel">
+                            <div *ngIf="nombre.errors?.['required'] && nombre.touched">El nombre es obligatorio.</div>
                         </td>
                     </tr>
                     <tr>
@@ -18,7 +19,9 @@
                             Precio de compra
                         </td>
                         <td>
-                            <input  [(ngModel)]="droga.precioCompra" type="number" id="precioCompra" name="precioCompra" placeholder="Precio de compra" required>
+                            <input [(ngModel)]="droga.precioCompra" type="number" id="precioCompra" name="precioCompra" placeholder="Precio de compra" required min="0" #precioCompra="ngModel">
+                        <div *ngIf="precioCompra.errors?.['required'] && precioCompra.touched" class="error">El precio de compra es obligatorio.</div>
+                        <div *ngIf="precioCompra.errors?.['min'] && precioCompra.touched" class="error">El precio de compra debe ser mayor a 0.</div>
                         </td>
                     </tr>
                     <tr>
@@ -26,7 +29,9 @@
                             Precio de venta
                         </td>
                         <td>
-                            <input  [(ngModel)]="droga.precioVenta" type="number" id="precioVenta" name="precioVenta" placeholder="Precio de venta" required>
+                            <input [(ngModel)]="droga.precioVenta" type="number" id="precioVenta" name="precioVenta" placeholder="Precio de venta" required min="0" #precioVenta="ngModel">
+                            <div *ngIf="precioVenta.errors?.['required'] && precioVenta.touched" class="error">El precio de venta es obligatorio.</div>
+                            <div *ngIf="precioVenta.errors?.['min'] && precioVenta.touched" class="error">El precio de venta debe ser mayor a 0.</div>
                         </td>
                     </tr>
                     <tr>
@@ -34,7 +39,9 @@
                             Unidades disponibles
                         </td>
                         <td>
-                            <input  [(ngModel)]="droga.unidadesDisponibles" type="number" id="unidadesDisponibles" name="unidadesDisponibles" placeholder="Unidades disponibles" required>
+                            <input [(ngModel)]="droga.unidadesDisponibles" type="number" id="unidadesDisponibles" name="unidadesDisponibles" placeholder="Unidades disponibles" required min="1" #unidadesDisponibles="ngModel">
+                        <div *ngIf="unidadesDisponibles.errors?.['required'] && unidadesDisponibles.touched" class="error">Las unidades disponibles son obligatorias.</div>
+                        <div *ngIf="unidadesDisponibles.errors?.['min'] && unidadesDisponibles.touched" class="error">Debe haber al menos una unidad disponible.</div>
                         </td>
                     </tr>
                     </tbody>
