@@ -1,23 +1,22 @@
 <div [ngClass]="isModoOscuro ? 'contenedor' : 'contenedor-light'">
     <a (click)="goToHome()"><img src="/assets/images/logo.png" alt="logo Chilling Dogs"></a>
     <h1>Chilling Dogs</h1>
-    <h2 [ngClass]="isModoOscuro ? 'h2' : 'h2-dark'">CRUD's</h2>
     <h3 [ngClass]="isModoOscuro ? 'h3' : 'h3-dark'">Veterinarios</h3>
     <div class="btn-cruds">
         <button [routerLink]="['/veterinarios/registrar']" [ngClass]="isModoOscuro ? 'button' : 'button-dark'">Registrar</button>
         <button [routerLink]="['/veterinarios/buscar']" [ngClass]="isModoOscuro ? 'button' : 'button-dark'">Buscar</button>
     </div>
-    <h3>Mascotas</h3>
+    <h3 [ngClass]="isModoOscuro ? 'h3' : 'h3-dark'">Mascotas</h3>
     <div class="btn-cruds">
         <button [routerLink]="['/mascotas/registrar']" [ngClass]="isModoOscuro ? 'button' : 'button-dark'">Registrar</button>
         <button [routerLink]="['/mascotas/buscar']" [ngClass]="isModoOscuro ? 'button' : 'button-dark'">Buscar</button>
     </div>
-    <h3>Clientes</h3>
+    <h3 [ngClass]="isModoOscuro ? 'h3' : 'h3-dark'">Clientes</h3>
     <div class="btn-cruds">
         <button [routerLink]="['/clientes/registrar']" [ngClass]="isModoOscuro ? 'button' : 'button-dark'">Registrar</button>
         <button [routerLink]="['/clientes/buscar']" [ngClass]="isModoOscuro ? 'button' : 'button-dark'">Buscar</button>
     </div>
-    <h3>Drogas</h3>
+    <h3 [ngClass]="isModoOscuro ? 'h3' : 'h3-dark'">Drogas</h3>
     <div class="btn-cruds">
         <button [routerLink]="['/drogas/crear']" [ngClass]="isModoOscuro ? 'button' : 'button-dark'">Crear</button>
         <button [routerLink]="['/drogas/buscar']" [ngClass]="isModoOscuro ? 'button' : 'button-dark'">Buscar</button>

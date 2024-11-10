@@ -17,6 +17,7 @@ export class TablaVeterinarioComponent {
   veterinarios!: Veterinario[];
   cedulaAdmin!: string;
   isModoOscuro: boolean = true;
+  paginaActual: number = 1;
   @ViewChild(SearchBarVeterinarioComponent) searchBarVeterinarioComponent: SearchBarVeterinarioComponent | null = null;
 
   constructor(

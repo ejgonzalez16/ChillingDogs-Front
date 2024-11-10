@@ -47,6 +47,7 @@ import { TratamientosMascotaComponent } from './tratamiento/tratamientos-mascota
 import { TratamientosVeterinarioComponent } from './tratamiento/tratamientos-veterinario/tratamientos-veterinario.component';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { CrearTratamientoComponent } from './tratamiento/crear-tratamiento/crear-tratamiento.component';
 import { FormTratamientoComponent } from './tratamiento/form-tratamiento/form-tratamiento.component';
 import { ChatbotComponent } from './landing/chatbot/chatbot.component';
@@ -118,6 +119,7 @@ import { TablaDrogaComponent } from './drogas/tabla-droga/tabla-droga.component'
         HttpClientModule,
         NgxChartsModule,
         NgOptimizedImage,
+        NgxPaginationModule
     ],
   providers: [
     provideClientHydration(),

@@ -15,6 +15,7 @@ import { LightModeServiceService } from '../../service/light-mode-service.servic
 export class TablaTratamientoComponent {
   @Input()
   mascota!: Mascota;
+  paginaActual: number = 1;
 
   mascotas!: Mascota[];
   vet: string = 'vet';

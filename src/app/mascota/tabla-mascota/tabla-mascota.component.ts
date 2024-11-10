@@ -16,6 +16,7 @@ export class TablaMascotaComponent {
   mascotas!: Mascota[];
   @ViewChild(SearchBarMascotaComponent) searchBar!: SearchBarMascotaComponent;
   isModoOscuro: boolean = true;
+  paginaActual: number = 1;
 
   constructor(
     private mascotaService: MascotaService,
