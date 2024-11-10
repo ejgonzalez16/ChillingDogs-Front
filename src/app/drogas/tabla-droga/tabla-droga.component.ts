@@ -29,7 +29,7 @@ export class TablaDrogaComponent {
     this.perfilService.perfilInfo$.pipe(
       switchMap(perfil => {
         if (perfil.rol !== 'ADMIN') {
-          //this.redirectNotAuthorized();
+          this.redirectNotAuthorized();
         }
         return this.drogaService.findAll();
       })
@@ -42,15 +42,29 @@ export class TablaDrogaComponent {
     // }
   }
 
+  redirectNotAuthorized() {
+    this.router.navigate(['**']);
+  }
 
   goBack() {
-    throw new Error('Method not implemented.');
+    window.history.back();
   }
   eliminarDroga(arg0: number) {
   throw new Error('Method not implemented.');
   }
-  recargarDrogas($event: Event) {
-  throw new Error('Method not implemented.');
+  recargarDrogas(filtro: {nombre: string}) {
+    // Trae todas las mascotas de la BD
+    console.log(filtro);
+    if(filtro.nombre != undefined) {
+      this.drogaService.findAll().subscribe(drogas => {
+        this.drogas = drogas.filter(droga => droga.nombre.toLowerCase().includes(filtro.nombre.toLowerCase() || ''));
+      });
+    }
+    else{
+      this.drogaService.findAll().subscribe(drogas => {
+        this.drogas = drogas
+      });
+    }
   }
 
 

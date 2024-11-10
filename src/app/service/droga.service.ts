@@ -8,8 +8,8 @@ import { Droga } from '../modelo/droga';
 })
 export class DrogaService {
 
-  baseUrl = 'http://localhost:8099/drogas';
-  //baseUrl = 'https://chillingdogsback.azurewebsites.net/drogas';
+  //baseUrl = 'http://localhost:8099/drogas';
+  baseUrl = 'https://chillingdogsback.azurewebsites.net/drogas';
 
   constructor(private http: HttpClient) { }
 

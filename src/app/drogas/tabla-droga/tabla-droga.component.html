@@ -17,8 +17,8 @@
             <tbody>
             <tr *ngFor="let droga of drogas">
                 <td>{{droga.nombre}}</td>
-                <td>{{droga.precioCompra}}</td>
-                <td>{{droga.precioVenta}}</td>
+                <td>{{droga.precioCompra | currency:'':'symbol':'3.0'}}</td>
+                <td>{{droga.precioVenta | currency:'':'symbol':'3.0'}}</td>
                 <td>{{droga.unidadesDisponibles}}</td>
                 <td>{{droga.unidadesVendidas}}</td>
                 <td>

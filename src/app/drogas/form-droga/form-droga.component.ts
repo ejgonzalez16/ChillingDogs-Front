@@ -49,4 +49,8 @@ export class FormDrogaComponent {
   cambiarModo(isModoOscuro: boolean) {
     this.isModoOscuro = isModoOscuro;
   }
+
+  goBack() {
+    window.history.back();
+  }
 }
