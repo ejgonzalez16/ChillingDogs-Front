@@ -21,6 +21,10 @@ export class DrogaService {
     return this.http.get<Droga[]>(`${this.baseUrl}/disponibles`);
   }
 
+  findById(id: number): Observable<Droga>{
+    return this.http.get<Droga>(`${this.baseUrl}/${id}`);
+  }
+
   add(droga: Droga): Observable<Droga> {
     console.log("Creando droga")
     return this.http.post<Droga>(this.baseUrl, droga);
