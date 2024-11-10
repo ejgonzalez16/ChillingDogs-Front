@@ -20,6 +20,14 @@ main{
     align-items: center;
 }
 
+.error{
+    color: red;
+    background-color:rgb(255, 88, 88);
+    font-size: smaller;
+    height: 30%;
+    width: 80%;
+}
+
 .contenedorForm-light{
     background-color: var(--color-3);
     width: 100%;

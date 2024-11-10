@@ -42,16 +42,37 @@ export class FormClienteComponent {
       return;
     }
     if (this.modificar) {
-      // Actualiza el cliente y vuelve a recargar la página con la información actualizada
+      // Actualiza el cliente y muestra un alert solo si la actualización es exitosa
       this.clienteService.update(this.cliente).pipe(
-        mergeMap(() => this.router.navigate(['/clientes/buscar']))
+        mergeMap(() => {
+          alert('Cliente modificado con éxito');
+          return this.router.navigate(['/clientes/buscar']);
+        })
       ).subscribe();
     } else {
-      // Crea el cliente y vuelve a recargar la página con la información actualizada
-      this.clienteService.add(this.cliente).subscribe(
-        () => this.router.navigate(['/clientes/buscar'])
-      );
+      // Crea el cliente y muestra un alert solo si la creación es exitosa
+      this.clienteService.add(this.cliente).subscribe(() => {
+        alert('Cliente creado con éxito');
+        this.router.navigate(['/clientes/buscar']);
+      });
     }
+    
+  }
+
+  validateCedulaLength(): boolean {
+    const cedulaStr = String(this.cliente.cedula);
+    return cedulaStr.length >= 7 && cedulaStr.length <= 10;
+  }
+
+  correoValido(): boolean {
+    const correo = this.cliente.correo;
+    const regexCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return regexCorreo.test(correo);
+  }
+
+  celularValido(): boolean {
+    const celularStr = String(this.cliente.celular);
+    return celularStr.length === 10;
   }
 
   goBack() {

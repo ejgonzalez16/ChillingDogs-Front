@@ -31,16 +31,18 @@ export class FormMascotaComponent {
 
   onSubmit(){
     if (this.modificar) {
-      // Actualiza la mascota y vuelve a recargar la página con la información actualizada
+      // Actualiza la mascota y muestra un alert solo si la actualización es exitosa
       this.mascotaService.update(this.mascota).subscribe(() => {
+        alert('Mascota modificada con éxito');
         this.router.navigate(['/mascotas/buscar']);
       });
     } else {
-      // Crea la mascota y vuelve a recargar la página con la información actualizada
+      // Crea la mascota y muestra un alert solo si la creación es exitosa
       this.mascotaService.add(this.mascota).subscribe(() => {
+        alert('Mascota creada con éxito');
         this.router.navigate(['/mascotas/buscar']);
       });
-    }
+    }    
   }
 
 

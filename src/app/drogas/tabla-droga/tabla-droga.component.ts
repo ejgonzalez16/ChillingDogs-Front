@@ -52,7 +52,7 @@ export class TablaDrogaComponent {
   }
   eliminarDroga(id: number) {
     this.drogaService.deleteById(id).subscribe(mensaje => {
-      console.log(mensaje);
+      alert("Droga eliminada con éxito");
     })
     this.drogas.splice(this.drogas.findIndex(droga => droga.id === id), 1);
   }

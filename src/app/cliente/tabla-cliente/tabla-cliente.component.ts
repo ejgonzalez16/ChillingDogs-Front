@@ -71,6 +71,7 @@ export class TablaClienteComponent {
         clientes => {
             this.clientes = clientes; // Actualiza la vista con la lista de clientes
             console.log('Lista de clientes actualizada:', this.clientes);
+            alert("Cliente eliminado con éxito");
         }
     );
   }

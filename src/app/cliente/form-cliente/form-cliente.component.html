@@ -13,7 +13,13 @@
                                 Cédula
                             </td>
                             <td>
-                                <input [(ngModel)]="cliente.cedula" type="number" id="cedula" name="cedula" placeholder="Cedula" required>
+                                <input [(ngModel)]="cliente.cedula" #cedula="ngModel" type="number" id="cedula" name="cedula" placeholder="Cédula" required minlength="7" maxlength="10">
+                                    <div *ngIf="cedula.errors?.['required'] && cedula.touched" >
+                                        La cedula es requerida.
+                                    </div>
+                                    <div *ngIf="!validateCedulaLength() && cedula.touched" >
+                                        La cedula debe tener entre 7 y 10 digitos.
+                                    </div>
                             </td>
                         </tr>
                         <tr>
@@ -24,7 +30,8 @@
                                 Nombre
                             </td>
                             <td>
-                                <input [(ngModel)]="cliente.nombre" type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+                                <input [(ngModel)]="cliente.nombre" #nombre="ngModel" type="text" id="nombre" name="nombre" placeholder="Nombre" required minlength="2">
+                                <div *ngIf="nombre.errors?.['required'] && nombre.touched" >El nombre es obligatorio.</div>
                             </td>
                         </tr>
                         <tr>
@@ -35,7 +42,9 @@
                                 Correo
                             </td>
                             <td>
-                                <input [(ngModel)]="cliente.correo" type="email" id="email" name="email" placeholder="Correo" required>
+                                <input [(ngModel)]="cliente.correo" #correo="ngModel" type="email" id="correo" name="correo" placeholder="Correo" required email>
+                                <div *ngIf="correo.errors?.['required'] && correo.touched" >El correo es obligatorio.</div>
+                                <div *ngIf="!correoValido() && correo.touched" >Ingrese un correo válido.</div>
                             </td>
                         </tr>
                         <tr>
@@ -46,7 +55,9 @@
                                 Celular
                             </td>
                             <td>
-                                <input [(ngModel)]="cliente.celular" type="number" id="celular" name="celular" placeholder="Celular" required>
+                                <input [(ngModel)]="cliente.celular" #celular="ngModel" type="number" id="celular" name="celular" placeholder="Celular" required minlength="10" maxlength="10">
+                        <div *ngIf="celular.errors?.['required'] && celular.touched" >El celular es obligatorio.</div>
+                        <div *ngIf="!celularValido() && celular.touched" >El celular debe tener 10 dígitos.</div>
                             </td>
                         </tr>
                     </tbody>
@@ -54,7 +65,8 @@
                 <div id="contenedorimg">
                     <img *ngIf="cliente.foto != ''" [src]="cliente.foto" alt="Foto" class="fotoRegistro">
                     <svg *ngIf="cliente.foto == ''" class="fotoRegistro w-6 h-6" fill="#686583" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 12c1.65 0 3-1.35 3-3s-1.35-3-3-3s-3 1.35-3 3s1.35 3 3 3zm0-4c.55 0 1 .45 1 1s-.45 1-1 1s-1-.45-1-1s.45-1 1-1zm6 8.58c0-2.5-3.97-3.58-6-3.58s-6 1.08-6 3.58V18h12v-1.42zM8.48 16c.74-.51 2.23-1 3.52-1s2.78.49 3.52 1H8.48zM19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/></svg>
-                    <input [(ngModel)]="cliente.foto" type="text" id="foto" name="foto" placeholder="Foto" required>
+                    <input [(ngModel)]="cliente.foto" #foto="ngModel" type="text" id="foto" name="foto" placeholder="Foto" required>
+                    <small *ngIf="foto.errors?.['required'] && foto.touched">La foto es obligatoria.</small>
                 </div>
             </div>
             <div class="contenedorBoton" *ngIf="modificar">

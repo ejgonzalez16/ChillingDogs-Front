@@ -20,17 +20,19 @@ export class FormDrogaComponent {
 
   onSubmit() {
     if (this.modificar) {
-      // Actualiza la mascota y vuelve a recargar la página con la información actualizada
+      // Actualiza la mascota y muestra un alert solo si la actualización es exitosa
       this.drogaService.update(this.droga).subscribe(() => {
+        alert('Droga modificada con éxito');
         this.router.navigate(['/drogas/buscar']);
       });
     } else {
-      // Crea la mascota y vuelve a recargar la página con la información actualizada
+      // Crea la mascota y muestra un alert solo si la creación es exitosa
       this.drogaService.add(this.droga).subscribe(() => {
+        alert('Droga creada con éxito');
         this.router.navigate(['/drogas/buscar']);
       });
     }
-  }
+  }    
 
   ngOnInit() :void {
     // Verificar que el usuario esté logueado y sea veterinario o admin

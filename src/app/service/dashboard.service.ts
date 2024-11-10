@@ -49,7 +49,7 @@ export class DashboardService {
     return this.http.get<number>(`${this.baseUrl}/ganancias`);
   }
 
-  topDrogas(): Observable<string[]> {
-    return this.http.get<string[]>(`${this.baseUrl}/top-drogas`);
+  topDrogas(): Observable<MedicamentosMes[]> {
+    return this.http.get<MedicamentosMes[]>(`${this.baseUrl}/top-drogas`);
   }
 }

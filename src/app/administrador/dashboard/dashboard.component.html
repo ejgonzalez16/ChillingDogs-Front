@@ -74,7 +74,24 @@
         </div>
     </div>
     <div class="completo" [ngClass]="isModoOscuro ? 'blanco' : 'blanco-light'">
-        <table class="table" [ngClass]="isModoOscuro ? 'table-bordered' : 'table-bordered-dark'">
+        <h3 [ngClass]="isModoOscuro ? 'text-light' : 'text-dark'">Top medicamentos vendidos</h3>
+        <ngx-charts-bar-vertical [ngClass]="isModoOscuro ? 'fill-white' : 'fill-dark'"
+            [view]="view"
+            [scheme]="colorScheme"
+            [results]="dataTop"
+            [gradient]="false"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [legend]="showLegend"
+            [legendTitle]="legendTitle"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabelTop"
+            [yAxisLabel]="yAxisLabelTop"
+            [showGridLines]="false">
+        </ngx-charts-bar-vertical>
+
+        <!-- <table class="table" [ngClass]="isModoOscuro ? 'table-bordered' : 'table-bordered-dark'">
             <thead [ngClass]="isModoOscuro ? 'thead-dark' : 'thead'">
                 <tr>
                     <th>Top medicamentos</th>
@@ -85,7 +102,7 @@
                     <td>{{i+1}}. {{medicamento}}</td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
     </div>
 </div>
 

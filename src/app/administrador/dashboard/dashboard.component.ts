@@ -24,13 +24,13 @@ export class DashboardComponent implements OnDestroy {
   totalMascotasTratamiento!: number;
   ventas!: number;
   ganancias!: number;
-  topMedicamentos!: string[];
   isModoOscuro: boolean = true;
 
   //GRAFICA
   dataMedicamentosMes!: ChartData[]
   dataVets!: ChartData[]
   dataMascotas!: ChartData[]
+  dataTop!: ChartData[]
   view:[number, number] = [700, 400];
   colorScheme = {
     name: 'customScheme',
@@ -44,8 +44,10 @@ export class DashboardComponent implements OnDestroy {
   showLegend = true;
   showXAxisLabel = true;
   xAxisLabel = 'Medicamentos vendidos en el mes';
+  xAxisLabelTop = 'Top medicamentos vendidos';
   showYAxisLabel = true;
   yAxisLabel = 'Unidades vendidas en el mes';
+  yAxisLabelTop = 'Unidades vendidas';
   legendTitle = "Medicamentos";
   legendTitle2 = "Veterinarios";
   legendTitle3 = "Mascotas";
@@ -113,7 +115,7 @@ export class DashboardComponent implements OnDestroy {
         ]
         this.ventas = <number>resultados[7];
         this.ganancias = <number>resultados[8];
-        this.topMedicamentos = <string[]>resultados[9];
+        this.dataTop = transformarMedicamentos(<MedicamentosMes[]>resultados[9]);
       },
       error: (error) => {
         console.error('Error al obtener los datos del dashboard', error);
