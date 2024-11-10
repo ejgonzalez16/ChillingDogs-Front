@@ -54,12 +54,18 @@
                 </li>
                 <li class="nav-item enlacesSecciones">
                   <a id="btnBuscarTratamientos" class="button" [routerLink]="['tratamientos/buscar']" *ngIf="perfil.rol == 'VETERINARIO'">
-                    <img src="/assets/images/doctor-logo.png">
+                    <img src="/assets/images/vet-logo.png">
                     <div class="logout" id="btnTratamientos">Tratamientos</div>
                   </a>
                   <a id="btnBuscarVeterinarios" class="button" [routerLink]="['veterinarios/buscar']" *ngIf="perfil.rol == 'ADMIN'">
-                    <img src="/assets/images/doctor-logo.png">
+                    <img src="/assets/images/vet-logo.png">
                     <div class="logout">Veterinarios</div>
+                  </a>
+                </li>
+                <li class="nav-item enlacesSecciones">
+                  <a id="btnBuscarDrogas" class="button" [routerLink]="['drogas/buscar']" *ngIf="perfil.rol == 'ADMIN'">
+                    <img src="/assets/images/droga-icono.png">
+                    <div class="logout" id="btnTratamientos">Drogas</div>
                   </a>
                 </li>
               </ul>
