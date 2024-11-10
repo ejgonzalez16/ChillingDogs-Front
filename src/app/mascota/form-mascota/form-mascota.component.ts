@@ -45,7 +45,15 @@ export class FormMascotaComponent {
     }    
   }
 
+  edadValida(): boolean {
+    const edad = this.mascota.edad;
+    return edad !== undefined && edad >= 0 && edad <= 30;
+  }
 
+  pesoValido(): boolean {
+    const peso = this.mascota.peso;
+    return peso !== undefined && peso >= 0;
+  }
 
   ngOnInit() :void {
     // Verificar que el usuario esté logueado y sea veterinario o admin
