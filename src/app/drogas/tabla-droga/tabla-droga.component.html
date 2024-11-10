@@ -15,7 +15,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let droga of drogas">
+            <tr *ngFor="let droga of drogas | paginate: { itemsPerPage: 10, currentPage: paginaActual }">
                 <td>{{droga.nombre}}</td>
                 <td>{{droga.precioCompra}}</td>
                 <td>{{droga.precioVenta}}</td>
@@ -40,5 +40,6 @@
             </tbody>
         </table>
     </div>
+    <pagination-controls (pageChange)="paginaActual = $event"></pagination-controls>
     <button (click)="goBack()" [ngClass]="isModoOscuro ? 'btnVolver' : 'btnVolver-light'">Volver</button>
 </main>
