@@ -93,13 +93,8 @@ export class MainComponent {
       return;
     }
     this.emailService.envarEmail(this.correo).subscribe(
-      (codigo) => {
-        alert('El correo se ha enviado exitosamente, revisa tu correo!' + codigo);
-      },
-      (error) => {
-        if (error.status === 400) {
-          alert('No se pudo enviar el correo');
-        }
+      () => {
+        alert('El correo se ha enviado exitosamente, revisa tu correo!');
       }
     )
   }

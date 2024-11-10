@@ -158,8 +158,4 @@ export class FormMascotaComponent {
     this.isModoOscuro = isModoOscuro;
   }
 
-  goBack() {
-    window.history.back();
-  }
-
 }
