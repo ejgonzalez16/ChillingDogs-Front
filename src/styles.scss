@@ -571,6 +571,7 @@ section {
   padding: 5px 10px;
   border-radius: 4px;
   transition: background-color 0.3s;
+  text-decoration: none;
 }
 
 .custom-pagination .ngx-pagination .page-link:hover {
@@ -583,11 +584,13 @@ section {
 }
 
 .custom-pagination .ngx-pagination .direction-links .prev::before {
-  content: "«";
+  content: "«" !important;
+  text-decoration: none;
 }
 
 .custom-pagination .ngx-pagination .direction-links .next::after {
-  content: "»";
+  content: "»" !important;
+  text-decoration: none;
 }
 
 .paginacion{
