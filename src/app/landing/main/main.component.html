@@ -104,5 +104,21 @@
             </p-carousel>
         </div>
     </section>
+    <section class="seccionDorada">
+        <div class="tituloCita">
+            <h1>¡Agenda una cita para tu peludito!</h1>
+        </div>
+        <div class="citaContent">
+            <img class="imagenCita" src="../../../assets/images/agendar_cita.png" alt="vacunacion">
+            <form (ngSubmit)="onSubmit()" #form="ngForm" id="agendarCitaForm" class="agendarCitaForm">
+                <input  [(ngModel)]="correo.nombre" type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+                <input  [(ngModel)]="correo.apellido" type="text" id="apelldo" name="apelldo" placeholder="Apellido" required>
+                <input  [(ngModel)]="correo.pelidutoName" type="text" id="pelidutoName" name="pelidutoName" placeholder="Nombre de tu peludito" required>
+                <input  [(ngModel)]="correo.correo" type="text" id="correo" name="correo" placeholder="Correo" required>
+                <input  [(ngModel)]="correo.fecha" type="date" id="fecha" name="fecha"  placeholder="Fecha de la cita"  required>
+                <button type="submit" class="btnRegistro-light">Enviar</button>
+            </form>
+        </div>
+    </section>
     <app-chatbot [visible]="chatAbierto"></app-chatbot>
 </div>

@@ -4,6 +4,11 @@ import { Resenia } from '../../Resenia';
 import {PerfilService} from "../../service/perfil.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import { LightModeServiceService } from '../../service/light-mode-service.service';
+import { HttpClient } from '@angular/common/http';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { EmailService } from '../../service/email.service';
+import { Email } from '../../modelo/email';
+
 
 @Component({
   selector: 'landing-main',
@@ -21,6 +26,8 @@ export class MainComponent {
   casosDeExito!: HTMLElement | null;
   isModoOscuro: boolean = true;
 
+
+
   responsiveOptions: any[] = [
     {
       breakpoint: '1099px',
@@ -34,12 +41,20 @@ export class MainComponent {
     }
   ];
 
+  correo: Email = {
+    nombre: '',
+    apellido: '',
+    pelidutoName: '',
+    correo: '',
+    fecha: ''
+  }
+
   constructor(
     private reseniaService: ReseniasService,
     private perfilService: PerfilService,
     private router: Router,
     private lightModeService: LightModeServiceService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute, private emailService: EmailService
   ) {}
 
   ngOnInit() {
@@ -68,15 +83,36 @@ export class MainComponent {
     }
   }
 
+  onSubmit(){
+    if(this.correo.nombre == '' || this.correo.apellido == '' || this.correo.pelidutoName == '' || this.correo.correo == '' || this.correo.fecha == ''){
+      alert('Todos los campos son obligatorios');
+      return;
+    }
+    if(this.correo.correo.indexOf('@') === -1 || this.correo.correo.indexOf('.') === -1 || this.correo.correo.length < 5){
+      alert('El correo debe ser valido');
+      return;
+    }
+    this.emailService.envarEmail(this.correo).subscribe(
+      (codigo) => {
+        alert('El correo se ha enviado exitosamente, revisa tu correo!' + codigo);
+      },
+      (error) => {
+        if (error.status === 400) {
+          alert('No se pudo enviar el correo');
+        }
+      }
+    )
+  }
+
   openChat(){
     if (this.chatAbierto) {
       this.chatAbierto = false;
       this.imagenChat = 'assets/images/simbolo_chat.png';
-  } else {
-      this.chatAbierto = true;
-      this.imagenChat = 'assets/images/simbolo_chat_x.png';
-  }
-
+    } else {
+        this.chatAbierto = true;
+        this.imagenChat = 'assets/images/simbolo_chat_x.png';
+    }
+    
   }
 
   cambiarModo(isModoOscuro: boolean) {  
