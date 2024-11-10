@@ -14,7 +14,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let mascota of mascotas | paginate: { itemsPerPage: 10, currentPage: paginaActual }">
+            <tr *ngFor="let mascota of mascotas | paginate: { itemsPerPage: itemsPorPagina, currentPage: paginaActual }">
                 <td>
                     <input class="form-check-input" *ngIf="mascota.estado == 'Activo'"  type="checkbox" checked disabled>
                     <input class="form-check-input"*ngIf="mascota.estado == 'Inactivo'"  type="checkbox" disabled>
@@ -39,7 +39,13 @@
             </tbody>
         </table>
     </div>
-    <pagination-controls (pageChange)="paginaActual = $event"></pagination-controls>
+    <div class ="paginacion">
+        <p>Filas:</p>
+        <select [(ngModel)]="itemsPorPagina">
+            <option *ngFor="let fila of filasPorPagina">{{ fila }}</option>
+          </select>
+        <pagination-controls (pageChange)="paginaActual = $event" class="custom-pagination"></pagination-controls>
+    </div>
     <a href="/login"><button class="btnVolver" [ngClass]="isModoOscuro ? 'btnVolver' : 'btnVolver-light'">Volver</button></a>
 </main>
 

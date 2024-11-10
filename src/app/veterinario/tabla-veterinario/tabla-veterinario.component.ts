@@ -19,6 +19,8 @@ export class TablaVeterinarioComponent {
   isModoOscuro: boolean = true;
   paginaActual: number = 1;
   @ViewChild(SearchBarVeterinarioComponent) searchBarVeterinarioComponent: SearchBarVeterinarioComponent | null = null;
+  filasPorPagina = [5, 10, 20, 50]
+  itemsPorPagina = 10;
 
   constructor(
     private veterinarioService: VeterinarioService,

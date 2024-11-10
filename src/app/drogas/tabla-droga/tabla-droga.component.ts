@@ -17,6 +17,8 @@ export class TablaDrogaComponent {
   @ViewChild(SearchBarDrogaComponent) searchBar!: SearchBarDrogaComponent;
   isModoOscuro: boolean = true;
   paginaActual: number = 1;
+  filasPorPagina = [5, 10, 20, 50]
+  itemsPorPagina = 10;
 
   constructor(
     private drogaService: DrogaService,
