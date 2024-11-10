@@ -8,8 +8,8 @@ import { Droga } from '../modelo/droga';
 })
 export class DrogaService {
 
-  baseUrl = 'http://localhost:8099/drogas';
-  //baseUrl = 'https://chillingdogsback.azurewebsites.net/drogas';
+  //baseUrl = 'http://localhost:8099/drogas';
+  baseUrl = 'https://chillingdogsback.azurewebsites.net/drogas';
 
   constructor(private http: HttpClient) { }
 
@@ -19,6 +19,10 @@ export class DrogaService {
 
   findDisponibles(): Observable<Droga[]> {
     return this.http.get<Droga[]>(`${this.baseUrl}/disponibles`);
+  }
+
+  findById(id: number): Observable<Droga>{
+    return this.http.get<Droga>(`${this.baseUrl}/${id}`);
   }
 
   add(droga: Droga): Observable<Droga> {
