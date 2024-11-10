@@ -29,39 +29,18 @@ export class TablaDrogaComponent {
     private lightModeService: LightModeServiceService) {}
 
   ngOnInit() {
-    // Suscribirse a perfilService y cuando haya respuesta, obtener la lista de mascotas
-    // En un solo suscribe utilizando pipe
+    // Suscribirse a perfilService y cuando haya respuesta, obtener la lista de drogas y asignarla a la variable drogas
+    // A través de un solo suscribe, utilizar pipe
     this.perfilService.perfilInfo$.pipe(
       switchMap(perfil => {
-        if (perfil.rol !== 'ADMIN') {
+        if (perfil.rol !== 'VETERINARIO' && perfil.rol !== 'ADMIN') {
           this.redirectNotAuthorized();
         }
         return this.drogaService.findAll();
-      }),
-      switchMap(drogas => {
-        this.drogas = drogas;
-        // Usa `from` para crear un flujo de drogas y `mergeMap` para hacer la consulta de conteo por cada droga
-        return from(drogas).pipe(
-          mergeMap(droga =>
-            this.tratamientosService.countDrogasVendidas(droga.id).pipe(
-              map(count => {
-                console.log(droga)
-                console.log(count);
-                droga.unidadesVendidas = count; // Agrega el resultado al objeto de droga
-                return droga;
-              })
-            )
-          ),
-          toArray() // Convierte el flujo de drogas con conteo en un array
-        );
       })
-    ).subscribe(drogasConConteo => {
-      this.drogas = drogasConConteo; // Asigna el array con los conteos a `this.drogas`
+    ).subscribe(drogas => {
+      this.drogas = drogas;
     });
-    // this.lightModeService.registrarTablaDrogas(this);
-    // if(!this.lightModeService.isModoOscuro){
-    //   this.isModoOscuro = false;
-    // }
   }
 
   redirectNotAuthorized() {

@@ -11,7 +11,7 @@ import { TratamientoDTO } from '../modelo/tratamientoDTO';
 })
 export class TratamientoService {
 
-  //baseUrl = 'http://localhost:8099/tratamientos';
+  // baseUrl = 'http://localhost:8099/tratamientos';
   baseUrl = 'https://chillingdogsback.azurewebsites.net/tratamientos';
 
   constructor(private http: HttpClient) { }
@@ -42,10 +42,5 @@ export class TratamientoService {
 
   findAllByVeterinarioLogueado(): Observable<Tratamiento[]> {
     return this.http.get<Tratamiento[]>(`${this.baseUrl}/veterinario`);
-  }
-
-  countDrogasVendidas(idDroga: number){
-    console.log(`${this.baseUrl}/contarDroga/${idDroga}`);
-    return this.http.get<number>(`${this.baseUrl}/contarDroga/${idDroga}`);
   }
 }
