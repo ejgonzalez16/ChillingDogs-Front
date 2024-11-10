@@ -107,6 +107,12 @@ button {
     fill: var(--color-3);
 }
 
+.fotoRegistro-light {
+    height: 90%;
+    width: 90%;
+    fill: var(--color-4);
+}
+
 #contenedorimg{
     display: flex;
     flex-direction: column;
@@ -160,6 +166,7 @@ input{
     border: none;
     border-radius: 30px;
     width: 18em;
+    margin-bottom: 1em;
 
     &:hover{
         background-color: #171A1FFF;

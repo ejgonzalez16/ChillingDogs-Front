@@ -15,6 +15,7 @@ import { SearchBarClienteComponent } from '../search-bar-cliente/search-bar-clie
 export class TablaClienteComponent {
   clientes!: Cliente[];
   isModoOscuro: boolean = true;
+  paginaActual: number = 1;
   @ViewChild(SearchBarClienteComponent) searchBar!: SearchBarClienteComponent
 
   constructor(
