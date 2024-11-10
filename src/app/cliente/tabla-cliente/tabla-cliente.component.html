@@ -15,7 +15,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let cliente of clientes | paginate: { itemsPerPage: 10, currentPage: paginaActual }">
+            <tr *ngFor="let cliente of clientes | paginate: { itemsPerPage: itemsPorPagina, currentPage: paginaActual }">
                 <td>
                     {{cliente.cedula}}
                 </td>
@@ -48,6 +48,12 @@
             </tbody>
         </table>        
     </section>
-    <pagination-controls (pageChange)="paginaActual = $event"></pagination-controls>
+    <div class ="paginacion">
+        <p>Filas:</p>
+        <select [(ngModel)]="itemsPorPagina">
+            <option *ngFor="let fila of filasPorPagina">{{ fila }}</option>
+          </select>
+        <pagination-controls (pageChange)="paginaActual = $event" class="custom-pagination"></pagination-controls>
+    </div>
     <button (click)="goBack()" class="btnVolver" id="btnVolver" [ngClass]="isModoOscuro ? 'btnVolver' : 'btnVolver-light'">Volver</button>
 </main>

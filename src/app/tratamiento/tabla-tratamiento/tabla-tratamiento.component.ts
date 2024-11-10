@@ -16,6 +16,8 @@ export class TablaTratamientoComponent {
   @Input()
   mascota!: Mascota;
   paginaActual: number = 1;
+  filasPorPagina = [5, 10, 20, 50]
+  itemsPorPagina = 10;
 
   mascotas!: Mascota[];
   vet: string = 'vet';

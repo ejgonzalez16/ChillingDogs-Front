@@ -80,6 +80,7 @@ export class MainComponent {
   }
 
   cambiarModo(isModoOscuro: boolean) {  
+    this.isModoOscuro = isModoOscuro;
     if(isModoOscuro){
       this.presentacion?.classList.replace('seccionDorada-light', 'seccionDorada');
       this.sobreNosotros?.classList.replace('seccionAzul-light', 'seccionAzul');
