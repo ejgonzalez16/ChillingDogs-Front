@@ -54,7 +54,6 @@ import { ChatbotComponent } from './landing/chatbot/chatbot.component';
 import {AuthInterceptor} from "./helpers/auth.interceptor";
 import {NgOptimizedImage} from "@angular/common";
 import { CrearDrogaComponent } from './drogas/crear-droga/crear-droga.component';
-import { DetallesDrogaComponent } from './drogas/detalles-droga/detalles-droga.component';
 import { FormDrogaComponent } from './drogas/form-droga/form-droga.component';
 import { ModificarDrogaComponent } from './drogas/modificar-droga/modificar-droga.component';
 import { SearchBarDrogaComponent } from './drogas/search-bar-droga/search-bar-droga.component';
@@ -103,7 +102,6 @@ import { TablaDrogaComponent } from './drogas/tabla-droga/tabla-droga.component'
     FormTratamientoComponent,
     ChatbotComponent,
     CrearDrogaComponent,
-    DetallesDrogaComponent,
     FormDrogaComponent,
     ModificarDrogaComponent,
     SearchBarDrogaComponent,

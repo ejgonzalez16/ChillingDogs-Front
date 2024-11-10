@@ -43,4 +43,9 @@ export class TratamientoService {
   findAllByVeterinarioLogueado(): Observable<Tratamiento[]> {
     return this.http.get<Tratamiento[]>(`${this.baseUrl}/veterinario`);
   }
+
+  countDrogasVendidas(idDroga: number){
+    console.log(`${this.baseUrl}/contarDroga/${idDroga}`);
+    return this.http.get<number>(`${this.baseUrl}/contarDroga/${idDroga}`);
+  }
 }

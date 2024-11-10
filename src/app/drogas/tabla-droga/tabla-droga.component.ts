@@ -5,7 +5,8 @@ import { DrogaService } from '../../service/droga.service';
 import { Router } from '@angular/router';
 import { PerfilService } from '../../service/perfil.service';
 import { LightModeServiceService } from '../../service/light-mode-service.service';
-import { switchMap } from 'rxjs';
+import { forkJoin, from, map, mergeMap, switchMap, toArray } from 'rxjs';
+import { TratamientoService } from '../../service/tratamiento.service';
 
 @Component({
   selector: 'app-tabla-droga',
@@ -22,6 +23,7 @@ export class TablaDrogaComponent {
 
   constructor(
     private drogaService: DrogaService,
+    private tratamientosService: TratamientoService,
     private router: Router,
     private perfilService: PerfilService,
     private lightModeService: LightModeServiceService) {}
@@ -35,9 +37,26 @@ export class TablaDrogaComponent {
           this.redirectNotAuthorized();
         }
         return this.drogaService.findAll();
+      }),
+      switchMap(drogas => {
+        this.drogas = drogas;
+        // Usa `from` para crear un flujo de drogas y `mergeMap` para hacer la consulta de conteo por cada droga
+        return from(drogas).pipe(
+          mergeMap(droga =>
+            this.tratamientosService.countDrogasVendidas(droga.id).pipe(
+              map(count => {
+                console.log(droga)
+                console.log(count);
+                droga.unidadesVendidas = count; // Agrega el resultado al objeto de droga
+                return droga;
+              })
+            )
+          ),
+          toArray() // Convierte el flujo de drogas con conteo en un array
+        );
       })
-    ).subscribe(drogas => {
-      this.drogas = drogas;
+    ).subscribe(drogasConConteo => {
+      this.drogas = drogasConConteo; // Asigna el array con los conteos a `this.drogas`
     });
     // this.lightModeService.registrarTablaDrogas(this);
     // if(!this.lightModeService.isModoOscuro){
@@ -52,8 +71,11 @@ export class TablaDrogaComponent {
   goBack() {
     window.history.back();
   }
-  eliminarDroga(arg0: number) {
-  throw new Error('Method not implemented.');
+  eliminarDroga(id: number) {
+    this.drogaService.deleteById(id).subscribe(mensaje => {
+      console.log(mensaje);
+    })
+    this.drogas.splice(this.drogas.findIndex(droga => droga.id === id), 1);
   }
   recargarDrogas(filtro: {nombre: string}) {
     // Trae todas las mascotas de la BD

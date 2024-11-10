@@ -34,4 +34,8 @@ export class DrogaService {
     return this.http.put<Droga>(this.baseUrl, droga);
   }
 
+  deleteById(id: number): Observable<string> {
+    return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
+  }
+
 }

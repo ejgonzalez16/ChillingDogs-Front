@@ -24,7 +24,6 @@ import { TratamientosMascotaComponent } from './tratamiento/tratamientos-mascota
 import { TratamientosVeterinarioComponent } from './tratamiento/tratamientos-veterinario/tratamientos-veterinario.component';
 import { TablaDrogaComponent } from './drogas/tabla-droga/tabla-droga.component';
 import { CrearDrogaComponent } from './drogas/crear-droga/crear-droga.component';
-import { DetallesDrogaComponent } from './drogas/detalles-droga/detalles-droga.component';
 import { ModificarDrogaComponent } from './drogas/modificar-droga/modificar-droga.component';
 
 const routes: Routes = [
@@ -65,7 +64,6 @@ const routes: Routes = [
   //Drogas
   { path: 'drogas/crear', component: CrearDrogaComponent },
   { path: 'drogas/buscar', component: TablaDrogaComponent },
-  { path: 'drogas/buscar/:id', component: DetallesDrogaComponent },
   { path: 'drogas/modificar/:id', component: ModificarDrogaComponent },
 
   // Landing
