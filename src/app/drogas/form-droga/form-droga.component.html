@@ -54,8 +54,8 @@
             </div>
             <div class="contenedorBoton" *ngIf="modificar"><button id="btnModificar" type="submit" class="present-button" [ngClass]="isModoOscuro ? 'btnRegistro' : 'btnRegistro-light'">Modificar</button></div>
             <div  class="contenedorBoton" *ngIf="!modificar"><button id="btnRegistrar"  type="submit" class="present-button" [ngClass]="isModoOscuro ? 'btnRegistro' : 'btnRegistro-light'">Registrar</button></div>
-            <div class="contenedorBoton"><button (click)="goBack()" type="submit" class="btnVolver present-button">Volver</button></div>
         </form>
+        <div class="contenedorBoton"><button (click)="goBack()" class="btnVolver present-button">Volver</button></div>
     </section>
 </main>
 

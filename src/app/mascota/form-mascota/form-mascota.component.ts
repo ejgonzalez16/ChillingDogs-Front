@@ -55,6 +55,11 @@ export class FormMascotaComponent {
     return peso !== undefined && peso >= 0;
   }
 
+  goBack() {  
+    // Vuelve pa atrás
+    window.history.back();
+  }
+
   ngOnInit() :void {
     // Verificar que el usuario esté logueado y sea veterinario o admin
     this.perfilService.perfilInfo$.subscribe(perfil => {
