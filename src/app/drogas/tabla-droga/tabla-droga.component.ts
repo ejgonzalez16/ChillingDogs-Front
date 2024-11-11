@@ -41,6 +41,8 @@ export class TablaDrogaComponent {
     ).subscribe(drogas => {
       this.drogas = drogas;
     });
+    this.isModoOscuro = this.lightModeService.isModoOscuro;
+    this.lightModeService.registrarTablaDroga(this);
   }
 
   redirectNotAuthorized() {
@@ -71,5 +73,8 @@ export class TablaDrogaComponent {
     }
   }
 
-
+  cambiarModo(isModoOscuro: boolean) {
+    this.isModoOscuro = isModoOscuro;
+    this.searchBar.cambiarModo(isModoOscuro);
+  }
 }

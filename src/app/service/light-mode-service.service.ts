@@ -21,6 +21,7 @@ import { CrearDrogaComponent } from '../drogas/crear-droga/crear-droga.component
 import { TratamientosMascotaComponent } from '../tratamiento/tratamientos-mascota/tratamientos-mascota.component';
 import { MainAdminComponent } from '../administrador/main/main-admin.component';
 import { ModificarDrogaComponent } from '../drogas/modificar-droga/modificar-droga.component';
+import { TablaDrogaComponent } from '../drogas/tabla-droga/tabla-droga.component';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +49,7 @@ export class LightModeServiceService {
   private tratamientosMascotaComponent: TratamientosMascotaComponent | null = null;
   private mainAdmin: MainAdminComponent | null = null;
   private modifcarDrogaComponent: ModificarDrogaComponent | null = null;
+  private tablaDrogaComponent: TablaDrogaComponent | null = null;
   
   isModoOscuro: boolean = true;
 
@@ -141,6 +143,10 @@ export class LightModeServiceService {
     this.modifcarDrogaComponent =  component;
   }
 
+  registrarTablaDroga(component: TablaDrogaComponent){
+    this.tablaDrogaComponent =  component;
+  }
+
   obtenerModoIsModoOscuro(isModoOscuro: boolean): boolean{
     return isModoOscuro;
   }
@@ -169,6 +175,7 @@ export class LightModeServiceService {
     this.cambiarModoMainAdmin(isModoOscuro);
     this.cambiarModoModificarVeterinario(isModoOscuro);3
     this.cambiarModoModificarDroga(isModoOscuro);
+    this.cambiarModoTablaDroga(isModoOscuro);
   }
 
   // Método para llamar la función de LoginComponent
@@ -343,6 +350,14 @@ export class LightModeServiceService {
   cambiarModoModificarDroga(isModoOscuro: boolean){
     if (this.modifcarDrogaComponent) {
       this.modifcarDrogaComponent.cambiarModo(isModoOscuro); // Llama a la función en LoginComponent
+    } else {
+      console.warn('LoginComponent no está registrado en el servicio.');
+    }
+  }
+
+  cambiarModoTablaDroga(isModoOscuro: boolean){
+    if (this.tablaDrogaComponent) {
+      this.tablaDrogaComponent.cambiarModo(isModoOscuro); // Llama a la función en LoginComponent
     } else {
       console.warn('LoginComponent no está registrado en el servicio.');
     }
