@@ -127,6 +127,8 @@ button {
   .datosDueno {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    margin: 1em;
     align-items: end;
   }
   

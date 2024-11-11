@@ -7,20 +7,6 @@ main{
     width: 100%;
     min-height: 86vh;
 
-    button {
-        margin-top: 50px;
-        width: 15em;
-        height: 2.5em;
-        padding: 0 20px;
-        font-size: 20px;
-        line-height: 30px;
-        font-weight: 500;
-        color: var(--color-3);
-        background: var(--secondary-color);
-        border: none;
-        border-radius: 30px;
-    }
-
     section{
         background-color: var(--color-4);
 
@@ -151,4 +137,32 @@ main{
 
 .columnaDosDatos{
     margin-right: 40px;
+}
+
+.btnTratamientos{
+    margin-top: 1em;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Chewy;
+    font-size: 25px;
+    line-height: 56px;
+    font-weight: 400;
+    color: #FFFFFFFF;
+    background: #171A1FFF;
+    opacity: 1;
+    border: none;
+    border-radius: 30px;
+    width: 18em;
+    margin-bottom: 20px;
+
+    &:hover{
+        background-color: #FFFFFFFF;
+        color: #171A1FFF;
+    }
+}
+
+detalle-mascota, detalle-cliente{
+    width: 65%;
 }

@@ -149,54 +149,42 @@ td{
 }
 
 .contenedorBoton{
-    margin-top: 0.2em;
-    padding: 0 20px;
+    width: 80%;
     display: flex;
-    align-items: center;
+    flex-direction: row;
+    align-items: end;
     justify-content: center;
-    font-family: Chewy;
-    font-size: 40px;
-    line-height: 56px;
-    font-weight: 400;
-    color: #171A1FFF;
-    background-color: #FFFFFFFF;
-    opacity: 1;
-    border: none;
-    border-radius: 4px;
-    width: 5em;
-    margin-right: 75px;
-    margin-left: 75px;
-
     button{
         color:  #171A1FFF;
         background-color: #FFFFFFFF;
-        border: 0px;
+        border-radius: 30px;
+        width: 50%;
+        font-size: 2em;
+        font-family: chewy;
+        &:hover{
+            color:  #FFFFFFFF;
+            background-color: #171A1FFF;
+        }
     }
 }
 
 .contenedorBoton-light{
-    margin-top: 0.2em;
-    padding: 0 20px;
+    width: 80%;
     display: flex;
-    align-items: center;
+    flex-direction: row;
+    align-items: end;
     justify-content: center;
-    font-family: Chewy;
-    font-size: 40px;
-    line-height: 56px;
-    font-weight: 400;
-    color:  #FFFFFFFF;
-    background-color: #171A1FFF;
-    opacity: 1;
-    border: none;
-    border-radius: 4px;
-    width: 5em;
-    margin-right: 75px;
-    margin-left: 75px;
-
-    button{
+        button{
         color:  #FFFFFFFF;
         background-color: #171A1FFF;
-        border: 0px;
+        border-radius: 30px;
+        width: 50%;
+        font-size: 2em;
+        font-family: chewy;
+        &:hover{
+            background-color: #FFFFFFFF;
+            color: #171A1FFF;
+        }
     }
 }
 
@@ -204,18 +192,18 @@ td{
     display: flex;
     flex-direction: row;
     margin-bottom: 50px;
-    align-items: center;
+    align-items: end;
     justify-content: center;
-    width: 50%;
+    width: 65%;
 }
 
 .botonesAccion-light{
     display: flex;
     flex-direction: row;
     margin-bottom: 50px;
-    align-items: center;
+    align-items: end;
     justify-content: center;
-    width: 50%;
+    width: 65%;
 }
 
 .h2-dark{
@@ -224,4 +212,16 @@ td{
 
 .h2-light{
     color: white;
+}
+
+.formBtn{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: center;
+}
+
+h2{
+    font-size: 3em;
 }
