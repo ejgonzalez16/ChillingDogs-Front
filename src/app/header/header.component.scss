@@ -2,7 +2,8 @@
     position: fixed; /*El header se queda estático*/
     top: 0; /*Mandarlo arriba del todo*/
     width: 100%;
-    padding: 0px;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
     z-index: 1;
     display: flex;
     justify-content: space-between;

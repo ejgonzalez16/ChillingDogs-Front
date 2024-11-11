@@ -75,7 +75,7 @@
           <ng-container *ngIf="perfil.foto != ''">
             <div class="collapse navbar-collapse">
               <!-- Alinear items a la derecha utilizando ms-auto -->
-              <div class="ms-auto navigation">
+              <div class="ms-auto navigation noMargin">
                 <a id="btnLogout" class="button" (click)="logout()">
                   <!-- Que haga el hijueputa width y height para que no joda el ngSrc -->
                   <img ngSrc="{{perfil.foto}}" width="50" height="50">

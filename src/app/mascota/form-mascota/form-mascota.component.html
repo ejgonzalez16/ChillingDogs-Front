@@ -111,7 +111,7 @@
             <div class="contenedorBoton" *ngIf="modificar"><button id="btnModificar" type="submit" class="present-button" [ngClass]="isModoOscuro ? 'btnRegistro' : 'btnRegistro-light'">Modificar</button></div>
             <div  class="contenedorBoton" *ngIf="!modificar"><button id="btnRegistrar"  type="submit" class="present-button" [ngClass]="isModoOscuro ? 'btnRegistro' : 'btnRegistro-light'">Registrar</button></div> 
         </form>
-        <div class="contenedorBoton"><button type="submit" (click)="goBack()" class="btnVolver present-button">Volver</button></div>
+        <button type="submit" (click)="goBack()" class="btnVolver present-button">Volver</button>
     </section>
 </main>
 

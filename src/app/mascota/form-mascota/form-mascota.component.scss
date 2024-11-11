@@ -85,20 +85,20 @@ td{
     padding-left: 0.5em;
 }
 
-button {
-    height: 2.5em;
-    padding: 0 20px;
-    line-height: 30px;
-    font-weight: 500;
-    color: var(--color-3);
-    background: var(--secondary-color);
-    border: none;
-    border-radius: 10px;
-    width: fit-content;
-    margin-top: 0;
-    font-size: small;
-    margin-bottom: 40px;
-}
+// button {
+//     height: 2.5em;
+//     padding: 0 20px;
+//     line-height: 30px;
+//     font-weight: 500;
+//     color: var(--color-3);
+//     background: var(--secondary-color);
+//     border: none;
+//     border-radius: 10px;
+//     width: fit-content;
+//     margin-top: 0;
+//     font-size: small;
+//     margin-bottom: 40px;
+// }
 
 #activo {
     opacity: 1;
@@ -179,10 +179,16 @@ table{
 
 .estadoActivo{
     background-color: #4CE77FFF;
+    width: 50%;
+    border: none;
+    border-radius: 15px;
 }
 
 .estadoInactivo{
     background-color: #ff5d60;
+    width: 50%;
+    border: none;
+    border-radius: 15px;
 }
 
 /* Estilo por defecto para botones no seleccionados */
@@ -190,15 +196,26 @@ table{
     background-color: grey;
     color: white;
     border: none;
+    width: 50%;
+    border-radius: 15px;
 }
 
 /* Estilo para botones seleccionados (color verde o rojo) */
 .btn-selected-green {
     background-color: green;
     color: white;
+    border: none;
+    width: 50%;
 }
 
 .btn-selected-red {
     background-color: red;
     color: white;
+    border: none;
+    width: 50%;
+}
+
+.btn-group{
+    display: flex;
+    justify-content: space-around;
 }
