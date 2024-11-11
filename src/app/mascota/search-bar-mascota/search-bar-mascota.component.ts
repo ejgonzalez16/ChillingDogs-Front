@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import {Router} from "@angular/router";
 import { Mascota } from '../../modelo/mascota';
 import { LightModeServiceService } from '../../service/light-mode-service.service';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-search-bar-mascota',
@@ -11,10 +12,11 @@ import { LightModeServiceService } from '../../service/light-mode-service.servic
 export class SearchBarMascotaComponent {
   nombrePerro!: string;
   filtroEstado: string = "";
+  filtroBusqueda: string = "";
   mascotas: Mascota[] = [];
   isModoOscuro: boolean = true;
 
-  @Output() actualizarLista = new EventEmitter<{nombre: string, filter: string}>();
+  @Output() actualizarLista = new EventEmitter<{nombre: string, filterEstado: string, filterBusqueda: string}>();
 
   constructor(private router: Router,
     private lightModeService: LightModeServiceService) {}
@@ -30,7 +32,8 @@ export class SearchBarMascotaComponent {
     // Buscar mascota por nombre
     this.actualizarLista.emit({
       nombre : this.nombrePerro,
-      filter : this.filtroEstado
+      filterEstado : this.filtroEstado,
+      filterBusqueda : this.filtroBusqueda
     });
   }
 

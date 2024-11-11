@@ -45,32 +45,39 @@ export class TablaMascotaComponent {
     }
   }
 
-  recargarMascotas(filtro: {nombre: string, filter: string}) {
+  recargarMascotas(filtro: {nombre: string, filterEstado: string, filterBusqueda: string}) {
     // Trae todas las mascotas de la BD
     console.log(filtro);
     if(filtro.nombre != undefined) {
       this.mascotaService.findAll().subscribe(mascotas => {
-        this.mascotas = mascotas.filter(mascota => mascota.nombre.toLowerCase().includes(filtro.nombre.toLowerCase() || ''));
-        if(filtro.filter != "") {
-          this.filtrarMascotas(filtro.filter);
+        if(filtro.filterBusqueda == "") {
+          this.mascotas = mascotas.filter(mascota => mascota.nombre.toLowerCase().includes(filtro.nombre.toLowerCase() || ''));
+        }else{
+          this.mascotas = mascotas.filter(mascota => mascota.cliente?.nombre.toLowerCase().includes(filtro.nombre.toLowerCase() || ''));
+        }    
+        if(filtro.filterEstado != "") {
+          this.filtrarMascotas(filtro.filterEstado);
         }
       });
     }
     else{
       this.mascotaService.findAll().subscribe(mascotas => {
         this.mascotas = mascotas
-        if(filtro.filter != "") {
-          this.filtrarMascotas(filtro.filter);
+        if(filtro.filterEstado != "") {
+          this.filtrarMascotas(filtro.filterEstado);
         }
       });
     }
   }
 
   eliminarMascota(id: number) {
-    this.mascotaService.deleteById(id);
-    alert("Mascota eliminada con éxito");
-    // Eliminar la mascota de la lista
-    this.mascotas.splice(this.mascotas.findIndex(mascota => mascota.id === id), 1);
+    const confirmacion = confirm("¿Estás seguro de que deseas eliminar este registro?");
+    if (confirmacion) {
+      this.mascotaService.deleteById(id);
+      alert("Mascota eliminada con éxito");
+      // Eliminar la mascota de la lista
+      this.mascotas.splice(this.mascotas.findIndex(mascota => mascota.id === id), 1);
+    } 
   }
 
   filtrarMascotas(filter: string): void {

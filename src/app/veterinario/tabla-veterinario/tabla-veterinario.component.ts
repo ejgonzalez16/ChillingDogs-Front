@@ -91,19 +91,23 @@ export class TablaVeterinarioComponent {
   }
 
   eliminarVeterinario(id: number) {
-    console.log("matando a", id);
-    this.veterinarioService.deleteById(id.toString()).pipe(
-        mergeMap(response => {
-            console.log(response); // Esto debería mostrar "Cliente eliminado exitosamente"
-            return this.veterinarioService.findAll(); // Actualiza la lista de clientes
-        })
-    ).subscribe(
-        veterinarios => {
-            this.veterinarios = veterinarios; // Actualiza la vista con la lista de clientes
-            console.log('Lista de clientes actualizada:', this.veterinarios);
-        }
-    );
-}
+    const confirmacion = confirm("¿Estás seguro de que deseas eliminar este registro?");
+    if (confirmacion) {
+      console.log("matando a", id);
+      this.veterinarioService.deleteById(id.toString()).pipe(
+          mergeMap(response => {
+              console.log(response); // Esto debería mostrar "Cliente eliminado exitosamente"
+              return this.veterinarioService.findAll(); // Actualiza la lista de clientes
+          })
+      ).subscribe(
+          veterinarios => {
+              this.veterinarios = veterinarios; // Actualiza la vista con la lista de clientes
+              console.log('Lista de clientes actualizada:', this.veterinarios);
+              alert("Veterinario eliminado con éxito");
+          }
+      );
+    }
+  }
 
   goToDashboard() {
     console.log("Redirigiendo al dashboard " + this.cedulaAdmin);

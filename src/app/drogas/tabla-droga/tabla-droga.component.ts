@@ -53,10 +53,13 @@ export class TablaDrogaComponent {
     window.history.back();
   }
   eliminarDroga(id: number) {
-    this.drogaService.deleteById(id).subscribe(mensaje => {
-      alert("Droga eliminada con éxito");
-    })
-    this.drogas.splice(this.drogas.findIndex(droga => droga.id === id), 1);
+    const confirmacion = confirm("¿Estás seguro de que deseas eliminar este registro?");
+    if (!confirmacion) {
+      this.drogaService.deleteById(id).subscribe(mensaje => {
+        alert("Droga eliminada con éxito");
+      })
+      this.drogas.splice(this.drogas.findIndex(droga => droga.id === id), 1);
+    }
   }
   recargarDrogas(filtro: {nombre: string}) {
     // Trae todas las mascotas de la BD

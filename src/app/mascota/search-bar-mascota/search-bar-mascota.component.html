@@ -1,8 +1,12 @@
 <main [ngClass]="isModoOscuro ? 'main-dark' : 'main-light'">
     <h1>¡Revisa el estado de un peludito!</h1>
     <form  (ngSubmit)="onSubmit()" #buscarForm="ngForm" >
-        <input type="text" [(ngModel)]="nombrePerro" name="nombrePerro" placeholder="Nombre del perro..." id="nombrePerroField" required>
-        <select [(ngModel)]="filtroEstado" name="filtroEstado" id="filtroEstadoField">
+        <select [(ngModel)]="filtroBusqueda" name="filtroBusqueda" class="filtroEstadoField">
+            <option value="">Nombre de la mascota</option>
+            <option value="Owner">Nombre del dueño</option>
+        </select>
+        <input type="text" [(ngModel)]="nombrePerro" name="nombrePerro" placeholder="Nombre" id="nombrePerroField" required>
+        <select [(ngModel)]="filtroEstado" name="filtroEstado" class="filtroEstadoField">
             <option value="">Todas</option>
             <option value="Activo">Activas</option>
             <option value="Inactivo">Inactivas</option>

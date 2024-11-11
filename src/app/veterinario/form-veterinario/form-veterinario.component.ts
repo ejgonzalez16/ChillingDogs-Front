@@ -34,17 +34,26 @@ export class FormVeterinarioComponent {
 
   onSubmit() {
     if (this.modificar) {
-      // Actualiza el cliente y vuelve a recargar la página con la información actualizada
+      // Actualiza el cliente y vuelve a recargar la página con la información actualizada
       this.veterinarioService.update(this.veterinario).pipe(
         mergeMap(() => this.router.navigate(['/veterinarios/buscar']))
-      ).subscribe();
+      ).subscribe(() => {
+        alert("Registro modificado exitosamente.");
+      }, error => {
+        alert("Error al modificar el registro.");
+      });
     } else {
-      // Crea el cliente y vuelve a recargar la página con la información actualizada
+      // Crea el cliente y vuelve a recargar la página con la información actualizada
       this.veterinarioService.add(this.veterinario).pipe(
         mergeMap(() => this.router.navigate(['/veterinarios/buscar']))
-      ).subscribe();
+      ).subscribe(() => {
+        alert("Registro creado exitosamente.");
+      }, error => {
+        alert("Error al crear el registro.");
+      });
     }
   }
+
 
   selectButton(event: MouseEvent, color: string) {
     // Rellenar el botón para el formulario

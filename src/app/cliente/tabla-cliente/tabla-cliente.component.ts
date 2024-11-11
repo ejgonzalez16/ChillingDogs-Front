@@ -61,19 +61,22 @@ export class TablaClienteComponent {
   }
 
   eliminarCliente(id: number) {
-    console.log("matando a", id);
-    this.clienteService.deleteById(id).pipe(
-        mergeMap(response => {
-            console.log(response); // Esto debería mostrar "Cliente eliminado exitosamente"
-            return this.clienteService.findAll(); // Actualiza la lista de clientes
-        })
-    ).subscribe(
-        clientes => {
-            this.clientes = clientes; // Actualiza la vista con la lista de clientes
-            console.log('Lista de clientes actualizada:', this.clientes);
-            alert("Cliente eliminado con éxito");
-        }
-    );
+    const confirmacion = confirm("¿Estás seguro de que deseas eliminar este registro?");
+    if(confirmacion){
+      console.log("matando a", id);
+      this.clienteService.deleteById(id).pipe(
+          mergeMap(response => {
+              console.log(response); // Esto debería mostrar "Cliente eliminado exitosamente"
+              return this.clienteService.findAll(); // Actualiza la lista de clientes
+          })
+      ).subscribe(
+          clientes => {
+              this.clientes = clientes; // Actualiza la vista con la lista de clientes
+              console.log('Lista de clientes actualizada:', this.clientes);
+              alert("Cliente eliminado con éxito");
+          }
+      );
+    }
   }
 
   goBack() {
