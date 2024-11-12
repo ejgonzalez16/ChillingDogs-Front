@@ -8,7 +8,7 @@ import { MedicamentosMes } from '../modelo/medicamentosMes';
 })
 export class DashboardService {
 
-  //baseUrl = 'http://localhost:8099/dashboard';
+  // baseUrl = 'http://localhost:8099/dashboard';
   baseUrl = 'https://chillingdogsback.azurewebsites.net/dashboard';
 
   constructor(private http: HttpClient) { }

@@ -10,19 +10,21 @@ import { LightModeServiceService } from './service/light-mode-service.service';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  showHeaderFooter = true;
+  showFooter = true;
   title = 'ChillingDogsFrontend';
   tipoLogueo: string = "GUEST";
   @ViewChild(HeaderComponent) header!: HeaderComponent;
   isModoOscuro: boolean = true;
 
- 
-  constructor(private router: Router, private lightModeService: LightModeServiceService) { 
+
+  constructor(private router: Router, private lightModeService: LightModeServiceService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         console.log(event.urlAfterRedirects);
-        const isAdminRoute = /^\/administrador\/\d+$/.test(event.urlAfterRedirects);
-        this.showHeaderFooter = !isAdminRoute;
+        // Definir isAdminRoute como verdadero si la ruta actual es '/administrador'
+        // const isAdminRoute = event.urlAfterRedirects.includes('/administrador');
+        // console.log('isAdminRoute:', isAdminRoute);
+        // this.showFooter = !isAdminRoute;
       }
     })
   }

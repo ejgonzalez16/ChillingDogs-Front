@@ -2,8 +2,8 @@
     position: fixed; /*El header se queda estático*/
     top: 0; /*Mandarlo arriba del todo*/
     width: 100%;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
+    //padding-left: 0.5em;
+    //padding-right: 0.5em;
     z-index: 1;
     display: flex;
     justify-content: space-between;
@@ -11,7 +11,7 @@
 
 .nav-dark {
     background-color: #212529 !important;
-} 
+}
 
 .nav-light {
     background-color: white !important;

@@ -8,8 +8,8 @@ import { LightModeServiceService } from '../../service/light-mode-service.servic
 
 @Component({
   selector: 'admin-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+  templateUrl: './new-dashboard.component.html',
+  styleUrl: './new-dashboard.component.scss'
 })
 
 export class DashboardComponent implements OnDestroy {
@@ -31,7 +31,7 @@ export class DashboardComponent implements OnDestroy {
   dataVets!: ChartData[]
   dataMascotas!: ChartData[]
   dataTop!: ChartData[]
-  view:[number, number] = [700, 400];
+  view:[number, number] = [400, 200];
   colorScheme = {
     name: 'customScheme',
     selectable: true,
@@ -43,10 +43,10 @@ export class DashboardComponent implements OnDestroy {
   gradient = false;
   showLegend = true;
   showXAxisLabel = true;
-  xAxisLabel = 'Medicamentos vendidos en el mes';
+  xAxisLabel = 'Medicamentos vendidos';
   xAxisLabelTop = 'Top medicamentos vendidos';
   showYAxisLabel = true;
-  yAxisLabel = 'Unidades vendidas en el mes';
+  yAxisLabel = 'Unidades vendidas';
   yAxisLabelTop = 'Unidades vendidas';
   legendTitle = "Medicamentos";
   legendTitle2 = "Veterinarios";
@@ -105,11 +105,11 @@ export class DashboardComponent implements OnDestroy {
         this.totalMascotasTratamiento = <number>resultados[6];
         this.dataMascotas = [
           {
-            name: 'Mascotas en tratamiento',
+            name: 'En tratamiento',
             value: <number>resultados[6]
           },
           {
-            name: 'Mascotas sin tratamiento actual',
+            name: 'En casa',
             value: resultados[5] - resultados[6]
           }
         ]
@@ -171,5 +171,5 @@ function tranformarDataVets(activos: number, inactivos: number): ChartData[] {
       name: 'Inactivos',
       value: inactivos
     }
-  ]; 
+  ];
 }
