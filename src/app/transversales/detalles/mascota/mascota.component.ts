@@ -22,8 +22,6 @@ export class MascotaComponent {
   ngAfterViewInit(){
     if(!this.lightModeService.isModoOscuro){
       this.isModoOscuro = false;
-      this.seccionPeludo = document.getElementById("seccionPeludo");
-      this.seccionPeludo?.classList.replace("section-light", "section-dark");
     }
   }
 
