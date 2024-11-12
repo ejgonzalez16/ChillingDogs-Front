@@ -22,7 +22,7 @@ export class MisMascotasComponent {
   cliente!: Cliente;
   mascotas!: Mascota[];
   rolUsuario: string = 'clientePending';
-  main: HTMLElement | null = null;
+  isModoOscuro: boolean = true;
   @ViewChild(CarruselComponent) carruselComponent!: CarruselComponent;
  
   constructor(
@@ -66,10 +66,7 @@ export class MisMascotasComponent {
       this.mascotas = mascotas;
     });
     this.lightModeService.registrarMisMascotasComponent(this);
-    this.main = document.getElementById('main');
-    if(!this.lightModeService.isModoOscuro){
-      this.main?.classList.replace('main-dark', 'main-light');
-    }
+    this.isModoOscuro = this.lightModeService.isModoOscuro;
   }
 
   redirectNotAuthorized() {
@@ -78,10 +75,6 @@ export class MisMascotasComponent {
 
   cambiarModo(isModoOscuro: boolean) {  
     this.carruselComponent.cambiarModo(isModoOscuro);
-    if(isModoOscuro){
-      this.main?.classList.replace('main-light', 'main-dark');
-      return;
-    }
-    this.main?.classList.replace('main-dark', 'main-light');
+    this.isModoOscuro = isModoOscuro;
   }
 }

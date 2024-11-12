@@ -3,6 +3,7 @@ import { Mascota } from '../../modelo/mascota';
 import {Router} from "@angular/router";
 import {MascotaService} from "../../service/mascota.service";
 import {TratamientoService} from "../../service/tratamiento.service";
+import { LightModeServiceService } from '../../service/light-mode-service.service';
 
 @Component({
   selector: 'carrusel',
@@ -12,11 +13,10 @@ import {TratamientoService} from "../../service/tratamiento.service";
 export class CarruselComponent {
   @Input()
   mascotas: Mascota[] = [];
+  isModoOscuro: boolean = true;
 
   @Input()
   rolUsuario!: string;
-
-  carrusel: HTMLElement | null = null;
 
   responsiveOptions: any[] = [
     {
@@ -33,11 +33,11 @@ export class CarruselComponent {
 
   constructor(
     private router: Router,
-    private tratamientoService: TratamientoService
+    private tratamientoService: TratamientoService, private lightModeService : LightModeServiceService
   ) { }
 
   ngOnInit(): void{
-    this.carrusel = document.getElementById('carrusel');
+    this.isModoOscuro = this.lightModeService.isModoOscuro;
   }
 
   getBadgeClass(status: string) {
@@ -52,19 +52,15 @@ export class CarruselComponent {
 
   verDetallesMascota(id: number) {
     console.log('Rol usuario:', this.rolUsuario);
-    var isModoOscuro = true;
-    if(this.carrusel?.classList.contains("carrusel-light")) isModoOscuro = false;
     if (this.rolUsuario === 'CLIENTE') {
-      this.router.navigate(['/mascotas/detalles', id],  { queryParams: { isModoOscuro: isModoOscuro } });
+      this.router.navigate(['/mascotas/detalles', id]);
     } else {
-      this.router.navigate(['/mascotas/buscar', id],  { queryParams: { isModoOscuro: isModoOscuro } });
+      this.router.navigate(['/mascotas/buscar', id]);
     }
   }
 
   modificarMascota(id: number) {
-    var isModoOscuro = true;
-    if(this.carrusel?.classList.contains("carrusel-light")) isModoOscuro = false;
-    this.router.navigate(['/mascotas/modificar', id], { queryParams: { isModoOscuro: isModoOscuro } });
+    this.router.navigate(['/mascotas/modificar', id]);
   }
 
   eliminarMascota(id: number) {
@@ -74,10 +70,6 @@ export class CarruselComponent {
   }
 
   cambiarModo(isModoOscuro: boolean){
-    if(isModoOscuro){
-      this.carrusel?.classList.replace('carrusel-light', 'carrusel-dark');
-      return;
-    }
-    this.carrusel?.classList.replace('carrusel-dark', 'carrusel-light');
+    this.isModoOscuro = isModoOscuro;
   }
 }

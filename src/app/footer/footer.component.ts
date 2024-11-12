@@ -9,7 +9,6 @@ import { Component, Output, EventEmitter } from '@angular/core';
 })
 export class FooterComponent {
   rolUsuario: string = 'ANY';
-  footerElement!: HTMLElement | null;
 
   constructor(
     private perfilService: PerfilService,
@@ -20,7 +19,6 @@ export class FooterComponent {
     this.perfilService.perfilInfo$.subscribe(perfil => {
       this.rolUsuario = perfil.rol;
     });
-    this.footerElement = document.getElementById('footer');
   }
 
   isModoOscuro = true;
@@ -29,12 +27,5 @@ export class FooterComponent {
   cambiarModo(){
     this.isModoOscuro = !this.isModoOscuro;
     this.cambiarModoGeneral.emit(this.isModoOscuro);
-    if (this.footerElement) {
-      if(!this.isModoOscuro){
-        this.footerElement.classList.replace('footer', 'light-footer');
-        return;
-      }
-      this.footerElement.classList.replace('light-footer', 'footer');
-    }
   }
 }

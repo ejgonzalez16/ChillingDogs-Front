@@ -20,10 +20,6 @@ export class MainComponent {
   chatAbierto: boolean = false;
   imagenChat: string = 'assets/images/simbolo_chat.png';
   isFading: boolean = false;
-  presentacion!: HTMLElement | null;
-  sobreNosotros!: HTMLElement | null;
-  servicios!: HTMLElement | null;
-  casosDeExito!: HTMLElement | null;
   isModoOscuro: boolean = true;
 
 
@@ -71,16 +67,7 @@ export class MainComponent {
       }
     });
     this.lightModeService.registrarLandingComponent(this);
-    this.presentacion = document.getElementById('presentacion');
-    this.sobreNosotros = document.getElementById('sobreNosotros');
-    this.servicios = document.getElementById('servicios');
-    this.casosDeExito = document.getElementById('casosDeExito');
-    if(!this.lightModeService.isModoOscuro){
-      this.presentacion?.classList.replace('seccionDorada', 'seccionDorada-light');
-      this.sobreNosotros?.classList.replace('seccionAzul', 'seccionAzul-light');
-      this.servicios?.classList.replace('seccionDorada', 'seccionDorada-light');
-      this.casosDeExito?.classList.replace('seccionAzul', 'seccionAzul-light');
-    }
+    this.isModoOscuro = this.lightModeService.isModoOscuro;
   }
 
   onSubmit(){
@@ -112,16 +99,5 @@ export class MainComponent {
 
   cambiarModo(isModoOscuro: boolean) {  
     this.isModoOscuro = isModoOscuro;
-    if(isModoOscuro){
-      this.presentacion?.classList.replace('seccionDorada-light', 'seccionDorada');
-      this.sobreNosotros?.classList.replace('seccionAzul-light', 'seccionAzul');
-      this.servicios?.classList.replace('seccionDorada-light', 'seccionDorada');
-      this.casosDeExito?.classList.replace('seccionAzul-light', 'seccionAzul');
-      return;
-    }
-    this.presentacion?.classList.replace('seccionDorada', 'seccionDorada-light');
-    this.sobreNosotros?.classList.replace('seccionAzul', 'seccionAzul-light');
-    this.servicios?.classList.replace('seccionDorada', 'seccionDorada-light');
-    this.casosDeExito?.classList.replace('seccionAzul', 'seccionAzul-light');
   }
 }

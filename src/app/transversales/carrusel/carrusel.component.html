@@ -1,4 +1,4 @@
-<div class="container-carrusel mb-5 carrusel-dark" id="carrusel">
+<div class="container-carrusel mb-5" id="carrusel" [ngClass]="isModoOscuro ? 'carrusel-dark' : 'carrusel-light'">
     <p-carousel
       [value]="mascotas"
       [numVisible]="3"

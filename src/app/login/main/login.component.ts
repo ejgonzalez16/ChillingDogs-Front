@@ -27,8 +27,6 @@ export class LoginComponent {
   cedula: string = '';
   contrasena: string = '';
   loginError: string = '';
-  login!: HTMLElement | null;
-  loginPart!: HTMLElement | null;
 
 
   constructor(
@@ -52,16 +50,8 @@ export class LoginComponent {
         this.router.navigate(['/administrador']);
       }
     });
-    this.login = document.getElementById("login");
-    this.loginPart = document.getElementById("loginPart");
     this.lightModeService.registrarLoginComponent(this);
-    if(!this.lightModeService.isModoOscuro){
-      this.login?.classList.remove("login-black");
-      this.login?.classList.add("login-light");
-
-      this.loginPart?.classList.remove("login-part");
-      this.loginPart?.classList.add("login-part-light");
-    }
+    this.isModoOscuro = this.lightModeService.isModoOscuro;
   }
 
   // Método para manejar el login
@@ -140,18 +130,5 @@ export class LoginComponent {
 
   cambiarModo(isModoOscuro: Boolean){
     this.isModoOscuro = Boolean(isModoOscuro);
-    if(this.isModoOscuro){
-      this.login?.classList.remove("login-light");
-      this.login?.classList.add("login-black");
-
-      this.loginPart?.classList.remove("login-part-light");
-      this.loginPart?.classList.add("login-part");
-      return;
-    }
-    this.login?.classList.remove("login-black");
-    this.login?.classList.add("login-light");
-
-    this.loginPart?.classList.remove("login-part");
-    this.loginPart?.classList.add("login-part-light");
   }
 }

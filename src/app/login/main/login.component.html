@@ -1,5 +1,5 @@
 <div class="main">
-    <section class="login-black" id="login">
+    <section  [ngClass]="isModoOscuro ? 'login-black' : 'login-light'" id="login">
         <form (ngSubmit)="onSubmit()" method="get">
             <div class="type-user-buttons">
               <!-- Cambia el estilo de los botones dependiendo del tipo de usuario seleccionado -->
@@ -8,7 +8,7 @@
               <button id="btnLoginVet" type="reset" [ngClass]="tipoLogin === 'VETERINARIO' ? 'type-button-selected' : 'type-button'" (click)="tipoLogin = 'VETERINARIO'; loginError = ''">Veterinario</button>
               <button id="btnLoginAdmin" type="reset" [ngClass]="tipoLogin === 'ADMIN' ? 'type-button-selected' : 'type-button'" (click)="tipoLogin = 'ADMIN'; loginError = ''">Administrador</button>
             </div>
-            <div class="login-part" id="loginPart">
+            <div  [ngClass]="isModoOscuro ? 'login-part' : 'login-part-light'" id="login" id="loginPart">
                 <h1>Iniciar Sesión</h1>
 
                 <label for="cedulaTxt">Cedula</label>

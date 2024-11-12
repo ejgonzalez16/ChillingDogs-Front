@@ -1,5 +1,5 @@
 <div class="header" id="header">
-    <nav class="navbar navbar-expand-lg expandir" id="navbar">
+    <nav class="navbar navbar-expand-lg expandir" id="navbar" [ngClass]="isModoOscuro ? 'nav-dark' : 'nav-light'">
         <!-- 3 barritas del navbar responsive -->
         <button class="navbar-toggler black" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-expanded="false">
             <span class="navbar-toggler-icon"></span>
@@ -14,9 +14,9 @@
           <div class="centrar">
               <div class="collapse navbar-collapse"> <!--Contiene el responsive de los elementos-->
                   <ul class="navbar-nav mx-auto">
-                      <li class="nav-item enlacesSecciones"><a href="#sobreNosotros" id="nosotros"  class="nav-link link-light">Sobre Nosotros</a></li>
-                      <li class="nav-item enlacesSecciones"><a href="#servicios" id="servicios"  class="nav-link link-light">Nuestros Servicios</a></li>
-                      <li class="nav-item enlacesSecciones"><a href="#casosDeExito" id="casos"  class="nav-link link-light">Casos de éxito</a></li>
+                      <li class="nav-item enlacesSecciones"><a href="#sobreNosotros" id="nosotros"  class="nav-link" [ngClass]="isModoOscuro ? 'link-light' : 'link-dark'">Sobre Nosotros</a></li>
+                      <li class="nav-item enlacesSecciones"><a href="#servicios" id="servicios"  class="nav-link" [ngClass]="isModoOscuro ? 'link-light' : 'link-dark'">Nuestros Servicios</a></li>
+                      <li class="nav-item enlacesSecciones"><a href="#casosDeExito" id="casos"  class="nav-link" [ngClass]="isModoOscuro ? 'link-light' : 'link-dark'">Casos de éxito</a></li>
                   </ul>
               </div>
 
@@ -41,29 +41,29 @@
                   </a>
                 </li>-->
                 <li class="nav-item enlacesSecciones">
-                  <a id="btnBuscarMascotas" class="button" [routerLink]="['mascotas/buscar']">
+                  <a id="btnBuscarMascotas" [ngClass]="isModoOscuro ? 'button' : 'button-light'" [routerLink]="['mascotas/buscar']">
                     <img id="mascotasImg" src="/assets/images/mascotas-vet-option-light.png" alt="mascotas">
                     <div class="logout">Mascotas</div>
                   </a>
                 </li>
                 <li class="nav-item enlacesSecciones">
-                  <a id="btnBuscarClientes" class="button" [routerLink]="['clientes/buscar']">
+                  <a id="btnBuscarClientes" [ngClass]="isModoOscuro ? 'button' : 'button-light'" [routerLink]="['clientes/buscar']">
                     <img id="clientesImg" src="/assets/images/clientes-vet-option-light.png">
                     <div class="logout">Clientes</div>
                   </a>
                 </li>
                 <li class="nav-item enlacesSecciones">
-                  <a id="btnBuscarTratamientos" class="button" [routerLink]="['tratamientos/buscar']" *ngIf="perfil.rol == 'VETERINARIO'">
+                  <a id="btnBuscarTratamientos" [ngClass]="isModoOscuro ? 'button' : 'button-light'" [routerLink]="['tratamientos/buscar']" *ngIf="perfil.rol == 'VETERINARIO'">
                     <img src="/assets/images/vet-logo.png">
                     <div class="logout" id="btnTratamientos">Tratamientos</div>
                   </a>
-                  <a id="btnBuscarVeterinarios" class="button" [routerLink]="['veterinarios/buscar']" *ngIf="perfil.rol == 'ADMIN'">
+                  <a id="btnBuscarVeterinarios" [ngClass]="isModoOscuro ? 'button' : 'button-light'" [routerLink]="['veterinarios/buscar']" *ngIf="perfil.rol == 'ADMIN'">
                     <img src="/assets/images/vet-logo.png">
                     <div class="logout">Veterinarios</div>
                   </a>
                 </li>
                 <li class="nav-item enlacesSecciones">
-                  <a id="btnBuscarDrogas" class="button" [routerLink]="['drogas/buscar']" *ngIf="perfil.rol == 'ADMIN'">
+                  <a id="btnBuscarDrogas" [ngClass]="isModoOscuro ? 'button' : 'button-light'" [routerLink]="['drogas/buscar']" *ngIf="perfil.rol == 'ADMIN'">
                     <img src="/assets/images/droga-icono.png">
                     <div class="logout" id="btnTratamientos">Drogas</div>
                   </a>
@@ -76,7 +76,7 @@
             <div class="collapse navbar-collapse">
               <!-- Alinear items a la derecha utilizando ms-auto -->
               <div class="ms-auto navigation noMargin">
-                <a id="btnLogout" class="button" (click)="logout()">
+                <a id="btnLogout" [ngClass]="isModoOscuro ? 'button' : 'button-light'" (click)="logout()">
                   <!-- Que haga el hijueputa width y height para que no joda el ngSrc -->
                   <img ngSrc="{{perfil.foto}}" width="50" height="50">
                   <div class="logout">Cerrar Sesión</div>

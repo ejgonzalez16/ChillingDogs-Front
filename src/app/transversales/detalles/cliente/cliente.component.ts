@@ -11,7 +11,6 @@ export class ClienteComponent {
   @Input()
   mascota!: Mascota;
   isModoOscuro: boolean = true;
-  seccionPeludo: HTMLElement | null = null;
 
   constructor(private lightModeService: LightModeServiceService){
 
@@ -20,9 +19,6 @@ export class ClienteComponent {
   ngAfterViewInit(){
     if(!this.lightModeService.isModoOscuro){
       this.isModoOscuro = false;
-      this.seccionPeludo = document.getElementById("seccionPeludo");
-      this.seccionPeludo?.classList.remove("section-light");
-      this.seccionPeludo?.classList.add("section-dark");
     }
   }
 
